@@ -34,9 +34,9 @@
 </div>
 
 <div class="container">
-    <div class="well well-sm" th:each="cat,iterStat : ${category}">
-        <strong th:text="${cat.name}">Category Title</strong>
-    </div>
+        <div th:each="cat,iterStat : ${category}">
+            <a class="btn btn-default" th:href="'/category/' + ${cat.id}" th:text="${cat.name}">Add to cart</a>
+        </div>
 
     <div id="products" class="row list-group">
 
