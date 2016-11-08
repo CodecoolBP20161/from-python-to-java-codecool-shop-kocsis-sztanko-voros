@@ -19,7 +19,7 @@ public class ProductController {
         int id = Integer.valueOf(req.params("id"));
 
         Map params = new HashMap<>();
-        params.put("category", productCategoryDataStore.find(id));
+        params.put("category", productCategoryDataStore.getAll());
         params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
         return new ModelAndView(params, "product/index");
     }
