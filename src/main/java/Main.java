@@ -41,7 +41,10 @@ public class Main {
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory laptop = new ProductCategory("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.");
+
         productCategoryDataStore.add(tablet);
+        productCategoryDataStore.add(laptop);
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));

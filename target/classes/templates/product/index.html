@@ -33,9 +33,9 @@
     <h1>Codecool Shop</h1>
 </div>
 
-<div class="container">
+<div class="container" th:each="cat,iterStat : ${category}">
     <div class="well well-sm">
-        <strong th:text="${category}">Category Title</strong>
+        <strong th:text="${cat.name}">Category Title</strong>
     </div>
 
     <div id="products" class="row list-group">
