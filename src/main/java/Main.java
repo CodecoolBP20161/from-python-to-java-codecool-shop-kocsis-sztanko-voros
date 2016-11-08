@@ -1,10 +1,16 @@
-import static spark.Spark.*;
-
 import com.codecool.shop.controller.ProductController;
-import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.implementation.*;
-import com.codecool.shop.model.*;
+import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Product;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
+import static spark.Spark.*;
 
 public class Main {
 
@@ -17,8 +23,7 @@ public class Main {
 
         populateData();
 
-        get("/", ProductController::renderProducts, new ThymeleafTemplateEngine());
-        get("/hello", (req, res) -> "Hello World");
+        get("/", ProductController::renderCategories, new ThymeleafTemplateEngine());
 
     }
 
@@ -36,7 +41,10 @@ public class Main {
 
         //setting up a new product category
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory laptop = new ProductCategory("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.");
+
         productCategoryDataStore.add(tablet);
+        productCategoryDataStore.add(laptop);
 
         //setting up products and printing it
         productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
