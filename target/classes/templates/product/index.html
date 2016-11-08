@@ -34,12 +34,16 @@
 </div>
 
 <div class="container">
-    <div class="well well-sm" th:each="cat,iterStat : ${category}">
-        <strong th:text="${cat.name}">Category Title</strong>
+
+    <div th:each="cat,iterStat : ${category}">
+        <a class="btn btn-default" th:href="'/category/' + ${cat.id}" th:text="${cat.name}">Category</a>
+    </div>
+
+    <div th:each="supp,iterStat : ${supplier}">
+        <a class="btn btn-default" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
     </div>
 
     <div id="products" class="row list-group">
-
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />

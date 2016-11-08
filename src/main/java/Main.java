@@ -26,9 +26,9 @@ public class Main {
 
         get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 
-        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+        get("/category/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
-        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
+        get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
     }
 

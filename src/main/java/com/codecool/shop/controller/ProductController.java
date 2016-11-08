@@ -6,7 +6,6 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
-import com.codecool.shop.model.Supplier;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -16,7 +15,7 @@ import java.util.Map;
 
 public class ProductController {
 
-    public static ModelAndView renderProductsByCategory(Request req, Response res) {
+    public static ModelAndView renderProductsByFilter(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -24,19 +23,12 @@ public class ProductController {
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
-        params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
-        return new ModelAndView(params, "product/index");
-    }
 
-    public static ModelAndView renderProductsBySupplier(Request req, Response res) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        Map params = new HashMap<>();
-        params.put("category", productCategoryDataStore.getAll());
-        params.put("supplier", productSupplierDataStore.getAll());
-        int id = Integer.valueOf(req.params("id"));
-        params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
+        if (req.uri().contains("supplier")) {
+            params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
+            return new ModelAndView(params, "product/index");
+        }
+        params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
         return new ModelAndView(params, "product/index");
     }
 
@@ -50,5 +42,7 @@ public class ProductController {
         params.put("products", productDataStore.getAll());
         return new ModelAndView(params, "product/index");
     }
+
+
 
 }
