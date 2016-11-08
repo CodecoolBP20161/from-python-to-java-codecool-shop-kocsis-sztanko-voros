@@ -26,8 +26,10 @@ public class ProductController {
 
     public static ModelAndView renderCategories(Request req, Response res){
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoMem.getInstance();
         Map params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
+        params.put("products", productDataStore.getAll());
         return new ModelAndView(params, "product/index");
     }
 

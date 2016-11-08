@@ -33,8 +33,8 @@
     <h1>Codecool Shop</h1>
 </div>
 
-<div class="container" th:each="cat,iterStat : ${category}">
-    <div class="well well-sm">
+<div class="container">
+    <div class="well well-sm" th:each="cat,iterStat : ${category}">
         <strong th:text="${cat.name}">Category Title</strong>
     </div>
 
