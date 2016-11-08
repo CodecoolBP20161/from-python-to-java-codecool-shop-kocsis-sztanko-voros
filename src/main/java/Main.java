@@ -24,9 +24,11 @@ public class Main {
         populateData();
 
 
-        get("/", ProductController::renderCategories, new ThymeleafTemplateEngine());
+        get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 
-        get("/category/:id", ProductController::renderProducts, new ThymeleafTemplateEngine());
+        get("/category/:id", ProductController::renderProductsByCategory, new ThymeleafTemplateEngine());
+
+        get("/supplier/:id", ProductController::renderProductsBySupplier, new ThymeleafTemplateEngine());
 
     }
 
