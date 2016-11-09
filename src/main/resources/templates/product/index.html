@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Codecool Shop</title>
+    <title>CS || Homepage</title>
 
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -35,20 +35,17 @@
     <table>
         <tr>
             <td><h3 th:text="${cart}">cart</h3></td>
-            <td><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></td>
+            <td><i class="fa fa-shopping-cart fa-3x" aria-hidden="true" th:href="'/shoppingcart'"></i></td>
         </tr>
     </table>
-
-
 </div>
+
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
-
 </div>
 
 
 <div class="container">
-
     <!--Filter buttons-->
     <h3 th:text="${current}? ${current.name} : 'All'"></h3>
     <div class="btn-group">
@@ -56,7 +53,8 @@
            id="all_button" th:text="All">All</a>
         <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
            th:text="${cat.name}"></a>
-        <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
+        <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}"
+           th:text="${supp.name}">Supplier</a>
     </div>
 
     <div id="products" class="row list-group">
@@ -74,7 +72,7 @@
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <form th:action="'/cart/'+ ${prod.id}" method="post">
-                                <button type="sumbit" class="btn btn-success" >Add to cart</button>
+                                <button type="sumbit" class="btn btn-success">Add to cart</button>
                             </form>
                         </div>
                     </div>
@@ -82,9 +80,6 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
 </body>
 </html>
