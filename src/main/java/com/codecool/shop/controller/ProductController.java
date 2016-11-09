@@ -16,18 +16,6 @@ import java.util.Map;
 
 public class ProductController {
 
-    public static ModelAndView renderProductsByCategory(Request req, Response res) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        Map params = new HashMap<>();
-        params.put("category", productCategoryDataStore.getAll());
-        params.put("supplier", productSupplierDataStore.getAll());
-        int id = Integer.valueOf(req.params("id"));
-        params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
-        return new ModelAndView(params, "product/index");
-    }
-
     public static ModelAndView renderProductsBySupplier(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
@@ -37,6 +25,20 @@ public class ProductController {
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
         params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
+        params.put("curr_sup", productSupplierDataStore.find(id));
+        return new ModelAndView(params, "product/index");
+    }
+
+    public static ModelAndView renderProductsByCategory(Request req, Response res) {
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        Map params = new HashMap<>();
+        params.put("category", productCategoryDataStore.getAll());
+        params.put("supplier", productSupplierDataStore.getAll());
+        int id = Integer.valueOf(req.params("id"));
+        params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
+        params.put("curr_cat", productCategoryDataStore.find(id));
         return new ModelAndView(params, "product/index");
     }
 

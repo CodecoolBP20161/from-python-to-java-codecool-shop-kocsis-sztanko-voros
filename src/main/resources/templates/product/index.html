@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <title>Codecool Shop</title>
 
@@ -13,18 +13,18 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
 
 <body>
@@ -35,21 +35,26 @@
 
 <div class="container">
 
-    <div th:each="cat,iterStat : ${category}">
-        <a class="btn btn-default" th:href="'/category/' + ${cat.id}" th:text="${cat.name}">Category</a>
-    </div>
-
-    <div th:each="supp,iterStat : ${supplier}">
-        <a class="btn btn-default" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
+    <!--Filter buttons-->
+    <h3 th:text="${curr_cat}? ${curr_cat.name}"></h3>
+    <h3 th:text="${curr_sup}? ${curr_sup.name}"></h3>
+    <div class="btn-group">
+        <a href="/" role="button" class="btn btn-info"
+           id="all_button" th:text="All">All</a>
+        <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
+           th:text="${cat.name}">Category</a>
+        <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
     </div>
 
     <div id="products" class="row list-group">
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+                     th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt=""/>
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product description... </p>
+                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product
+                        description... </p>
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
