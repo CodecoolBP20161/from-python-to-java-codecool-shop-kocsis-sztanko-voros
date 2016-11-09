@@ -14,5 +14,6 @@ public interface ShoppingCartDao {
     void remove(int id);
     List<Product> getAll();
     int getItemNumber();
+    float totalPrice();
 
 }

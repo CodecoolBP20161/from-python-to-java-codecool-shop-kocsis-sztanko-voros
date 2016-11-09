@@ -44,8 +44,14 @@ public class ShoppingCartDaoMem implements ShoppingCartDao{
                 .reduce((t,z) -> t+z).get();
     }
 
+    public float totalPrice(){
+        return DATA.stream().map(t -> t.getProduct().getDefaultPrice()*t.getQuantity()).reduce((t,z) -> t+z).get();
+    }
+
     public ArrayList getAll(){
         return DATA;
     }
+
+
 
 }

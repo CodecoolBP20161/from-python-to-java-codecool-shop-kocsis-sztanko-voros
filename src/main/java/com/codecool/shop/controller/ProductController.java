@@ -76,6 +76,7 @@ public class ProductController {
         ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("lineItems", shoppingCartDataStore.getAll());
+        params.put("total", shoppingCartDataStore.totalPrice());
         return new ModelAndView(params, "product/shoppingcart");
     }
 
