@@ -34,8 +34,8 @@
     <!--<li>-->
     <tr th:each="prod,iterStat : ${lineItems}">
         <td th:text="${prod.product.name}"></td>
-        <td th:text="${prod.product.name}"></td>
-        <td th:text="${prod.product.name}"></td>
+        <td th:text="${prod.product.price}"></td>
+        <td th:text="${prod.quantity}"></td>
     </tr>
     <!--</li>-->
 </table>
