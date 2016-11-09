@@ -70,5 +70,12 @@ public class ProductController {
 
     }
 
+    public static ModelAndView renderCart(Request req, Response res){
+        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        Map params = new HashMap<>();
+        params.put("lineItems", shoppingCartDataStore.getAll());
+        return new ModelAndView(params, "product/shoppingcart");
+    }
+
 
 }
