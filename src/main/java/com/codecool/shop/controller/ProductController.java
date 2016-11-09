@@ -8,6 +8,7 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.LineItem;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -76,5 +77,28 @@ public class ProductController {
         params.put("lineItems", shoppingCartDataStore.getAll());
         params.put("total", shoppingCartDataStore.totalPrice());
         return new ModelAndView(params, "product/shoppingcart");
+    }
+
+    public static String decreaseItem(Request req, Response res) {
+        int id = Integer.valueOf(req.params("id"));
+        System.out.println(id);
+        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItem item = cart.find(id);
+        item.setQuantity(item.getQuantity() - 1);
+        if (item.getQuantity() == 0) {
+            System.out.println(id);
+            cart.remove(id);
+        }
+        res.redirect("/shoppingcart");
+        return null;
+    }
+
+    public static String increaseItem(Request req, Response res) {
+        int id = Integer.valueOf(req.params("id"));
+        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItem item = cart.find(id);
+        item.setQuantity(item.getQuantity() + 1);
+        res.redirect("/shoppingcart");
+        return null;
     }
 }

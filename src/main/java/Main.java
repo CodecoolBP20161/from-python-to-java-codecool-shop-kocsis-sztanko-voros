@@ -23,6 +23,9 @@ public class Main {
 
         populateData();
 
+        post("/remove/:id", ProductController::decreaseItem);
+
+        post("/add/:id", ProductController::increaseItem);
 
         get("/category/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
