@@ -64,6 +64,7 @@ public class ProductController {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));
         cart.add(productDataStore.find(id));
+        req.session().attribute("cart", cart);
         res.redirect("/");
         return null;
 
