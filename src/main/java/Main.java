@@ -28,7 +28,7 @@ public class Main {
 
         get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
-        get("/cart/:id",ProductController::addCart);
+        post("/cart/:id",ProductController::addCart);
 
         get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 

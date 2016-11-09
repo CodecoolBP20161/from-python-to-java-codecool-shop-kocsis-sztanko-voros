@@ -25,7 +25,6 @@ public class ProductController {
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
-
         if (req.uri().contains("category")) {
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
             params.put("current", productCategoryDataStore.find(id));
