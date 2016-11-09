@@ -24,11 +24,13 @@ public class Main {
         populateData();
 
 
-        get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
-
         get("/category/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
         get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
+
+        post("/cart/:id",ProductController::addCart);
+
+        get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 
     }
 

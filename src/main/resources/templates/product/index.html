@@ -24,14 +24,28 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
+    <!-- Icons -->
+    <script src="https://use.fontawesome.com/b25e320532.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
 
 <body>
+<div th:align="right">
+    <table>
+        <tr>
+            <td><h3 th:text="${cart}">cart</h3></td>
+            <td><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></td>
+        </tr>
+    </table>
 
+
+</div>
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
+
 </div>
+
 
 <div class="container">
 
@@ -41,7 +55,7 @@
         <a href="/" role="button" class="btn btn-info"
            id="all_button" th:text="All">All</a>
         <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
-           th:text="${cat.name}">Category</a>
+           th:text="${cat.name}"></a>
         <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
     </div>
 
@@ -59,7 +73,9 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <form th:action="'/cart/'+ ${prod.id}" method="post">
+                                <button type="sumbit" class="btn btn-success" >Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
