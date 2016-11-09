@@ -81,3 +81,14 @@
 {
     margin-top: 1em;
 }
+body
+{
+    background-color: #1b998b;
+}
+.filter_buttons
+{
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+

@@ -56,14 +56,16 @@
         </section>
 
         <!--Filter buttons-->
-        <h3 th:text="${current}? ${current.name} : 'All'"></h3>
-        <div class="btn-group">
-            <a href="/" role="button" class="btn btn-info"
-               id="all_button" th:text="All">All</a>
-            <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
-               th:text="${cat.name}"></a>
-            <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}"
-               th:text="${supp.name}">Supplier</a>
+        <div class="filter_buttons">
+            <h3 th:text="${current}? ${current.name} : 'All'"></h3>
+            <div class="btn-group">
+                <a href="/" role="button" th:class="${current} ? 'btn btn-danger': 'btn btn-danger active'"
+                   id="all_button" th:text="All">All</a>
+                <a th:each="cat,iterStat : ${category}" class="btn btn-danger" th:href="'/category/' + ${cat.id}"
+                   th:text="${cat.name}"></a>
+                <a th:each="supp,iterStat : ${supplier}" class="btn btn-danger" th:href="'/supplier/' + ${supp.id}"
+                   th:text="${supp.name}">Supplier</a>
+            </div>
         </div>
 
         <!--Listing-->
@@ -78,7 +80,7 @@
                             description... </p>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                                <p class="lead" th:text="${prod.getPrice()}">Unit Price</p>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <form th:action="'/cart/'+ ${prod.id}" method="post">
