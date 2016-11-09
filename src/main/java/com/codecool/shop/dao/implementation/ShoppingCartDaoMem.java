@@ -38,6 +38,12 @@ public class ShoppingCartDaoMem implements ShoppingCartDao{
         }
     }
 
+    public int getItemNumber(){
+        if (DATA.size() == 0){ return 0;}
+        return DATA.stream().map(t -> t.getQuantity())
+                .reduce((t,z) -> t+z).get();
+    }
+
     public ArrayList getAll(){
         return DATA;
     }

@@ -13,5 +13,6 @@ public interface ShoppingCartDao {
     LineItem find(Product product);
     void remove(int id);
     List<Product> getAll();
+    int getItemNumber();
 
 }
