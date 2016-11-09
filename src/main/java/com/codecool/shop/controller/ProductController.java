@@ -19,15 +19,18 @@ public class ProductController {
         int id = Integer.valueOf(req.params("id"));
 
         Map params = new HashMap<>();
-        params.put("category", productCategoryDataStore.find(id));
+        params.put("category", productCategoryDataStore.getAll());
         params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
+        params.put("curr_cat", productCategoryDataStore.find(id));
         return new ModelAndView(params, "product/index");
     }
 
     public static ModelAndView renderCategories(Request req, Response res){
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductDao productDataStore = ProductDaoMem.getInstance();
         Map params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
+        params.put("products", productDataStore.getAll());
         return new ModelAndView(params, "product/index");
     }
 
