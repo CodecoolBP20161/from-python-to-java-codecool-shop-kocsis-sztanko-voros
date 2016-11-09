@@ -57,13 +57,12 @@
 
         <!--Filter buttons-->
         <div class="filter_buttons">
-            <h3 th:text="${current}? ${current.name} : 'All'"></h3>
             <div class="btn-group">
-                <a href="/" role="button" th:class="${current} ? 'btn btn-danger': 'btn btn-danger active'"
+                <a href="/" role="button" th:class="${current} ? 'btn btn-danger' : 'btn btn-danger active'"
                    id="all_button" th:text="All">All</a>
-                <a th:each="cat,iterStat : ${category}" class="btn btn-danger" th:href="'/category/' + ${cat.id}"
+                <a th:each="cat,iterStat : ${category}" th:class="${current} ? (${current.name == cat.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'" th:href="'/category/' + ${cat.id}"
                    th:text="${cat.name}"></a>
-                <a th:each="supp,iterStat : ${supplier}" class="btn btn-danger" th:href="'/supplier/' + ${supp.id}"
+                <a th:each="supp,iterStat : ${supplier}" th:class="${current} ? (${current.name == supp.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'" th:href="'/supplier/' + ${supp.id}"
                    th:text="${supp.name}">Supplier</a>
             </div>
         </div>
