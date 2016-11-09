@@ -24,7 +24,7 @@ public class ShoppingCartDaoMem implements ShoppingCartDao{
     }
 
     public void remove(int id){
-        DATA.remove(id);
+        DATA.remove(find(id));
     }
 
     public void add(Product product){
@@ -44,8 +44,11 @@ public class ShoppingCartDaoMem implements ShoppingCartDao{
                 .reduce((t,z) -> t+z).get();
     }
 
-    public float totalPrice(){
-        return DATA.stream().map(t -> t.getProduct().getDefaultPrice()*t.getQuantity()).reduce((t,z) -> t+z).get();
+    public float totalPrice() {
+        if (DATA.size() != 0) {
+            return DATA.stream().map(t -> t.getProduct().getDefaultPrice() * t.getQuantity()).reduce((t, z) -> t + z).get();
+        }
+        return 0;
     }
 
     public ArrayList getAll(){

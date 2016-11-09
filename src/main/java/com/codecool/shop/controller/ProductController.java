@@ -81,10 +81,12 @@ public class ProductController {
 
     public static String decreaseItem(Request req, Response res) {
         int id = Integer.valueOf(req.params("id"));
+        System.out.println(id);
         ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() - 1);
         if (item.getQuantity() == 0) {
+            System.out.println(id);
             cart.remove(id);
         }
         res.redirect("/shoppingcart");

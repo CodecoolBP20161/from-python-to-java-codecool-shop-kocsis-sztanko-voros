@@ -50,7 +50,7 @@
                 <td th:text="${prod.quantity}"></td>
                 <td>
                     <div>
-                        <form th:action="'/remove/'+ ${prod.id}" method="post">
+                        <form th:action="'/add/'+ ${prod.id}" method="post">
                             <button type="sumbit" class="btn btn-success">+</button>
                         </form>
                         <form th:action="'/remove/'+ ${prod.id}" method="post">
