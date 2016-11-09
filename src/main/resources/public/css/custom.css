@@ -72,3 +72,12 @@
 {
     background-color: red;
 }
+.jumbotron
+{
+    background-color: white;
+    text-align: center;
+}
+.navbar
+{
+    margin-top: 1em;
+}

@@ -30,12 +30,12 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
 <body>
-
-<div class="jumbotron text-center">
-    <h1>Shopping Cart</h1>
-</div>
-
 <div class="container">
+    <!--Page Header-->
+    <div class="jumbotron text-center">
+        <h1>Shopping Cart</h1>
+    </div>
+    <!--Main-->
     <div class="table">
         <table class="table table-striped">
             <tr>
@@ -48,13 +48,15 @@
                 <td th:text="${prod.product.name}"></td>
                 <td th:text="${prod.product.price}"></td>
                 <td th:text="${prod.quantity}"></td>
-                <td><div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></div></td>
+                <td>
+                    <div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></div>
+                </td>
             </tr>
         </table>
     </div>
     <div class="right">
-    <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
+        <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
     </div>
 </div>
 
