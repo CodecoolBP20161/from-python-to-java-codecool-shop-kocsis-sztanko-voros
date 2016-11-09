@@ -30,6 +30,8 @@ public class Main {
 
         get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
+        get("/cart/:id",ProductController::manageCart);
+
     }
 
     public static void populateData() {
