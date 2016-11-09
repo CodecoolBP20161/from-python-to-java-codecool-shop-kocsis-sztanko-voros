@@ -32,7 +32,7 @@
 <body>
 
 <div class="jumbotron text-center">
-    <h1>Shopping Card</h1>
+    <h1>Shopping Cart</h1>
 </div>
 
 <div class="container">
@@ -40,8 +40,8 @@
         <table class="table table-striped">
             <tr>
                 <th>Product Name</th>
-                <th>Quantity</th>
                 <th>Price Per Unit</th>
+                <th>Quantity</th>
                 <th>Modify Units</th>
             </tr>
             <tr th:each="prod,iterStat : ${lineItems}">
