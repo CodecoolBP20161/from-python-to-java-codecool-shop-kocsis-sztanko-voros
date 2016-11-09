@@ -21,7 +21,9 @@ public class ProductController {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
+        params.put("cart", shoppingCartDataStore.getItemNumber());
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
