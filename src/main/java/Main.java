@@ -28,12 +28,11 @@ public class Main {
 
         get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
 
-        post("/cart/:id",ProductController::addCart);
+        post("/cart/:id", ProductController::addCart);
 
         get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 
         get("/shoppingcart", ProductController::renderCart, new ThymeleafTemplateEngine());
-
     }
 
     public static void populateData() {
@@ -66,8 +65,5 @@ public class Main {
         productDataStore.add(new Product("Amazon Laptop", 111.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", laptop, amazon));
         productDataStore.add(new Product("Lenovo ThinkPad x220", 999, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", laptop, lenovo));
         productDataStore.add(new Product("HP ProBook", 213, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", laptop, hp));
-
     }
-
-
 }

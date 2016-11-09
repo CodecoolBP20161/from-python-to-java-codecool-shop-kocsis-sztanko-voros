@@ -30,8 +30,7 @@ public class ProductController {
         if (req.uri().contains("category")) {
             params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
             params.put("current", productCategoryDataStore.find(id));
-        }
-        else {
+        } else {
             params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
             params.put("current", productSupplierDataStore.find(id));
         }
@@ -69,16 +68,13 @@ public class ProductController {
         req.session().attribute("cart", cart);
         res.redirect("/");
         return null;
-
     }
 
-    public static ModelAndView renderCart(Request req, Response res){
+    public static ModelAndView renderCart(Request req, Response res) {
         ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("lineItems", shoppingCartDataStore.getAll());
         params.put("total", shoppingCartDataStore.totalPrice());
         return new ModelAndView(params, "product/shoppingcart");
     }
-
-
 }

@@ -60,7 +60,6 @@
 {
     margin: 0 0 11px;
 }
-
 #total
 {
     text-align: right;
@@ -68,4 +67,8 @@
 .table
 {
     margin-top: 4em;
+}
+.badge
+{
+    background-color: red;
 }

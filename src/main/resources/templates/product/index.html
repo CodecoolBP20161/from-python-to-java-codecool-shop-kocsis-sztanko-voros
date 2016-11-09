@@ -31,14 +31,20 @@
 </head>
 
 <body>
-<div th:align="right">
-    <table>
-        <tr>
-            <td><h3 th:text="${cart}">cart</h3></td>
-            <td><a th:href="'/shoppingcart'"><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></a></td>
-        </tr>
-    </table>
-</div>
+    <!--Navbar-->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid navbar-right">
+            <div class="navbar-header">
+                <div class="navbar-header">
+                    <a class="navbar-brand" th:href="'/shoppingcart'">
+                        <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                        <span class="badge" th:text="${cart}"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
 
 <div class="jumbotron text-center">
     <h1>Codecool Shop</h1>
