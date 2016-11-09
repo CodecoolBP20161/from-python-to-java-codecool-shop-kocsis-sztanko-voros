@@ -26,14 +26,17 @@ public class ProductController {
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
 
-        if (req.uri().contains("supplier")) {
-            params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
-            return new ModelAndView(params, "product/index");
+        if (req.uri().contains("category")) {
+            params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
+            params.put("current", productCategoryDataStore.find(id));
         }
-        params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
-        params.put("curr_cat", productCategoryDataStore.find(id));
+        else {
+            params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
+            params.put("current", productSupplierDataStore.find(id));
+        }
         return new ModelAndView(params, "product/index");
     }
+
 
     public static ModelAndView renderMain(Request req, Response res) {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -57,7 +60,7 @@ public class ProductController {
         return cart;
     }
 
-    public static String manageCart(Request req, Response res) {
+    public static String addCart(Request req, Response res) {
         ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));

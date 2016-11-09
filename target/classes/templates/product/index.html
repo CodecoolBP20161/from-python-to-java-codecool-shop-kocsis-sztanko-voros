@@ -50,16 +50,14 @@
 <div class="container">
 
     <!--Filter buttons-->
-    <h3 th:text="${curr_cat}? ${curr_cat.name}"></h3>
+    <h3 th:text="${current}? ${current.name} : 'All'"></h3>
     <div class="btn-group">
         <a href="/" role="button" class="btn btn-info"
-           id="all_button" th:text="All"></a>
+           id="all_button" th:text="All">All</a>
         <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
            th:text="${cat.name}"></a>
-            <a th:each="supp,iterStat : ${supplier}" class="btn btn-default" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
-
+        <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
     </div>
-
 
     <div id="products" class="row list-group">
         <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
