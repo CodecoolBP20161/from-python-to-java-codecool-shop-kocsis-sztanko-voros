@@ -48,8 +48,16 @@
                 <td th:text="${prod.product.name}"></td>
                 <td th:text="${prod.product.price}"></td>
                 <td th:text="${prod.quantity}"></td>
-                <td><div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
-                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></div></td>
+                <td>
+                    <div>
+                        <form th:action="'/remove/'+ ${prod.id}" method="post">
+                            <button type="sumbit" class="btn btn-success">+</button>
+                        </form>
+                        <form th:action="'/remove/'+ ${prod.id}" method="post">
+                            <button type="sumbit" class="btn btn-success">-</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
