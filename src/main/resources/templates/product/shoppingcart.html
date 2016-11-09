@@ -30,15 +30,34 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
 <body>
-<table class="table table-striped">
-    <!--<li>-->
-    <tr th:each="prod,iterStat : ${lineItems}">
-        <td th:text="${prod.product.name}"></td>
-        <td th:text="${prod.product.price}"></td>
-        <td th:text="${prod.quantity}"></td>
-    </tr>
-    <!--</li>-->
-</table>
+
+<div class="jumbotron text-center">
+    <h1>Shopping Card</h1>
+</div>
+
+<div class="container">
+    <div class="table">
+        <table class="table table-striped">
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price Per Unit</th>
+                <th>Modify Units</th>
+            </tr>
+            <tr th:each="prod,iterStat : ${lineItems}">
+                <td th:text="${prod.product.name}"></td>
+                <td th:text="${prod.product.price}"></td>
+                <td th:text="${prod.quantity}"></td>
+                <td><div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="right">
+    <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
+    </div>
+</div>
+
 
 </body>
 </html>
