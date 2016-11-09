@@ -31,14 +31,15 @@ public class ProductController {
             return new ModelAndView(params, "product/index");
         }
         params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
+        params.put("curr_cat", productCategoryDataStore.find(id));
         return new ModelAndView(params, "product/index");
     }
 
-    public static ModelAndView renderMain(Request req, Response res){
+    public static ModelAndView renderMain(Request req, Response res) {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
         ProductDao productDataStore = ProductDaoMem.getInstance();
-        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req,res);
+        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("cart", shoppingCartDataStore.getAll().size());
         params.put("category", productCategoryDataStore.getAll());
@@ -47,17 +48,17 @@ public class ProductController {
         return new ModelAndView(params, "product/index");
     }
 
-    public static ShoppingCartDaoMem getShoppingCardDaoMem(Request req, Response res){
-        if(req.session().attribute("cart") != null){
+    public static ShoppingCartDaoMem getShoppingCardDaoMem(Request req, Response res) {
+        if (req.session().attribute("cart") != null) {
             return req.session().attribute("cart");
         }
         ShoppingCartDaoMem cart = new ShoppingCartDaoMem();
-        req.session().attribute("cart",cart);
+        req.session().attribute("cart", cart);
         return cart;
     }
 
-    public static String manageCart(Request req, Response res){
-        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req,res);
+    public static String manageCart(Request req, Response res) {
+        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));
         cart.add(productDataStore.find(id));
