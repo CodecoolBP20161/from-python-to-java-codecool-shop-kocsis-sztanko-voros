@@ -32,6 +32,8 @@ public class Main {
 
         get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
 
+        get("/shoppingcart", ProductController::renderCart, new ThymeleafTemplateEngine());
+
     }
 
     public static void populateData() {
