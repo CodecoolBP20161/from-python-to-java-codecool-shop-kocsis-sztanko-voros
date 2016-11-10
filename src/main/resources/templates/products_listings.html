@@ -36,14 +36,16 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Product Name</th>
-                        <th>Price Per Unit</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal Price</th>
                         <th>Quantity</th>
                         <th>Modify Units</th>
                     </tr>
                     <tr th:each="prod,iterStat : ${lineItems}">
                         <td th:text="${prod.product.name}"></td>
                         <td th:text="${prod.product.price}"></td>
-                        <td th:text="${prod.quantity} + ' piece(s)'"></td>
+                        <td th:text="${prod.product.defaultPrice} * ${prod.quantity} + ' USD'"></td>
+                        <td th:text="${prod.quantity} == 1 ? ${prod.quantity} + ' piece' : ${prod.quantity} + ' pieces'"></td>
                         <td>
                             <!--Modifier buttons-->
                             <div th:replace="button_groups :: modifiers"></div>
