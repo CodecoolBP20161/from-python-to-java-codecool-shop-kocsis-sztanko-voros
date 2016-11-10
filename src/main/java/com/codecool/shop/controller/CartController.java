@@ -11,6 +11,8 @@ import spark.Response;
 
 import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 
+//Controller responsible for cart operations
+
 public class CartController {
 
     public static String addCart(Request req, Response res) {
