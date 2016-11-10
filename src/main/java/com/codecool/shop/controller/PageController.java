@@ -8,6 +8,7 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Filter;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -32,13 +33,6 @@ public class PageController {
         return new ModelAndView(params, "product/index");
     }
 
-    public static ModelAndView renderCart(Request req, Response res) {
-        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
-        Map params = new HashMap<>();
-        params.put("lineItems", shoppingCartDataStore.getAll());
-        params.put("total", shoppingCartDataStore.totalPrice());
-        return new ModelAndView(params, "product/shoppingcart");
-    }
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
@@ -50,13 +44,21 @@ public class PageController {
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
-        if (req.uri().contains("category")) {
-            params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
-            params.put("current", productCategoryDataStore.find(id));
-        } else {
-            params.put("products", productDataStore.getBy(productSupplierDataStore.find(id)));
-            params.put("current", productSupplierDataStore.find(id));
+        Filter filter = productSupplierDataStore.find(id);
+        if (req.params("type").equals("category")) {
+            filter = productCategoryDataStore.find(id);
         }
+
+        params.put("products", filter.getBy());
+        params.put("current", filter);
         return new ModelAndView(params, "product/index");
+    }
+
+    public static ModelAndView renderCart(Request req, Response res) {
+        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        Map params = new HashMap<>();
+        params.put("lineItems", shoppingCartDataStore.getAll());
+        params.put("total", shoppingCartDataStore.totalPrice());
+        return new ModelAndView(params, "product/shoppingcart");
     }
 }

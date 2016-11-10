@@ -19,9 +19,7 @@ public class Main {
 
         post("/add/:id", Controller::increaseItem);
 
-        get("/category/:id", Controller::renderProductsByFilter, new ThymeleafTemplateEngine());
-
-        get("/supplier/:id", Controller::renderProductsByFilter, new ThymeleafTemplateEngine());
+        get("/:type/:id", Controller::renderProductsByFilter, new ThymeleafTemplateEngine());
 
         post("/cart/:id", Controller::addCart);
 

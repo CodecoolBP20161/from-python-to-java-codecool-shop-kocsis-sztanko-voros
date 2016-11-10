@@ -4,7 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class Controller {
+public class Controller{
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {
         return PageController.renderProductsByFilter(req, res);
