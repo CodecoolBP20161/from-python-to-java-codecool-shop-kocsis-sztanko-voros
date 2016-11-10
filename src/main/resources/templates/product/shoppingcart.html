@@ -30,24 +30,21 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
 <body>
-<div class="container">
+    <div class="container">
 
-    <!--Navbar-->
-    <div th:replace="navbars :: navbar_shopping_cart"></div>
+        <!--Navbar-->
+        <div th:replace="navbars :: navbar_shopping_cart"></div>
 
-    <!--Page Header-->
-    <div th:replace="headers :: header_shopping_cart"></div>
+        <!--Page Header-->
+        <div th:replace="headers :: header_shopping_cart"></div>
 
-    <!--Main-->
-    <div th:replace="products_listings :: cart_listing"></div>
+        <!--Main-->
+        <div th:replace="products_listings :: cart_listing"></div>
 
-    <div class="right">
-        <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
+        <div class="right">
+            <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
+        </div>
+
     </div>
-</div>
-
 </body>
 </html>
-
-<!--<div><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>-->
-<!--<i class="fa fa-minus-circle fa-2x" aria-hidden="true"></i></div>-->
