@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategory extends BaseModel implements Filter {
+
+    /*
+    ProductCategory object represents a group of products according to their category
+     */
+
     private String department;
     private ArrayList<Product> products;
 

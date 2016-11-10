@@ -2,6 +2,11 @@ package com.codecool.shop.model;
 
 
 public class LineItem {
+
+    /*
+    LineItem object represents an item in the user's shopping cart
+     */
+
     private int id;
     private int quantity;
     private Product product;

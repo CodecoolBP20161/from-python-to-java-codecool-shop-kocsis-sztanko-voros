@@ -5,6 +5,11 @@ import java.util.List;
 
 
 public class Supplier extends BaseModel implements Filter {
+
+    /*
+    ProductCategory object represents a group of products according to their category
+    */
+
     private ArrayList<Product> products;
 
     public Supplier(String name, String description) {
