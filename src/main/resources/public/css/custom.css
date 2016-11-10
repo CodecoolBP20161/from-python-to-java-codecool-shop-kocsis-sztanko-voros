@@ -1,13 +1,20 @@
+body
+{
+    background-color: #1b998b;
+}
+img {
+    width: 75%;
+    height: auto;
+}
 .glyphicon {
     margin-right:5px;
 }
 .thumbnail
 {
     margin-bottom: 20px;
-    padding: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
-    border-radius: 0px;
+    border-radius: 5px;
 }
 .thumbnail img
 {
@@ -60,3 +67,41 @@
 {
     margin: 0 0 11px;
 }
+.table
+{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 5px;
+}
+.badge
+{
+    background-color: red;
+}
+.jumbotron
+{
+    margin-top: 60px;
+    background-color: white;
+    text-align: center;
+}
+.navbar
+{
+    background-color: white;
+}
+
+.filter_buttons
+{
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.table_content
+{
+    font-size: 110%;
+}
+#total
+{
+    text-align: right;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+

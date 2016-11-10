@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Codecool Shop</title>
+    <title>CS || Homepage</title>
 
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -31,60 +31,20 @@
 </head>
 
 <body>
-<div th:align="right">
-    <table>
-        <tr>
-            <td><h3 th:text="${cart}">cart</h3></td>
-            <td><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></td>
-        </tr>
-    </table>
+    <div class="container">
 
+        <!--Navbar-->
+        <div th:replace="navbars :: navbar_home"></div>
 
-</div>
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
+        <!--Page Header-->
+        <div th:replace="headers :: header_home"></div>
 
-</div>
+        <!--Filter buttons-->
+        <div th:replace="button_groups :: filter_buttons_home"></div>
 
+        <!--Listing products-->
+        <div th:replace="products_listings :: homepage_listing"></div>
 
-<div class="container">
-
-    <!--Filter buttons-->
-    <h3 th:text="${current}? ${current.name} : 'All'"></h3>
-    <div class="btn-group">
-        <a href="/" role="button" class="btn btn-info"
-           id="all_button" th:text="All">All</a>
-        <a th:each="cat,iterStat : ${category}" class="btn btn-info" th:href="'/category/' + ${cat.id}"
-           th:text="${cat.name}"></a>
-        <a th:each="supp,iterStat : ${supplier}" class="btn btn-info" th:href="'/supplier/' + ${supp.id}" th:text="${supp.name}">Supplier</a>
     </div>
-
-    <div id="products" class="row list-group">
-        <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
-                     th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt=""/>
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                    <p class="group inner list-group-item-text" th:text="${prod.description}">Product
-                        description... </p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <form th:action="'/cart/'+ ${prod.id}" method="post">
-                                <button type="sumbit" class="btn btn-success" >Add to cart</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
 </body>
 </html>

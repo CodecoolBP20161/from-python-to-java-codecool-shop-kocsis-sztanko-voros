@@ -3,7 +3,11 @@ package com.codecool.shop.model;
 
 import java.lang.reflect.Field;
 
-public class BaseModel {
+public abstract class BaseModel {
+
+    /*
+    Abstract parent class for Product, ProductCategory and Supplier classes
+     */
 
     protected int id;
     protected String name;

@@ -3,6 +3,10 @@ package com.codecool.shop.model;
 
 import java.util.ArrayList;
 
+    /*
+    Order object is created after Shopping cart content is checked --- not used yet
+     */
+
 public class Order {
     private int id;
     private String status;

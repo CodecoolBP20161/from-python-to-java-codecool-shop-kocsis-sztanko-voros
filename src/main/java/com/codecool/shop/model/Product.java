@@ -4,6 +4,10 @@ import java.util.Currency;
 
 public class Product extends BaseModel {
 
+    /*
+    Product object represents an existing product in the web shop's supply
+     */
+
     private float defaultPrice;
     private Currency defaultCurrency;
     private ProductCategory productCategory;

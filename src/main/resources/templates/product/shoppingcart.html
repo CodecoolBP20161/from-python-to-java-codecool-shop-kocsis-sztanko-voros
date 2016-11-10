@@ -5,7 +5,7 @@
     <meta name="author" content="Codecool"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>CS || Homepage</title>
+    <title>CS || Shopping Cart</title>
 
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -29,21 +29,21 @@
 
     <link rel="stylesheet" type="text/css" href="/css/custom.css"/>
 </head>
-
 <body>
     <div class="container">
 
         <!--Navbar-->
-        <div th:replace="navbars :: navbar_home"></div>
+        <div th:replace="navbars :: navbar_shopping_cart"></div>
 
         <!--Page Header-->
-        <div th:replace="headers :: header_home"></div>
+        <div th:replace="headers :: header_shopping_cart"></div>
 
-        <!--Filter buttons-->
-        <div th:replace="button_groups :: filter_buttons_home"></div>
+        <!--Main-->
+        <div th:replace="products_listings :: cart_listing"></div>
 
-        <!--Listing products-->
-        <div th:replace="products_listings :: homepage_listing"></div>
+        <div class="jumbotron">
+            <h2 id="total" th:text="'Total Price: ' + ${total} + ' USD'"></h2>
+        </div>
 
     </div>
 </body>
