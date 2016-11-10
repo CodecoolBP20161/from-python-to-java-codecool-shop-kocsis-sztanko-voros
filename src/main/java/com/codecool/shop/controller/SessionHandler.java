@@ -5,6 +5,7 @@ import com.codecool.shop.dao.implementation.LineItemDaoMem;
 import spark.Request;
 import spark.Response;
 
+// responsible for session management
 public class SessionHandler {
 
     public static LineItemDaoMem getShoppingCartDaoMem(Request req, Response res) {

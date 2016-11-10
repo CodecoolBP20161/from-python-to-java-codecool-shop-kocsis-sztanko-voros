@@ -4,6 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+//Main controller which pipes the request to subcontrollers
 public class Controller{
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {

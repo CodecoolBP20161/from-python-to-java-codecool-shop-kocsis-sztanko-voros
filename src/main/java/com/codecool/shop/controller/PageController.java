@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 
+// controller responsible for page rendering
 public class PageController {
 
     static private ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
