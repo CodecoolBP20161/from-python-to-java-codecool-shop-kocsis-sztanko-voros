@@ -1,17 +1,17 @@
 package com.codecool.shop.controller;
 
 
-import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
+import com.codecool.shop.dao.implementation.LineItemDaoMem;
 import spark.Request;
 import spark.Response;
 
 public class SessionHandler {
 
-    public static ShoppingCartDaoMem getShoppingCardDaoMem(Request req, Response res) {
+    public static LineItemDaoMem getShoppingCardDaoMem(Request req, Response res) {
         if (req.session().attribute("cart") != null) {
             return req.session().attribute("cart");
         }
-        ShoppingCartDaoMem cart = new ShoppingCartDaoMem();
+        LineItemDaoMem cart = new LineItemDaoMem();
         req.session().attribute("cart", cart);
         return cart;
     }

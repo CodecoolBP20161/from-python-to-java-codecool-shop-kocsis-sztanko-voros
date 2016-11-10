@@ -6,7 +6,7 @@ import com.codecool.shop.model.Product;
 
 import java.util.List;
 
-public interface ShoppingCartDao {
+public interface LineItemDao {
 
     void add(Product product);
     LineItem find(int id);

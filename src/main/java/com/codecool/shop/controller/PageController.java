@@ -3,7 +3,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.ShoppingCartDao;
+import com.codecool.shop.dao.LineItemDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
@@ -20,11 +20,12 @@ import static com.codecool.shop.controller.SessionHandler.getShoppingCardDaoMem;
 
 public class PageController {
 
+    static private ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+    static private SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
+    static private ProductDao productDataStore = ProductDaoMem.getInstance();
+
     public static ModelAndView renderMain(Request req, Response res) {
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("cart", shoppingCartDataStore.getItemNumber());
         params.put("category", productCategoryDataStore.getAll());
@@ -35,10 +36,7 @@ public class PageController {
 
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("cart", shoppingCartDataStore.getItemNumber());
         params.put("category", productCategoryDataStore.getAll());
@@ -55,7 +53,7 @@ public class PageController {
     }
 
     public static ModelAndView renderCart(Request req, Response res) {
-        ShoppingCartDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("lineItems", shoppingCartDataStore.getAll());
         params.put("total", shoppingCartDataStore.totalPrice());

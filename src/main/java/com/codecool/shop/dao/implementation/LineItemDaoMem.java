@@ -1,17 +1,17 @@
 package com.codecool.shop.dao.implementation;
 
 
-import com.codecool.shop.dao.ShoppingCartDao;
+import com.codecool.shop.dao.LineItemDao;
 import com.codecool.shop.model.LineItem;
 import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;
 
-public class ShoppingCartDaoMem implements ShoppingCartDao {
+public class LineItemDaoMem implements LineItemDao {
 
     private ArrayList<LineItem> DATA;
 
-    public ShoppingCartDaoMem() {
+    public LineItemDaoMem() {
         this.DATA = new ArrayList<>();
     }
 

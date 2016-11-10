@@ -3,7 +3,7 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
+import com.codecool.shop.dao.implementation.LineItemDaoMem;
 import com.codecool.shop.model.LineItem;
 import spark.ModelAndView;
 import spark.Request;
@@ -14,7 +14,7 @@ import static com.codecool.shop.controller.SessionHandler.getShoppingCardDaoMem;
 public class CartController {
 
     public static String addCart(Request req, Response res) {
-        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));
         cart.add(productDataStore.find(id));
@@ -29,7 +29,7 @@ public class CartController {
     public static String decreaseItem(Request req, Response res) {
         int id = Integer.valueOf(req.params("id"));
         System.out.println(id);
-        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() - 1);
         if (item.getQuantity() == 0) {
@@ -41,7 +41,7 @@ public class CartController {
 
     public static String increaseItem(Request req, Response res) {
         int id = Integer.valueOf(req.params("id"));
-        ShoppingCartDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() + 1);
         res.redirect("/shoppingcart");
