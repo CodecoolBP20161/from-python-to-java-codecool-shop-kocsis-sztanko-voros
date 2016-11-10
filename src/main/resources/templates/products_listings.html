@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!--Product listing on Homepage-->
+    <div th:fragment="homepage_listing">
+        <div class="row list-group">
+            <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
+                <div class="thumbnail">
+                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
+                         th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
+                        <p class="group inner list-group-item-text" th:text="${prod.description}">Product
+                            description... </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead" th:text="${prod.getPrice()}">Unit Price</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6" th:align="right">
+                                <form th:action="'/cart/'+ ${prod.id}" method="post">
+                                    <button type="sumbit" class="btn btn-danger">Add to cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Product listing on Shopping Cart list-->
+    <div th:fragment="cart_listing">
+        <div class="table_content">
+            <div class="table">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price Per Unit</th>
+                        <th>Quantity</th>
+                        <th>Modify Units</th>
+                    </tr>
+                    <tr th:each="prod,iterStat : ${lineItems}">
+                        <td th:text="${prod.product.name}"></td>
+                        <td th:text="${prod.product.price}"></td>
+                        <td th:text="${prod.quantity} + ' piece(s)'"></td>
+                        <td>
+                            <!--Modifier buttons-->
+                            <div th:replace="button_groups :: modifiers"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
