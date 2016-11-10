@@ -33,6 +33,7 @@ public class CartController {
         LineItemDaoMem cart = getShoppingCartDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() - 1);
+        item.refreshSubTotal();
         if (item.getQuantity() == 0) {
             cart.remove(id);
         }
@@ -45,6 +46,7 @@ public class CartController {
         LineItemDaoMem cart = getShoppingCartDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() + 1);
+        item.refreshSubTotal();
         res.redirect("/shoppingcart");
         return null;
     }

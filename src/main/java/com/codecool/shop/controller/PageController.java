@@ -57,7 +57,7 @@ public class PageController {
         LineItemDao LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
         params.put("lineItems", LineItemDataStore.getAll());
-        params.put("total", LineItemDataStore.totalPrice());
+        params.put("total", Math.round(LineItemDataStore.totalPrice() * 10.0) / 10.0);
         return new ModelAndView(params, "product/shoppingcart");
     }
 }

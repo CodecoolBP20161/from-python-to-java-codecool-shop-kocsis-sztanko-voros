@@ -44,7 +44,7 @@
                     <tr th:each="prod,iterStat : ${lineItems}">
                         <td th:text="${prod.product.name}"></td>
                         <td th:text="${prod.product.price}"></td>
-                        <td th:text="${prod.product.defaultPrice} * ${prod.quantity} + ' USD'"></td>
+                        <td th:text="${prod.subTotal} + ' USD'"></td>
                         <td th:text="${prod.quantity} == 1 ? ${prod.quantity} + ' piece' : ${prod.quantity} + ' pieces'"></td>
                         <td>
                             <!--Modifier buttons-->

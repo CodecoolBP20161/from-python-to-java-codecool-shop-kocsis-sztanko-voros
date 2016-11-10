@@ -10,10 +10,12 @@ public class LineItem {
     private int id;
     private int quantity;
     private Product product;
+    private double subTotal;
 
     public LineItem(int quantity, Product product) {
         this.quantity = quantity;
         this.product = product;
+        this.subTotal = Math.round(this.getQuantity() * this.getProduct().getDefaultPrice() * 10.0) / 10.0;
     }
 
     public void setId(int id) {
@@ -38,5 +40,17 @@ public class LineItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void refreshSubTotal() {
+        this.setSubTotal(Math.round(this.getQuantity() * this.getProduct().getDefaultPrice() * 10.0) / 10.0);
     }
 }
