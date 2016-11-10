@@ -39,31 +39,8 @@
     <div th:replace="headers :: header_shopping_cart"></div>
 
     <!--Main-->
-    <div class="table">
-        <table class="table table-striped">
-            <tr>
-                <th>Product Name</th>
-                <th>Price Per Unit</th>
-                <th>Quantity</th>
-                <th>Modify Units</th>
-            </tr>
-            <tr th:each="prod,iterStat : ${lineItems}">
-                <td th:text="${prod.product.name}"></td>
-                <td th:text="${prod.product.price}"></td>
-                <td th:text="${prod.quantity}"></td>
-                <td>
-                    <div>
-                        <form th:action="'/add/'+ ${prod.id}" method="post">
-                            <button type="sumbit" class="btn btn-success">+</button>
-                        </form>
-                        <form th:action="'/remove/'+ ${prod.id}" method="post">
-                            <button type="sumbit" class="btn btn-success">-</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <div th:replace="products_listings :: cart_listing"></div>
+
     <div class="right">
         <h2 id="total" th:text="'Total Price ' + ${total} + ' USD'"></h2>
     </div>

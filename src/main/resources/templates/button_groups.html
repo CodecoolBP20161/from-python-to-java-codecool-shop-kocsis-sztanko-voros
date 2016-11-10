@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!--Filter buttons on Homepage-->
+    <div th:fragment="filter_buttons_home">
+        <div class="filter_buttons">
+            <div class="btn-group">
+                <a href="/" role="button" th:class="${current} ? 'btn btn-danger' : 'btn btn-danger active'"
+                   id="all_button" th:text="All">All</a>
+                <a th:each="cat,iterStat : ${category}"
+                   th:class="${current} ? (${current.name == cat.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'"
+                   th:href="'/category/' + ${cat.id}"
+                   th:text="${cat.name}"></a>
+                <a th:each="supp,iterStat : ${supplier}"
+                   th:class="${current} ? (${current.name == supp.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'"
+                   th:href="'/supplier/' + ${supp.id}"
+                   th:text="${supp.name}">Supplier</a>
+            </div>
+        </div>
+    </div>
+
+    <!--Modifying buttons on Shopping Cart page-->
+    <div th:fragment="modifiers">
+        <div>
+            <form th:action="'/add/'+ ${prod.id}" method="post">
+                <button type="sumbit" class="btn btn-success">+</button>
+            </form>
+            <form th:action="'/remove/'+ ${prod.id}" method="post">
+                <button type="sumbit" class="btn btn-success">-</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
