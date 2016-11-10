@@ -7,28 +7,28 @@ import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;
 
-public class ShoppingCartDaoMem implements ShoppingCartDao{
+public class ShoppingCartDaoMem implements ShoppingCartDao {
 
     private ArrayList<LineItem> DATA;
 
-    public ShoppingCartDaoMem(){
+    public ShoppingCartDaoMem() {
         this.DATA = new ArrayList<>();
     }
 
-    public LineItem find(Product product){
+    public LineItem find(Product product) {
         return DATA.stream().filter(t -> t.getProduct().equals(product)).findFirst().orElse(null);
     }
 
-    public LineItem find(int id){
+    public LineItem find(int id) {
         return DATA.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
     }
 
-    public void remove(int id){
+    public void remove(int id) {
         DATA.remove(find(id));
     }
 
-    public void add(Product product){
-        if(find(product) != null){
+    public void add(Product product) {
+        if (find(product) != null) {
             LineItem toIncrement = find(product);
             toIncrement.setQuantity(toIncrement.getQuantity() + 1);
         } else {
@@ -38,23 +38,28 @@ public class ShoppingCartDaoMem implements ShoppingCartDao{
         }
     }
 
-    public int getItemNumber(){
-        if (DATA.size() == 0){ return 0;}
-        return DATA.stream().map(t -> t.getQuantity())
-                .reduce((t,z) -> t+z).get();
+    public int getItemNumber() {
+        if (DATA.size() == 0) {
+            return 0;
+        }
+        return DATA.stream()
+                .map(t -> t.getQuantity())
+                .reduce((t, z) -> t + z)
+                .get();
     }
 
     public float totalPrice() {
         if (DATA.size() != 0) {
-            return DATA.stream().map(t -> t.getProduct().getDefaultPrice() * t.getQuantity()).reduce((t, z) -> t + z).get();
+            return DATA.stream()
+                    .map(t -> t.getProduct().getDefaultPrice() * t.getQuantity())
+                    .reduce((t, z) -> t + z).get();
         }
         return 0;
     }
 
-    public ArrayList getAll(){
+    public ArrayList getAll() {
         return DATA;
     }
-
 
 
 }

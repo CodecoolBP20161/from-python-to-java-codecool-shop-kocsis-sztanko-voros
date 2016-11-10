@@ -1,4 +1,4 @@
-import com.codecool.shop.controller.ProductController;
+import com.codecool.shop.controller.Controller;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
@@ -23,19 +23,19 @@ public class Main {
 
         populateData();
 
-        post("/remove/:id", ProductController::decreaseItem);
+        post("/remove/:id", Controller::decreaseItem);
 
-        post("/add/:id", ProductController::increaseItem);
+        post("/add/:id", Controller::increaseItem);
 
-        get("/category/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
+        get("/category/:id", Controller::renderProductsByFilter, new ThymeleafTemplateEngine());
 
-        get("/supplier/:id", ProductController::renderProductsByFilter, new ThymeleafTemplateEngine());
+        get("/supplier/:id", Controller::renderProductsByFilter, new ThymeleafTemplateEngine());
 
-        post("/cart/:id", ProductController::addCart);
+        post("/cart/:id", Controller::addCart);
 
-        get("/", ProductController::renderMain, new ThymeleafTemplateEngine());
+        get("/", Controller::renderMain, new ThymeleafTemplateEngine());
 
-        get("/shoppingcart", ProductController::renderCart, new ThymeleafTemplateEngine());
+        get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
     }
 
     public static void populateData() {
