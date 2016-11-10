@@ -34,63 +34,17 @@
     <div class="container">
 
         <!--Navbar-->
-        <nav class="navbar navbar-default">
-            <div class="container-fluid navbar-right">
-                <div class="navbar-header">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" th:href="'/shoppingcart'">
-                            <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                            <span class="badge" th:text="${cart}"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <div th:replace="navbars :: navbar_home"></div>
 
         <!--Page Header-->
-        <section class="jumbotron text-xs-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Codecool Shop</h1>
-                <p class="lead text-muted">Choose this world-leading web shop to satisfy your needs. Don't hesitate to contact us if you need anything else.</p>
-            </div>
-        </section>
+        <div th:replace="headers :: header_home"></div>
 
         <!--Filter buttons-->
-        <div class="filter_buttons">
-            <div class="btn-group">
-                <a href="/" role="button" th:class="${current} ? 'btn btn-danger' : 'btn btn-danger active'"
-                   id="all_button" th:text="All">All</a>
-                <a th:each="cat,iterStat : ${category}" th:class="${current} ? (${current.name == cat.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'" th:href="'/category/' + ${cat.id}"
-                   th:text="${cat.name}"></a>
-                <a th:each="supp,iterStat : ${supplier}" th:class="${current} ? (${current.name == supp.name} ? 'btn btn-danger active' : 'btn btn-danger') : 'btn btn-danger'" th:href="'/supplier/' + ${supp.id}"
-                   th:text="${supp.name}">Supplier</a>
-            </div>
-        </div>
+        <div th:replace="button_groups :: filter_buttons_home"></div>
 
-        <!--Listing-->
-        <div id="products" class="row list-group">
-            <div class="item col-xs-4 col-lg-4" th:each="prod,iterStat : ${products}">
-                <div class="thumbnail">
-                    <img class="group list-group-image" src="http://placehold.it/400x250/000/fff"
-                         th:attr="src='/img/product_' + ${prod.id} + '.jpg'" alt=""/>
-                    <div class="caption">
-                        <h4 class="group inner list-group-item-heading" th:text="${prod.name}">Product name</h4>
-                        <p class="group inner list-group-item-text" th:text="${prod.description}">Product
-                            description... </p>
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6">
-                                <p class="lead" th:text="${prod.getPrice()}">Unit Price</p>
-                            </div>
-                            <div class="col-xs-12 col-md-6">
-                                <form th:action="'/cart/'+ ${prod.id}" method="post">
-                                    <button type="sumbit" class="btn btn-success">Add to cart</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--Listing products-->
+        <div th:replace="products_listings :: homepage_listing"></div>
+
     </div>
 </body>
 </html>

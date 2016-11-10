@@ -1,9 +1,9 @@
 package com.codecool.shop.controller;
 
 
+import com.codecool.shop.dao.LineItemDao;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.LineItemDao;
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
@@ -16,7 +16,7 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codecool.shop.controller.SessionHandler.getShoppingCardDaoMem;
+import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 
 public class PageController {
 
@@ -25,9 +25,9 @@ public class PageController {
     static private ProductDao productDataStore = ProductDaoMem.getInstance();
 
     public static ModelAndView renderMain(Request req, Response res) {
-        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
-        params.put("cart", shoppingCartDataStore.getItemNumber());
+        params.put("cart", LineItemDataStore.getItemNumber());
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         params.put("products", productDataStore.getAll());
@@ -36,9 +36,9 @@ public class PageController {
 
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {
-        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
-        params.put("cart", shoppingCartDataStore.getItemNumber());
+        params.put("cart", LineItemDataStore.getItemNumber());
         params.put("category", productCategoryDataStore.getAll());
         params.put("supplier", productSupplierDataStore.getAll());
         int id = Integer.valueOf(req.params("id"));
@@ -53,10 +53,10 @@ public class PageController {
     }
 
     public static ModelAndView renderCart(Request req, Response res) {
-        LineItemDao shoppingCartDataStore = getShoppingCardDaoMem(req, res);
+        LineItemDao LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
-        params.put("lineItems", shoppingCartDataStore.getAll());
-        params.put("total", shoppingCartDataStore.totalPrice());
+        params.put("lineItems", LineItemDataStore.getAll());
+        params.put("total", LineItemDataStore.totalPrice());
         return new ModelAndView(params, "product/shoppingcart");
     }
 }

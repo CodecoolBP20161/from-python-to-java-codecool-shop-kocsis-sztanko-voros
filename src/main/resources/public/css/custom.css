@@ -79,12 +79,13 @@ img {
 }
 .jumbotron
 {
+    margin-top: 60px;
     background-color: white;
     text-align: center;
 }
 .navbar
 {
-    margin-top: 1em;
+    background-color: white;
 }
 
 .filter_buttons

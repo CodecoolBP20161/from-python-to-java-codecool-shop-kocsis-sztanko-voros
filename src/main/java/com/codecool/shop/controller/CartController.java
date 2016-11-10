@@ -9,12 +9,12 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import static com.codecool.shop.controller.SessionHandler.getShoppingCardDaoMem;
+import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 
 public class CartController {
 
     public static String addCart(Request req, Response res) {
-        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCartDaoMem(req, res);
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));
         cart.add(productDataStore.find(id));
@@ -28,8 +28,7 @@ public class CartController {
 
     public static String decreaseItem(Request req, Response res) {
         int id = Integer.valueOf(req.params("id"));
-        System.out.println(id);
-        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCartDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() - 1);
         if (item.getQuantity() == 0) {
@@ -41,7 +40,7 @@ public class CartController {
 
     public static String increaseItem(Request req, Response res) {
         int id = Integer.valueOf(req.params("id"));
-        LineItemDaoMem cart = getShoppingCardDaoMem(req, res);
+        LineItemDaoMem cart = getShoppingCartDaoMem(req, res);
         LineItem item = cart.find(id);
         item.setQuantity(item.getQuantity() + 1);
         res.redirect("/shoppingcart");

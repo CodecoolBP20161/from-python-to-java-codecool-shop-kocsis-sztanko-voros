@@ -7,7 +7,7 @@ import spark.Response;
 
 public class SessionHandler {
 
-    public static LineItemDaoMem getShoppingCardDaoMem(Request req, Response res) {
+    public static LineItemDaoMem getShoppingCartDaoMem(Request req, Response res) {
         if (req.session().attribute("cart") != null) {
             return req.session().attribute("cart");
         }
