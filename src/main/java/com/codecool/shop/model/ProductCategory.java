@@ -1,8 +1,14 @@
 package com.codecool.shop.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProductCategory extends BaseModel {
+public class ProductCategory extends BaseModel implements Filter {
+
+    /*
+    ProductCategory object represents a group of products according to their category
+     */
+
     private String department;
     private ArrayList<Product> products;
 
@@ -30,6 +36,10 @@ public class ProductCategory extends BaseModel {
 
     public void addProduct(Product product) {
         this.products.add(product);
+    }
+
+    public List getBy(){
+        return getProducts();
     }
 
     public String toString() {
