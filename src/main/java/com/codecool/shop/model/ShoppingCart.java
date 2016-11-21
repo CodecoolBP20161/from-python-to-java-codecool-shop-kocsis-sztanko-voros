@@ -1,17 +1,17 @@
-package com.codecool.shop.dao.implementation;
+package com.codecool.shop.model;
 
-
-import com.codecool.shop.dao.LineItemDao;
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.Product;
 
 import java.util.ArrayList;
 
-public class LineItemDaoMem implements LineItemDao {
+public class ShoppingCart {
+
+    /*
+    ShoppingCart object represents an individuals' shopping cart
+     */
 
     private ArrayList<LineItem> DATA;
 
-    public LineItemDaoMem() {
+    public ShoppingCart() {
         this.DATA = new ArrayList<>();
     }
 
@@ -20,22 +20,9 @@ public class LineItemDaoMem implements LineItemDao {
     }
 
     public LineItem find(int id) {
-        return DATA.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
-    }
-
-    public void remove(int id) {
-        DATA.remove(find(id));
-    }
-
-    public void add(Product product) {
-        if (find(product) != null) {
-            LineItem toIncrement = find(product);
-            toIncrement.setQuantity(toIncrement.getQuantity() + 1);
-        } else {
-            LineItem item = new LineItem(1, product);
-            item.setId(DATA.size() + 1);
-            DATA.add(item);
-        }
+        return DATA.stream()
+                .filter(t -> t.getId() == id)
+                .findFirst().orElse(null);
     }
 
     public int getItemNumber() {
@@ -56,6 +43,22 @@ public class LineItemDaoMem implements LineItemDao {
         }
         return 0;
     }
+
+    public void remove(int id) {
+        DATA.remove(find(id));
+    }
+
+    public void add(Product product) {
+        if (find(product) != null) {
+            LineItem toIncrement = find(product);
+            toIncrement.setQuantity(toIncrement.getQuantity() + 1);
+        } else {
+            LineItem item = new LineItem(1, product);
+            item.setId(DATA.size() + 1);
+            DATA.add(item);
+        }
+    }
+
 
     public ArrayList getAll() {
         return DATA;
