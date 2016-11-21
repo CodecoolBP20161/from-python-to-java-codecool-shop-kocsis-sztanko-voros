@@ -15,8 +15,6 @@ public abstract class DataBaseAbstraction {
     private static final String DB_PASSWORD = "postgres";
 
 
-    abstract String createSQL();
-
     protected abstract String selectAllSQL();
 
 
@@ -31,25 +29,6 @@ public abstract class DataBaseAbstraction {
             e.printStackTrace();
         }
         return conn;
-    }
-
-    public void createTable() {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
-        String sql = createSQL();
-
-        try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(sql);
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            closeQuietly(stmt);
-            closeQuietly(conn);
-        }
-
     }
 
     public RowSet selectAll() {
