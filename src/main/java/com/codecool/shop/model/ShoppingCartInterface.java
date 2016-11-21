@@ -1,12 +1,9 @@
-package com.codecool.shop.dao;
+package com.codecool.shop.model;
 
-
-import com.codecool.shop.model.LineItem;
-import com.codecool.shop.model.Product;
 
 import java.util.List;
 
-public interface LineItemDao {
+public interface ShoppingCartInterface {
 
     void add(Product product);
     LineItem find(int id);

@@ -4,13 +4,12 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-//Main controller which pipes the request to subcontrollers
+//Main controller which pipes the request to low order controllers
 public class Controller{
 
     public static ModelAndView renderProductsByFilter(Request req, Response res) {
         return PageController.renderProductsByFilter(req, res);
     }
-
     public static ModelAndView renderMain(Request req, Response res) {
         return PageController.renderMain(req, res);
     }
