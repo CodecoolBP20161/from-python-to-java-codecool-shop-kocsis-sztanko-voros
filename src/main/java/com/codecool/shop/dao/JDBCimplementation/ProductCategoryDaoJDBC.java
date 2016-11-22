@@ -96,8 +96,13 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
         ArrayList<ProductCategory> listOfProductCategories = new ArrayList<>();
         RowSet rs = selectAll();
         try {
+            ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
+
             while (rs.next()) {
+                ArrayList<Product> products;
                 ProductCategory productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
+                productCategory.setProducts(products);
                 listOfProductCategories.add(productCategory);
             }
         } catch (SQLException e) {
