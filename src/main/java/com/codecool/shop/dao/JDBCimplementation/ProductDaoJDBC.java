@@ -52,19 +52,21 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
             while (rs.next()) {
                 Integer id = rs.getInt("id");
                 String name = rs.getString("name");
-                String description = rs.getString("description")
+                String description = rs.getString("description");
                 Float price = rs.getFloat("defaultprice");
                 String currency = rs.getString("defaultcurrency");
                 Integer categoryID = rs.getInt("product_category");
-                categoryDaoJDBC.find(categoryID);
+                ProductCategory category = categoryDaoJDBC.find(categoryID);
                 Integer supplierID = rs.getInt("supplier");
-                supplierDaoJDBC.find(supplierID);
-                Product product = new Product;
+                Supplier supplier = supplierDaoJDBC.find(supplierID);
+                Product product = new Product(id, name, price, currency, description, category, supplier);
+                productList.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            return productList;
         }
-        return null;
     }
 
     @Override
