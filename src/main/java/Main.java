@@ -1,7 +1,5 @@
 import com.codecool.shop.controller.Controller;
-import com.codecool.shop.dao.JDBCimplementation.SupplierDaoJDBC;
-import com.codecool.shop.model.Supplier;
-import com.codecool.shop.test.*;
+import com.codecool.shop.test.TestData;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
@@ -30,19 +28,6 @@ public class Main {
         get("/", Controller::renderMain, new ThymeleafTemplateEngine());
 
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
-
-        SupplierDaoJDBC db = new SupplierDaoJDBC();
-
-        Supplier s = new Supplier.SupplierBuilder()
-                .name("asd")
-                .description("asd")
-                .id(2)
-                .build();
-
-        System.out.println(s.getDescription());
-        db.add(s);
-        db.getAll();
-        System.out.println(db.getAll());
     }
 
 }

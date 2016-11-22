@@ -2,6 +2,7 @@ package com.codecool.shop.dao.JDBCimplementation;
 
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -18,6 +19,9 @@ import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
 
 public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao {
+
+    public SupplierDaoJDBC() {
+    }
 
     @Override
     public void add(Supplier supplier) {
@@ -67,6 +71,10 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             while (rowset.next()){
                 supplier = new Supplier(rowset.getString("name"),rowset.getString("description"));
                 supplier.setId(rowset.getInt("id"));
+                ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
+                ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
+                supplier.setProducts(products);
+                productDaoJDBC = null;
                 return supplier;
             }
         } catch (Exception e) {
@@ -105,16 +113,17 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
 
         RowSet rs = selectAll();
         try {
+            ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
 
-                Supplier s = new Supplier.SupplierBuilder()
-                        .name(name)
-                        .description(description)
-                        .id(id)
-                        .build();
+                Supplier s = new Supplier(name,description);
+                s.setId(id);
+
+                ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(s)));
+                s.setProducts(products);
 
                 supList.add(s);
             }
