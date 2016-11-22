@@ -18,6 +18,11 @@ public class ProductCategory extends BaseModel implements Filter {
         this.products = new ArrayList<>();
     }
 
+    public ProductCategory(int id, String name, String department, String description) {
+        super(id, name, description);
+        this.department = department;
+    }
+
     public String getDepartment() {
         return department;
     }
