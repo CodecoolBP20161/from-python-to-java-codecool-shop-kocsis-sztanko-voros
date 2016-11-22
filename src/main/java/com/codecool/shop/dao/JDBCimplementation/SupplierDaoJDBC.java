@@ -71,10 +71,10 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             while (rowset.next()){
                 supplier = new Supplier(rowset.getString("name"),rowset.getString("description"));
                 supplier.setId(rowset.getInt("id"));
-                ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
+                /*ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
                 ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
                 supplier.setProducts(products);
-                productDaoJDBC = null;
+                productDaoJDBC = null;*/
                 return supplier;
             }
         } catch (Exception e) {
