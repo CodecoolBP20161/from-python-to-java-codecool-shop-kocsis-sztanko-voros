@@ -54,8 +54,8 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         Supplier supplier = null;
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        CachedRowSet rowset = null;
+        ResultSet rs;
+        CachedRowSet rowset;
 
 
         String sql = "SELECT * FROM supplier" +
@@ -68,13 +68,17 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             rs = stmt.executeQuery();
             rowset = new CachedRowSetImpl();
             rowset.populate(rs);
-            while (rowset.next()){
-                supplier = new Supplier(rowset.getString("name"),rowset.getString("description"));
-                supplier.setId(rowset.getInt("id"));
+
+            while (rowset.next()) {
+
+                supplier = new Supplier
+                        .SupplierBuilder(rowset.getString("name"), rowset.getString("description"))
+                        .id(rowset.getInt("id"))
+                        .build();
+
                 ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
                 ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
                 supplier.setProducts(products);
-                productDaoJDBC = null;
                 return supplier;
             }
         } catch (Exception e) {
@@ -115,17 +119,16 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String description = rs.getString("description");
 
-                Supplier s = new Supplier(name,description);
-                s.setId(id);
+                Supplier supplier = new Supplier
+                        .SupplierBuilder(rs.getString("name"),rs.getString("description"))
+                        .id(rs.getInt("id"))
+                        .build();
 
-                ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(s)));
-                s.setProducts(products);
+                ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
+                supplier.setProducts(products);
 
-                supList.add(s);
+                supList.add(supplier);
             }
         } catch (SQLException e) {
             e.printStackTrace();
