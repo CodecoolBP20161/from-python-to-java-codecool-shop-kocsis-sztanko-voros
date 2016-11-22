@@ -13,9 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
@@ -133,11 +131,63 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return null;
+        String query = "SELECT * FROM product WHERE supplier = ?";
+        List<Product> productList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, supplier.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                Float price = rs.getFloat("defaultprice");
+                String currency = rs.getString("defaultcurrency");
+                Integer categoryID = rs.getInt("product_category");
+                ProductCategory category = categoryDaoJDBC.find(categoryID);
+                Product product = new Product(id, name, price, currency, description, category, supplier);
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
+        return productList;
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return null;
+        String query = "SELECT * FROM product WHERE product_category = ?";
+        List<Product> productList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, productCategory.getId());
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                Float price = rs.getFloat("defaultprice");
+                String currency = rs.getString("defaultcurrency");
+                Integer supplierID = rs.getInt("supplier");
+                Supplier supplier = supplierDaoJDBC.find(supplierID);
+                Product product = new Product(id, name, price, currency, description, productCategory, supplier);
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
+        return productList;
     }
 }
