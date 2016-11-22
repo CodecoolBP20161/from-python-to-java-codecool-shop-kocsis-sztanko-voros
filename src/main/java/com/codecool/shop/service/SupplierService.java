@@ -1,9 +1,12 @@
 package com.codecool.shop.service;
 
-/**
- * Created by vbenedek on 2016.11.22..
- */
-public class SupplierService {
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.model.Supplier;
+
+import java.util.List;
+
+public class SupplierService{
+    SupplierDao supplierDao;
     private static SupplierService ourInstance = new SupplierService();
 
     public static SupplierService getInstance() {
@@ -11,5 +14,22 @@ public class SupplierService {
     }
 
     private SupplierService() {
+        this.supplierDao = StorageFactory.setSupplierStorage(Storage.DATABASE);
+    }
+
+    public void add(Supplier category) {
+        supplierDao.add(category);
+    }
+
+    public Supplier find(int id) {
+        return supplierDao.find(id);
+    }
+
+    public void remove(int id) {
+        supplierDao.remove(id);
+    }
+
+    public List<Supplier> getAll() {
+        return supplierDao.getAll();
     }
 }
