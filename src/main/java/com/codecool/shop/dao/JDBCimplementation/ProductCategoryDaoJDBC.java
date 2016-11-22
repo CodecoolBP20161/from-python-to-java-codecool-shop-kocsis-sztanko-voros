@@ -60,7 +60,12 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             ArrayList<Product> products;
 
             while (rs.next()) {
-            productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+
+            productCategory = new ProductCategory
+                    .ProductCategoryBuilder(rs.getString("name"), rs.getString("description"), rs.getString("department"))
+                    .id(rs.getInt("id"))
+                    .build();
+
             products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
             productCategory.setProducts(products);
             }
@@ -97,10 +102,14 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
         RowSet rs = selectAll();
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
-
+            ArrayList<Product> products;
             while (rs.next()) {
-                ArrayList<Product> products;
-                ProductCategory productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+
+                ProductCategory productCategory = new ProductCategory
+                        .ProductCategoryBuilder(rs.getString("name"), rs.getString("description"), rs.getString("department"))
+                        .id(rs.getInt("id"))
+                        .build();
+
                 products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
                 productCategory.setProducts(products);
                 listOfProductCategories.add(productCategory);

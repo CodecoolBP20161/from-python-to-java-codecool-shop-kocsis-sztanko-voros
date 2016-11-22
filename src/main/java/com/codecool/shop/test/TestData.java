@@ -30,8 +30,12 @@ public class TestData {
         supplierDataStore.add(hp);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory laptop = new ProductCategory("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.");
+        ProductCategory tablet = new ProductCategory
+                .ProductCategoryBuilder("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.")
+                .build();
+        ProductCategory laptop = new ProductCategory
+                .ProductCategoryBuilder("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.")
+                .build();
 
         productCategoryDataStore.add(tablet);
         productCategoryDataStore.add(laptop);
