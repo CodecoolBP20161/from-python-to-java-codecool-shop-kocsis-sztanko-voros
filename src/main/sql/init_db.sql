@@ -1,6 +1,6 @@
-DROP  TABLE IF EXISTS productcategory;
-DROP  TABLE IF EXISTS supplier;
-DROP  TABLE IF EXISTS product;
+DROP TABLE IF EXISTS productcategory CASCADE ;
+DROP  TABLE IF EXISTS supplier CASCADE ;
+DROP  TABLE IF EXISTS product CASCADE ;
 
 CREATE TABLE productcategory
 (
