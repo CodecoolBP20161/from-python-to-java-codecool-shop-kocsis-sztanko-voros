@@ -6,7 +6,8 @@ CREATE TABLE productcategory
 (
   id SERIAL PRIMARY KEY,
   name VARCHAR(40),
-  department VARCHAR(40)
+  department VARCHAR(40),
+  description VARCHAR (500)
 );
 
 CREATE TABLE supplier
