@@ -19,11 +19,14 @@ public class TestData {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
+        Supplier amazon = new Supplier.SupplierBuilder("Amazon", "Digital content and services")
+                .build();
         supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
+        Supplier lenovo = new Supplier.SupplierBuilder("Lenovo", "Computers")
+                .build();
         supplierDataStore.add(lenovo);
-        Supplier hp = new Supplier("Hewlett-Packard", "Computers");
+        Supplier hp = new Supplier.SupplierBuilder("Hewlett-Packard", "Computers")
+                .build();
         supplierDataStore.add(hp);
 
         //setting up a new product category
