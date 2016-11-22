@@ -19,7 +19,7 @@ public class Supplier extends BaseModel implements Filter {
 
     public Supplier(SupplierBuilder builder) {
         super(builder.name,builder.description);
-        this.setId(builder.id);
+        this.id = builder.id;
         this.products = builder.products;
     }
 

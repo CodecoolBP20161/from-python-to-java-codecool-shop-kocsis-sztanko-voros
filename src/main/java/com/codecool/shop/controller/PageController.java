@@ -1,14 +1,17 @@
 package com.codecool.shop.controller;
 
 
+import com.codecool.shop.dao.JDBCimplementation.ProductCategoryDaoJDBC;
+import com.codecool.shop.dao.JDBCimplementation.ProductDaoJDBC;
+import com.codecool.shop.dao.JDBCimplementation.SupplierDaoJDBC;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.inmemoryimplementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
-import com.codecool.shop.dao.inmemoryimplementation.SupplierDaoMem;
 import com.codecool.shop.model.Filter;
 import com.codecool.shop.model.ShoppingCart;
+import com.codecool.shop.service.ProductCategoryService;
+import com.codecool.shop.service.ProductService;
+import com.codecool.shop.service.SupplierService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -21,9 +24,9 @@ import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 // controller responsible for page rendering
 public class PageController {
 
-    static private ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-    static private SupplierDao productSupplierDataStore = SupplierDaoMem.getInstance();
-    static private ProductDao productDataStore = ProductDaoMem.getInstance();
+    static private ProductCategoryService productCategoryDataStore = ProductCategoryService.getInstance();
+    static private SupplierService productSupplierDataStore = SupplierService.getInstance();
+    static private ProductService productDataStore = ProductService.getInstance();
 
     public static ModelAndView renderMain(Request req, Response res) {
         ShoppingCart LineItemDataStore = getShoppingCartDaoMem(req, res);
