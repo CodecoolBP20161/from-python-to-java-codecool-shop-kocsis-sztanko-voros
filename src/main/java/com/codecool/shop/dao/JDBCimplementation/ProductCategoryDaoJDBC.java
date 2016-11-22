@@ -3,6 +3,9 @@ package com.codecool.shop.dao.JDBCimplementation;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 
+import javax.sql.RowSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +36,17 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public List<ProductCategory> getAll() {
-        return null;
+        ArrayList<ProductCategory> listOfProductCategories = new ArrayList<>();
+        RowSet rs = selectAll();
+        try {
+            while (rs.next()) {
+                ProductCategory productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                listOfProductCategories.add(productCategory);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(listOfProductCategories);
+        return listOfProductCategories;
     }
 }
