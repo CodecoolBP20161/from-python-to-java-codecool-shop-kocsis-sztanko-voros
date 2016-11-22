@@ -1,6 +1,7 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 
 import javax.sql.RowSet;
@@ -55,8 +56,13 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
+            ProductDaoJDBC productDaoJDBC= new ProductDaoJDBC();
+            ArrayList<Product> products;
+
             while (rs.next()) {
             productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            products = (ArrayList) productDaoJDBC.getBy(productCategory);
+            productCategory.setProducts(products);
             }
         } catch (SQLException e) {
             e.printStackTrace();
