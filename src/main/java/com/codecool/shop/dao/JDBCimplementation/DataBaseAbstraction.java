@@ -1,4 +1,4 @@
-package com.codecool.shop.dao.databaseimplementation;
+package com.codecool.shop.dao.JDBCimplementation;
 
 import com.sun.rowset.CachedRowSetImpl;
 
