@@ -91,7 +91,20 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     public void remove(int id) {
-
+        String query = "DELETE FROM product WHERE id = ?";
+        PreparedStatement preparedStatement = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
     }
 
     @Override
