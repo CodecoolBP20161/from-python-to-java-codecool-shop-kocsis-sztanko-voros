@@ -32,7 +32,13 @@ public class Main {
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
 
         SupplierDaoJDBC db = new SupplierDaoJDBC();
-        Supplier s = new Supplier("asd","asd");
+
+        Supplier s = new Supplier.SupplierBuilder()
+                .name("asd")
+                .description("asd")
+                .id(2)
+                .build();
+
         System.out.println(s.getDescription());
         db.add(s);
         db.getAll();

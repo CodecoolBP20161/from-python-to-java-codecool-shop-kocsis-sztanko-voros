@@ -110,8 +110,11 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
                 String name = rs.getString("name");
                 String description = rs.getString("description");
 
-                Supplier s = new Supplier(name,description);
-                s.setId(id);
+                Supplier s = new Supplier.SupplierBuilder()
+                        .name(name)
+                        .description(description)
+                        .id(id)
+                        .build();
 
                 supList.add(s);
             }
