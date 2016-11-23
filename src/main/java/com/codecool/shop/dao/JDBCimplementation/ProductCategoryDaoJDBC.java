@@ -14,9 +14,6 @@ import java.util.List;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
-/**
- * Created by dorasztanko on 2016.11.22..
- */
 public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements ProductCategoryDao {
 
     @Override
@@ -27,7 +24,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public void add(ProductCategory category) {
-        String query = "INSERT INTO productcategory (name, department, description) VALUES (?,?,?)";
+        String query = "INSERT INTO productcategory (productcategory_name, productcategory_department, productcategory_description) VALUES (?,?,?)";
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -47,7 +44,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public ProductCategory find(int id) {
-        String query = "SELECT * FROM productcategory WHERE id = ?";
+        String query = "SELECT * FROM productcategory WHERE productcategory_id = ?";
         ProductCategory productCategory = null;
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -60,9 +57,9 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             ArrayList<Product> products;
 
             while (rs.next()) {
-            productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-            products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
-            productCategory.setProducts(products);
+                productCategory = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
+                products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
+                productCategory.setProducts(products);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +72,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public void remove(int id) {
-        String query = "DELETE FROM productcategory WHERE id = ?";
+        String query = "DELETE FROM productcategory WHERE productcategory_id = ?";
         PreparedStatement preparedStatement = null;
         Connection conn = null;
         try {
@@ -100,7 +97,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
             while (rs.next()) {
                 ArrayList<Product> products;
-                ProductCategory productCategory = new ProductCategory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                ProductCategory productCategory = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
                 products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
                 productCategory.setProducts(products);
                 listOfProductCategories.add(productCategory);

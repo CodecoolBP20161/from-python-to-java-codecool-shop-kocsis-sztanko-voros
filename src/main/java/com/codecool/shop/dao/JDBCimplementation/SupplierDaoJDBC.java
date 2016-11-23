@@ -29,8 +29,8 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         PreparedStatement stmt = null;
 
         String sql = "INSERT INTO supplier ("
-                + " name," +
-                " description" +
+                + " supplier_name," +
+                " supplier_description" +
                 ")VALUES ("
                 + " ?, ?)";
 
@@ -59,7 +59,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
 
 
         String sql = "SELECT * FROM supplier" +
-                " WHERE id = ?";
+                " WHERE supplier_id = ?";
 
         try {
             conn = getConnection();
@@ -69,12 +69,11 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             rowset = new CachedRowSetImpl();
             rowset.populate(rs);
             while (rowset.next()){
-                supplier = new Supplier(rowset.getString("name"),rowset.getString("description"));
-                supplier.setId(rowset.getInt("id"));
+                supplier = new Supplier(rowset.getString("supplier_name"),rowset.getString("supplier_description"));
+                supplier.setId(rowset.getInt("supplier_id"));
                 ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
                 ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
                 supplier.setProducts(products);
-                productDaoJDBC = null;
                 return supplier;
             }
         } catch (Exception e) {
@@ -92,7 +91,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         PreparedStatement stmt = null;
 
         String sql = "DELETE * FROM supplier" +
-                " WHERE id = ?";
+                " WHERE supplier_id = ?";
 
         try {
             conn = getConnection();
@@ -115,9 +114,9 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String description = rs.getString("description");
+                int id = rs.getInt("supplier_id");
+                String name = rs.getString("supplier_name");
+                String description = rs.getString("supplier_description");
 
                 Supplier s = new Supplier(name,description);
                 s.setId(id);
