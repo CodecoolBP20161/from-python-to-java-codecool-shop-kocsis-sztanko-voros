@@ -12,18 +12,17 @@ public class SupplierDaoMemTest extends SupplierDaoTest {
     public void setUp() throws Exception {
         supplierDao = SupplierDaoMem.getInstance();
         supplierDao.add(lenovo);
-    }
-
-    @Test
-    public void getInstance() throws Exception {
-
+        System.out.println(supplierDao.getAll());
     }
 
     @After
     public void tearDown() throws Exception {
         List<Supplier> suppliers = supplierDao.getAll();
+        System.out.println(suppliers.size());
         for (int i = 0; i < suppliers.size(); i++) {
+            System.out.println(suppliers.get(i));
             suppliers.remove(suppliers.get(i));
         }
+        System.out.println(suppliers);
     }
 }
