@@ -4,7 +4,7 @@ DROP  TABLE IF EXISTS product CASCADE ;
 
 CREATE TABLE productcategory
 (
-  id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY UNIQUE,
   name VARCHAR(40),
   department VARCHAR(40),
   description VARCHAR (500)
@@ -12,14 +12,14 @@ CREATE TABLE productcategory
 
 CREATE TABLE supplier
 (
-  id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY UNIQUE ,
   name VARCHAR(40),
   description VARCHAR (500)
 );
 
 CREATE TABLE product
 (
-  id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY UNIQUE,
   name VARCHAR(40),
   description VARCHAR (500),
   defaultPrice FLOAT,
