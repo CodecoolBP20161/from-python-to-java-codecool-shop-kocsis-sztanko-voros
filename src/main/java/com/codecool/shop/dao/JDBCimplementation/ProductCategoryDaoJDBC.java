@@ -18,13 +18,27 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     protected String selectAllSQL() {
-        String query = "SELECT * FROM productcategory";
-        return query;
+        return "SELECT * FROM productcategory";
+    }
+
+    @Override
+    protected String addSQL() {
+        return "INSERT INTO productcategory (productcategory_name, productcategory_department, productcategory_description) VALUES (?,?,?)";
+    }
+
+    @Override
+    protected String findSQL() {
+        return "SELECT * FROM productcategory WHERE productcategory_id = ?";
+    }
+
+    @Override
+    protected String removeSQL() {
+        return "DELETE FROM productcategory WHERE productcategory_id = ?";
     }
 
     @Override
     public void add(ProductCategory category) {
-        String query = "INSERT INTO productcategory (productcategory_name, productcategory_department, productcategory_description) VALUES (?,?,?)";
+        String query = addSQL();
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -44,7 +58,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public ProductCategory find(int id) {
-        String query = "SELECT * FROM productcategory WHERE productcategory_id = ?";
+        String query = findSQL();
         ProductCategory productCategory = null;
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -71,24 +85,6 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             closeQuietly(preparedStatement);
         }
         return productCategory;
-    }
-
-    @Override
-    public void remove(int id) {
-        String query = "DELETE FROM productcategory WHERE productcategory_id = ?";
-        PreparedStatement preparedStatement = null;
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeQuietly(conn);
-            closeQuietly(preparedStatement);
-        }
     }
 
     @Override

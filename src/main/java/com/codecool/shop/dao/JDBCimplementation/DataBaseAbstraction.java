@@ -17,6 +17,11 @@ public abstract class DataBaseAbstraction {
 
     protected abstract String selectAllSQL();
 
+    protected abstract String addSQL();
+
+    protected abstract String findSQL();
+
+    protected abstract String removeSQL();
 
     protected Connection getConnection() {
         Connection conn = null;
@@ -56,4 +61,20 @@ public abstract class DataBaseAbstraction {
         return rowset;
     }
 
+    public void remove(int id) {
+        String query = removeSQL();
+        PreparedStatement preparedStatement = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
+    }
 }

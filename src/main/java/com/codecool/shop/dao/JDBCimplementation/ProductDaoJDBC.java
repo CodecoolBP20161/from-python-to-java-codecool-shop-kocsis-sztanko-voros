@@ -1,8 +1,6 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
-import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -21,13 +19,35 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     protected String selectAllSQL() {
-        String query = "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id)";
-        return query;
+        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id)";
+    }
+
+    @Override
+    protected String addSQL() {
+        return "INSERT INTO product (product_id, product_name, product_defaultprice, product_defaultcurrency,product_description, product_productcategory, product_supplier) VALUES (?,?,?,?,?,?,?)";
+    }
+
+    @Override
+    protected String findSQL() {
+        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE id = ?";
+    }
+
+    @Override
+    protected String removeSQL() {
+        return "DELETE FROM product WHERE product_id = ?";
+    }
+
+    protected String getBySupplierSQL() {
+        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE product_supplier = ?";
+    }
+
+    protected String getByCategorySQL() {
+        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE product_productcategory = ?";
     }
 
     @Override
     public void add(Product product) {
-        String query = "INSERT INTO product (product_id, product_name, product_defaultprice, product_defaultcurrency,product_description, product_productcategory, product_supplier) VALUES (?,?,?,?,?,?,?)";
+        String query = addSQL();
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -51,7 +71,7 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     public Product find(int id) {
-        String query = "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE id = ?";
+        String query = findSQL();
         Product product = null;
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -82,24 +102,6 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
     }
 
     @Override
-    public void remove(int id) {
-        String query = "DELETE FROM product WHERE product_id = ?";
-        PreparedStatement preparedStatement = null;
-        Connection conn = null;
-        try {
-            conn = getConnection();
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeQuietly(conn);
-            closeQuietly(preparedStatement);
-        }
-    }
-
-    @Override
     public List<Product> getAll() {
         RowSet rs = selectAll();
         List<Product> productList= new ArrayList<>();
@@ -126,7 +128,7 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        String query = "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE product_supplier = ?";
+        String query = getBySupplierSQL();
         List<Product> productList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -158,7 +160,7 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        String query = "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE product_productcategory = ?";
+        String query = getByCategorySQL();
         List<Product> productList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement preparedStatement = null;

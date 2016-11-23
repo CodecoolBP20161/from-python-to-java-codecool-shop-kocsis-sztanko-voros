@@ -20,20 +20,31 @@ import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
 public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao {
 
-    public SupplierDaoJDBC() {
+    @Override
+    protected String selectAllSQL() {
+        return "SELECT * FROM supplier";
+    }
+
+    @Override
+    protected String addSQL() {
+        return "INSERT INTO supplier (supplier_name, supplier_description) VALUES (?, ?)";
+    }
+
+    @Override
+    protected String findSQL() {
+        return "SELECT * FROM supplier WHERE supplier_id = ?";
+    }
+
+    @Override
+    protected String removeSQL() {
+        return "DELETE * FROM supplier WHERE supplier_id = ?";
     }
 
     @Override
     public void add(Supplier supplier) {
         Connection conn = null;
         PreparedStatement stmt = null;
-
-        String sql = "INSERT INTO supplier ("
-                + " supplier_name," +
-                " supplier_description" +
-                ")VALUES ("
-                + " ?, ?)";
-
+        String sql = addSQL();
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(sql);
@@ -48,7 +59,6 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         }
     }
 
-
     @Override
     public Supplier find(int id) {
         Supplier supplier = null;
@@ -56,11 +66,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         PreparedStatement stmt = null;
         ResultSet rs;
         CachedRowSet rowset;
-
-
-        String sql = "SELECT * FROM supplier" +
-                " WHERE supplier_id = ?";
-
+        String sql = findSQL();
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(sql);
@@ -88,27 +94,6 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
     }
 
     @Override
-    public void remove(int id) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
-        String sql = "DELETE * FROM supplier" +
-                " WHERE supplier_id = ?";
-
-        try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
-            stmt.executeQuery();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            closeQuietly(conn);
-            closeQuietly(stmt);
-        }
-    }
-
-    @Override
     public List<Supplier> getAll() {
         List<Supplier> supList = new ArrayList<>();
 
@@ -130,10 +115,5 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             e.printStackTrace();
         }
         return supList;
-    }
-
-    @Override
-    protected String selectAllSQL() {
-        return "SELECT * FROM supplier";
     }
 }
