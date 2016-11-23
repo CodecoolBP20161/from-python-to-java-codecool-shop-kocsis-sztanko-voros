@@ -98,7 +98,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             conn = getConnection();
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
