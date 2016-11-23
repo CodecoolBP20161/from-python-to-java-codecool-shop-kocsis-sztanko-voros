@@ -5,9 +5,6 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by dorasztanko on 2016.11.23..
- */
 public class ProductDaoJDBCTest  extends ProductDaoTest {
 
     @Before

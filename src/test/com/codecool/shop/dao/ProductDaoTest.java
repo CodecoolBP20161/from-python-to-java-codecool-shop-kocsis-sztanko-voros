@@ -1,7 +1,5 @@
 package com.codecool.shop.dao;
 
-import com.codecool.shop.dao.JDBCimplementation.ProductDaoJDBC;
-import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -9,9 +7,6 @@ import org.junit.*;
 
 import static junit.framework.TestCase.*;
 
-/**
- * Created by dorasztanko on 2016.11.23..
- */
 public abstract class ProductDaoTest {
     protected ProductDao productDao;
 

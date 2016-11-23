@@ -6,9 +6,6 @@ import org.junit.*;
 
 import java.util.List;
 
-/**
- * Created by dorasztanko on 2016.11.23..
- */
 public class SupplierDaoMemTest extends SupplierDaoTest {
 
     @Before
