@@ -12,7 +12,7 @@ public abstract class DataBaseAbstraction {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/postgres";
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "postgres";
+    private static final String DB_PASSWORD = "doca1993";
 
 
     protected abstract String selectAllSQL();

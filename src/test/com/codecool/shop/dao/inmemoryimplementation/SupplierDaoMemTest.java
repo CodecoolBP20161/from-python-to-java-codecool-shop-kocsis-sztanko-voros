@@ -1,16 +1,15 @@
 package com.codecool.shop.dao.inmemoryimplementation;
 
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.ProductDaoTest;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
  * Created by dorasztanko on 2016.11.23..
  */
-public class ProductDaoMemTest extends ProductDaoTest {
-
+public class SupplierDaoMemTest {
     @Test
     public void getInstance() throws Exception {
 
@@ -18,8 +17,6 @@ public class ProductDaoMemTest extends ProductDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        productDao = ProductDaoMem.getInstance();
-
 
     }
 
