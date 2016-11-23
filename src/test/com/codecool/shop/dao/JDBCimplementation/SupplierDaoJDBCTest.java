@@ -1,25 +1,54 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
 import com.codecool.shop.dao.SupplierDaoTest;
+import com.codecool.shop.model.Supplier;
 import org.junit.*;
+import org.postgresql.util.PSQLException;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+
+import static org.postgresql.jdbc.EscapedFunctions.DATABASE;
 
 /**
  * Created by dorasztanko on 2016.11.23..
  */
 public class SupplierDaoJDBCTest extends SupplierDaoTest {
 
+    private static final String DATABASE = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "doca1993";
+
     @Before
     public void setUp() throws Exception {
         supplierDao = new SupplierDaoJDBC();
-    }
-
-    @Test
-    public void selectAllSQL() throws Exception {
-
+        supplierDao.add(lenovo);
     }
 
     @After
     public void tearDown() throws Exception {
-        supplierDao = null;
+        executeQuery("DELETE FROM supplier");
     }
+
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(
+                DATABASE,
+                DB_USER,
+                DB_PASSWORD);
+    }
+
+    private void executeQuery(String query) {
+        try (Connection connection = getConnection();
+             Statement statement =connection.createStatement()
+        ){
+            statement.execute(query);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
