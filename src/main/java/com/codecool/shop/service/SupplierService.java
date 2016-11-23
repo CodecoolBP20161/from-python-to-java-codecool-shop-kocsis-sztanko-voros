@@ -1,8 +1,10 @@
 package com.codecool.shop.service;
 
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierService{
