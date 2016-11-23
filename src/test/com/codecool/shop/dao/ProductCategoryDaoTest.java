@@ -33,7 +33,6 @@ public abstract class ProductCategoryDaoTest {
 
     @Test
     public void getAllProductCategoryOfProductCategoryDao() throws Exception {
-        System.out.println(productCategoryDao.getAll());
         assertEquals(1, productCategoryDao.getAll().size());
     }
 
