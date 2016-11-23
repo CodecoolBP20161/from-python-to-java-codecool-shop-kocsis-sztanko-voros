@@ -65,8 +65,11 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
                 String description = rs.getString("product_description");
                 Float price = rs.getFloat("product_defaultprice");
                 String currency = rs.getString("product_defaultcurrency");
-                ProductCategory category = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
-                Supplier supplier = new Supplier(rs.getString("supplier_name"),rs.getString("supplier_description"));
+                ProductCategory category = new ProductCategory.ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"))
+                        .id(rs.getInt("productcategory_id"))
+                        .build();
+                Supplier supplier = new Supplier.SupplierBuilder(rs.getString("supplier_name"),rs.getString("supplier_description"))
+                        .build();
                 product = new Product(id, name, price, currency, description, category, supplier);
             }
         } catch (SQLException e) {
@@ -107,8 +110,11 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
                 String description = rs.getString("product_description");
                 Float price = rs.getFloat("product_defaultprice");
                 String currency = rs.getString("product_defaultcurrency");
-                ProductCategory category = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
-                Supplier supplier = new Supplier(rs.getString("supplier_name"),rs.getString("supplier_description"));
+                ProductCategory category = new ProductCategory.ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"))
+                        .id(rs.getInt("productcategory_id"))
+                        .build();
+                Supplier supplier = new Supplier.SupplierBuilder(rs.getString("supplier_name"),rs.getString("supplier_description"))
+                        .build();
                 Product product = new Product(id, name, price, currency, description, category, supplier);
                 productList.add(product);
             }
@@ -135,7 +141,9 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
                 String description = rs.getString("product_description");
                 Float price = rs.getFloat("product_defaultprice");
                 String currency = rs.getString("product_defaultcurrency");
-                ProductCategory category = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
+                ProductCategory category = new ProductCategory.ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"))
+                        .id(rs.getInt("productcategory_id"))
+                        .build();
                 Product product = new Product(id, name, price, currency, description, category, supplier);
                 productList.add(product);
             }
@@ -165,7 +173,8 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
                 String description = rs.getString("product_description");
                 Float price = rs.getFloat("product_defaultprice");
                 String currency = rs.getString("product_defaultcurrency");
-                Supplier supplier = new Supplier(rs.getString("supplier_name"),rs.getString("supplier_description"));
+                Supplier supplier = new Supplier.SupplierBuilder(rs.getString("supplier_name"),rs.getString("supplier_description"))
+                        .build();
                 Product product = new Product(id, name, price, currency, description, productCategory, supplier);
                 productList.add(product);
             }

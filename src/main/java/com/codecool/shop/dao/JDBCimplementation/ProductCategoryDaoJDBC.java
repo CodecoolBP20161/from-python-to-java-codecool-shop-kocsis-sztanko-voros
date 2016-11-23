@@ -57,9 +57,12 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             ArrayList<Product> products;
 
             while (rs.next()) {
-                productCategory = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
-                products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
-                productCategory.setProducts(products);
+            productCategory = new ProductCategory
+                    .ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_description"), rs.getString("productcategory_department"))
+                    .id(rs.getInt("productcategory_id"))
+                    .build();
+            products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
+            productCategory.setProducts(products);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,10 +97,12 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
         RowSet rs = selectAll();
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
-
+            ArrayList<Product> products;
             while (rs.next()) {
-                ArrayList<Product> products;
-                ProductCategory productCategory = new ProductCategory(rs.getInt("productcategory_id"), rs.getString("productcategory_name"), rs.getString("productcategory_department"), rs.getString("productcategory_description"));
+                ProductCategory productCategory = new ProductCategory
+                        .ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_description"), rs.getString("productcategory_department"))
+                        .id(rs.getInt("productcategory_id"))
+                        .build();
                 products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
                 productCategory.setProducts(products);
                 listOfProductCategories.add(productCategory);
