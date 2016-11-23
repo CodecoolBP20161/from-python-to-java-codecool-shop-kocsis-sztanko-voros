@@ -19,16 +19,23 @@ public class TestData {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
+        Supplier amazon = new Supplier.SupplierBuilder("Amazon", "Digital content and services")
+                .build();
         supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
+        Supplier lenovo = new Supplier.SupplierBuilder("Lenovo", "Computers")
+                .build();
         supplierDataStore.add(lenovo);
-        Supplier hp = new Supplier("Hewlett-Packard", "Computers");
+        Supplier hp = new Supplier.SupplierBuilder("Hewlett-Packard", "Computers")
+                .build();
         supplierDataStore.add(hp);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory laptop = new ProductCategory("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.");
+        ProductCategory tablet = new ProductCategory
+                .ProductCategoryBuilder("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.")
+                .build();
+        ProductCategory laptop = new ProductCategory
+                .ProductCategoryBuilder("Laptop", "Hardware", "A laptop computer, flat mobile computer with a display.")
+                .build();
 
         productCategoryDataStore.add(tablet);
         productCategoryDataStore.add(laptop);
