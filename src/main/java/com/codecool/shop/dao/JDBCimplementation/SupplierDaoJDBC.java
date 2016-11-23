@@ -91,7 +91,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         Connection conn = null;
         PreparedStatement stmt = null;
 
-        String sql = "DELETE * FROM supplier" +
+        String sql = "DELETE FROM supplier" +
                 " WHERE id = ?";
 
         try {
