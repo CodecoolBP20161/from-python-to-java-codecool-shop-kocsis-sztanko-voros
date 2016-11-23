@@ -4,26 +4,26 @@ DROP  TABLE IF EXISTS product CASCADE ;
 
 CREATE TABLE productcategory
 (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(40),
-  department VARCHAR(40),
-  description VARCHAR (500)
+  productcategory_id SERIAL PRIMARY KEY,
+  productcategory_name VARCHAR(40),
+  productcategory_department VARCHAR(40),
+  productcategory_description VARCHAR (500)
 );
 
 CREATE TABLE supplier
 (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(40),
-  description VARCHAR (500)
+  supplier_id SERIAL PRIMARY KEY,
+  supplier_name VARCHAR(40),
+  supplier_description VARCHAR (500)
 );
 
 CREATE TABLE product
 (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(40),
-  description VARCHAR (500),
-  defaultPrice FLOAT,
-  defaultCurrency VARCHAR(10),
-  product_category INT REFERENCES productcategory(id),
-  supplier INT REFERENCES supplier(id)
+  product_id SERIAL PRIMARY KEY,
+  product_name VARCHAR(40),
+  product_description VARCHAR (500),
+  product_defaultPrice FLOAT,
+  product_defaultCurrency VARCHAR(10),
+  product_productcategory INT REFERENCES productcategory(productcategory_id),
+  product_supplier INT REFERENCES supplier(supplier_id)
 );
