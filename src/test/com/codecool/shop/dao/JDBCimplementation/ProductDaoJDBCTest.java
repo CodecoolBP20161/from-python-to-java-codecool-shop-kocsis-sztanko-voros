@@ -1,6 +1,5 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
-import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.ProductDaoTest;
 import org.junit.*;
 
@@ -16,13 +15,13 @@ public class ProductDaoJDBCTest  extends ProductDaoTest {
         productDao = new ProductDaoJDBC();
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void selectAllSQL() throws Exception {
 
     }
 
-    @Test
-    public void selectAllSQL() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
     }
 }

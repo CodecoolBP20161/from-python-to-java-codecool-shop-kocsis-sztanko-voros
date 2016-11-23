@@ -10,13 +10,9 @@ import static org.junit.Assert.*;
  * Created by dorasztanko on 2016.11.23..
  */
 public class ProductCategoryDaoJDBCTest {
+
     @Before
     public void setUp() throws Exception {
-
-    }
-
-    @After
-    public void tearDown() throws Exception {
 
     }
 
@@ -25,6 +21,8 @@ public class ProductCategoryDaoJDBCTest {
 
     }
 
+    @After
+    public void tearDown() throws Exception {
 
-
+    }
 }

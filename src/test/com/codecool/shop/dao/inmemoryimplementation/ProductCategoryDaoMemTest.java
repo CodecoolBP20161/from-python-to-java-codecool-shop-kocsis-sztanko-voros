@@ -10,18 +10,19 @@ import static org.junit.Assert.*;
  * Created by dorasztanko on 2016.11.23..
  */
 public class ProductCategoryDaoMemTest {
+
     @Before
     public void setUp() throws Exception {
 
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void getInstance() throws Exception {
 
     }
 
-    @Test
-    public void getInstance() throws Exception {
+    @After
+    public void tearDown() throws Exception {
 
     }
 }
