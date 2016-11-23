@@ -1,3 +1,3 @@
-DELETE * FROM productcategory;
-DELETE * FROM supplier;
-DELETE * FROM product;
+DELETE FROM productcategory;
+DELETE FROM supplier;
+DELETE FROM product;
