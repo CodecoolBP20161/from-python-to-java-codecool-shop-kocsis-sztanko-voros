@@ -29,7 +29,7 @@ public class ProductDaoJDBC extends DataBaseAbstraction implements ProductDao {
 
     @Override
     protected String findSQL() {
-        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE id = ?";
+        return "SELECT * FROM product JOIN supplier ON (product_supplier = supplier_id) JOIN productcategory ON (product_productcategory = productcategory_id) WHERE product_id = ?";
     }
 
     @Override
