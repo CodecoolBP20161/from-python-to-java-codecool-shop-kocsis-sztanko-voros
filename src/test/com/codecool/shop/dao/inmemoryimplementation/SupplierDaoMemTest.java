@@ -16,10 +16,7 @@ public class SupplierDaoMemTest extends SupplierDaoTest {
 
     @After
     public void tearDown() throws Exception {
-        List<Supplier> suppliers = supplierDao.getAll();
-        for (int i = 0; i < suppliers.size(); i++) {
-            System.out.println(suppliers.get(i));
-            suppliers.remove(suppliers.get(i));
-        }
+        supplierDao.getAll().clear();
+
     }
 }

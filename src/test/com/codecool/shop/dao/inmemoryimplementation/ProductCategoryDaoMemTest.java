@@ -16,9 +16,6 @@ public class ProductCategoryDaoMemTest extends ProductCategoryDaoTest {
 
     @After
     public void tearDown() throws Exception {
-        List<ProductCategory> categories = productCategoryDao.getAll();
-        for (int i = 0; i < categories.size(); i++) {
-            categories.remove(categories.get(i));
-        }
+        productCategoryDao.getAll().clear();
     }
 }

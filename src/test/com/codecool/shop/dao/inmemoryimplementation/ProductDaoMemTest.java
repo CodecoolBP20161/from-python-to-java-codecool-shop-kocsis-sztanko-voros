@@ -10,15 +10,12 @@ public class ProductDaoMemTest extends ProductDaoTest {
     @Before
     public void setUp() throws Exception {
         productDao = ProductDaoMem.getInstance();
-    }
-
-    @Test
-    public void getInstance() throws Exception {
-
+        productDao.add(product_1);
     }
 
     @After
     public void tearDown() throws Exception {
+        productDao.getAll().clear();
 
     }
 
