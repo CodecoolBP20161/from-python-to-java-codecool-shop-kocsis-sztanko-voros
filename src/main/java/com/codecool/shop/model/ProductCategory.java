@@ -12,10 +12,41 @@ public class ProductCategory extends BaseModel implements Filter {
     private String department;
     private ArrayList<Product> products;
 
-    public ProductCategory(String name, String department, String description) {
-        super(name);
-        this.department = department;
-        this.products = new ArrayList<>();
+    private ProductCategory(ProductCategoryBuilder builder) {
+        super(builder.name, builder.description);
+        this.department = builder.department;
+        this.setId(builder.id);
+        this.products = builder.products;
+    }
+
+    public static class ProductCategoryBuilder {
+        private int id;
+        private String name;
+        private String description;
+        private String department;
+        private ArrayList<Product> products;
+
+        public ProductCategoryBuilder (String name, String description, String department) {
+            this.name = name;
+            this.description = description;
+            this.department = department;
+            this.products = new ArrayList<>();
+        }
+
+        public ProductCategoryBuilder id (int id) {
+            this.id = id;
+            return this;
+        }
+
+        public ProductCategoryBuilder products(ArrayList<Product> products) {
+            this.products = products;
+            return this;
+        }
+
+        public ProductCategory build() {
+            return new ProductCategory(this);
+        }
+
     }
 
     public String getDepartment() {
