@@ -5,6 +5,7 @@ import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,7 +38,6 @@ public abstract class ProductDaoTest {
     @Test
     public void findProductInProductDao() throws Exception {
         assertTrue(Objects.equals(product_1.getName(), productDao.find(product_1.getId()).getName()));
-
     }
 
     @Test
@@ -57,11 +57,15 @@ public abstract class ProductDaoTest {
 
     @Test
     public void getProductBySupplier() throws Exception {
-
+        List<Product> filteredList = new ArrayList<>();
+        filteredList.add(product_1);
+        assertEquals(filteredList.size(), productDao.getBy(lenovo).size());
     }
 
     @Test
     public void getByProductByProductCategory() throws Exception {
-
+        List<Product> filteredList = new ArrayList<>();
+        filteredList.add(product_1);
+        assertEquals(filteredList.size(), productDao.getBy(tablet).size());
     }
 }
