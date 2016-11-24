@@ -24,7 +24,10 @@ public class SupplierService{
     }
 
     public Supplier find(int id) {
-        return supplierDao.find(id);
+        Supplier supplier = supplierDao.find(id);
+        ArrayList<Product> products = new ArrayList(ProductService.getInstance().getBy(supplier));
+        supplier.setProducts(products);
+        return supplier;
     }
 
     public void remove(int id) {
