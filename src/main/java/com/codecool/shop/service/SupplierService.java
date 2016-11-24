@@ -1,10 +1,8 @@
 package com.codecool.shop.service;
 
 import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SupplierService{
@@ -24,10 +22,7 @@ public class SupplierService{
     }
 
     public Supplier find(int id) {
-        Supplier supplier = supplierDao.find(id);
-        ArrayList<Product> products = new ArrayList(ProductService.getInstance().getBy(supplier));
-        supplier.setProducts(products);
-        return supplier;
+        return supplierDao.find(id);
     }
 
     public void remove(int id) {
