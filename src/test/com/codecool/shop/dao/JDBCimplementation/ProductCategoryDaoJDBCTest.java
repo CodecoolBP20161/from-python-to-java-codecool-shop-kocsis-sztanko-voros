@@ -8,8 +8,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.junit.Assert.*;
-
 public class ProductCategoryDaoJDBCTest extends ProductCategoryDaoTest {
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/postgres";
     private static final String DB_USER = "postgres";

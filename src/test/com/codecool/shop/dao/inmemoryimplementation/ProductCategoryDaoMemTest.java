@@ -1,7 +1,6 @@
 package com.codecool.shop.dao.inmemoryimplementation;
 
 import com.codecool.shop.dao.ProductCategoryDaoTest;
-import com.codecool.shop.model.ProductCategory;
 import org.junit.*;
 
 import java.util.List;

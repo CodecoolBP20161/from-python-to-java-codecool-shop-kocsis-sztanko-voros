@@ -1,16 +1,12 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
 import com.codecool.shop.dao.ProductDaoTest;
-import com.codecool.shop.model.ProductCategory;
-import com.codecool.shop.model.Supplier;
 import org.junit.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import static org.junit.Assert.*;
 
 public class ProductDaoJDBCTest  extends ProductDaoTest {
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/postgres";

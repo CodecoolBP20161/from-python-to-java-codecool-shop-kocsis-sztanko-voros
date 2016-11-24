@@ -5,6 +5,7 @@ import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 import org.junit.*;
 
+import java.util.List;
 import java.util.Objects;
 
 import static junit.framework.TestCase.*;
@@ -41,12 +42,17 @@ public abstract class ProductDaoTest {
 
     @Test
     public void removeProductFromProductDao() throws Exception {
-
+        List<Product> products = productDao.getAll();
+        Product product_1 = products.get(0);
+        int before = products.size();
+        productDao.remove(product_1.getId());
+        int after = productDao.getAll().size();
+        assertEquals(before - 1, after);
     }
 
     @Test
     public void getAllProductFromProductDao() throws Exception {
-
+        assertEquals(1, productDao.getAll().size());
     }
 
     @Test
