@@ -23,3 +23,7 @@ ENUM and Factory Pattern helps you to switch implementation:
 
 # ||| Preview |||
 !["preview"](src/main/resources/public/img/codecool_shop.png)
+
+#### about tests
+
+If you want to run test cases, don't forget to clean up all your tables: empty db is required!
