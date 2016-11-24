@@ -14,11 +14,42 @@ public class Product extends BaseModel {
     private Supplier supplier;
 
 
-    public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
-        super(name, description);
-        this.setPrice(defaultPrice, currencyString);
-        this.setSupplier(supplier);
-        this.setProductCategory(productCategory);
+    private Product(ProductBuilder builder) {
+        super(builder.name, builder.description);
+        this.setPrice(builder.defaultPrice, builder.currencyString);
+        this.setSupplier(builder.supplier);
+        this.setProductCategory(builder.productCategory);
+        this.id = builder.id;
+    }
+
+    public static class ProductBuilder {
+
+        private String name;
+        private String description;
+        private float defaultPrice;
+        private ProductCategory productCategory;
+        private Supplier supplier;
+        private int id;
+        private String currencyString;
+
+
+        public ProductBuilder (String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+            this.name = name;
+            this.defaultPrice = defaultPrice;
+            this.currencyString = currencyString;
+            this.description = description;
+            this.productCategory = productCategory;
+            this.supplier = supplier;
+        }
+
+        public ProductBuilder id (int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
     }
 
     public float getDefaultPrice() {
