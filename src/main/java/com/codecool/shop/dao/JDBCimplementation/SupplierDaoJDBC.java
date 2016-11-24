@@ -37,7 +37,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
 
     @Override
     protected String removeSQL() {
-        return "DELETE * FROM supplier WHERE supplier_id = ?";
+        return "DELETE FROM supplier WHERE supplier_id = ?";
     }
 
     @Override
