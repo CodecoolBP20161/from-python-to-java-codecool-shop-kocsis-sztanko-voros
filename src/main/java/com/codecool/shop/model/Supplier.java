@@ -12,9 +12,39 @@ public class Supplier extends BaseModel implements Filter {
 
     private ArrayList<Product> products;
 
-    public Supplier(String name, String description) {
-        super(name);
-        this.products = new ArrayList<>();
+    private Supplier(SupplierBuilder builder) {
+        super(builder.name, builder.description);
+        this.setId(builder.id);
+        this.products = builder.products;
+    }
+
+    public static class SupplierBuilder {
+
+        private int id;
+        private String name;
+        private String description;
+        private ArrayList<Product> products;
+
+        public SupplierBuilder(String name, String description) {
+            this.name = name;
+            this.description = description;
+            this.products = new ArrayList<>();
+        }
+
+        public SupplierBuilder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public SupplierBuilder products(ArrayList<Product> products) {
+            this.products = products;
+            return this;
+        }
+
+        public Supplier build() {
+            return new Supplier(this);
+        }
+
     }
 
     public void setProducts(ArrayList<Product> products) {
@@ -29,7 +59,7 @@ public class Supplier extends BaseModel implements Filter {
         this.products.add(product);
     }
 
-    public List getBy(){
+    public List getBy() {
         return getProducts();
     }
 
