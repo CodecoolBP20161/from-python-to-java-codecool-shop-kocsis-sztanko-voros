@@ -67,6 +67,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         ResultSet rs;
         CachedRowSet rowset;
         String sql = findSQL();
+
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(sql);
