@@ -41,13 +41,13 @@ public class TestData {
         productCategoryDataStore.add(laptop);
 
         //setting up products tablet
-        productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        productDataStore.add(new Product.ProductBuilder("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon).build());
+        productDataStore.add(new Product.ProductBuilder("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo).build());
+        productDataStore.add(new Product.ProductBuilder("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon).build());
 
         //laptop
-        productDataStore.add(new Product("Amazon Laptop", 111.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", laptop, amazon));
-        productDataStore.add(new Product("Lenovo ThinkPad x220", 999, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", laptop, lenovo));
-        productDataStore.add(new Product("HP ProBook", 213, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", laptop, hp));
+        productDataStore.add(new Product.ProductBuilder("Amazon Laptop", 111.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", laptop, amazon).build());
+        productDataStore.add(new Product.ProductBuilder("Lenovo ThinkPad x220", 999, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", laptop, lenovo).build());
+        productDataStore.add(new Product.ProductBuilder("HP ProBook", 213, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", laptop, hp).build());
     }
 }

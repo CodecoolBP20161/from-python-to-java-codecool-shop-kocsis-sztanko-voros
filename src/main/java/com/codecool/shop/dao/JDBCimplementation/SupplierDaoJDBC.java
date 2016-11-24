@@ -76,10 +76,12 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             rowset = new CachedRowSetImpl();
             rowset.populate(rs);
             while (rowset.next()){
+
                 supplier = new Supplier
                 .SupplierBuilder(rowset.getString("supplier_name"), rowset.getString("supplier_description"))
                 .id(rowset.getInt("supplier_id"))
                 .build();
+
                 ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
                 ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
                 supplier.setProducts(products);
@@ -102,6 +104,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
             while (rs.next()) {
+
                 Supplier supplier = new Supplier
                         .SupplierBuilder(rs.getString("supplier_name"),rs.getString("supplier_description"))
                         .id(rs.getInt("supplier_id"))
