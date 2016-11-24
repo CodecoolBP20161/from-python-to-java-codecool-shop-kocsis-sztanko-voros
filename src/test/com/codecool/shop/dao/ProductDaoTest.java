@@ -24,9 +24,9 @@ public abstract class ProductDaoTest {
     protected Supplier lenovo = new Supplier.SupplierBuilder("Lenovo", "Computers")
             .build();
 
-    protected Product product_1 = new Product("Lenovo IdeaPad Mix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo);
+    protected Product product_1 = new Product.ProductBuilder("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo).build();
 
-    protected Product product_2 = new Product("test", 0, "HUF", "no_description", tablet, lenovo);
+    protected Product product_2 = new Product.ProductBuilder("test", 0, "HUF", "no_description", tablet, lenovo).build();
 
 
     @Test

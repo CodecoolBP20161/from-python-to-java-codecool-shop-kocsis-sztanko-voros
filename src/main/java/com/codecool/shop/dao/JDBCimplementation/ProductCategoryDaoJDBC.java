@@ -3,10 +3,8 @@ package com.codecool.shop.dao.JDBCimplementation;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
-import com.sun.rowset.CachedRowSetImpl;
 
 import javax.sql.RowSet;
-import javax.sql.rowset.CachedRowSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +14,6 @@ import java.util.List;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
-/**
- * Created by dorasztanko on 2016.11.22..
- */
 public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements ProductCategoryDao {
 
     @Override
@@ -27,11 +22,25 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
     }
 
     @Override
+    protected String addSQL() {
+        return "INSERT INTO productcategory (productcategory_name, productcategory_department, productcategory_description) VALUES (?,?,?)";
+    }
+
+    @Override
+    protected String findSQL() {
+        return "SELECT * FROM productcategory WHERE productcategory_id = ?";
+    }
+
+    @Override
+    protected String removeSQL() {
+        return "DELETE FROM productcategory WHERE productcategory_id = ?";
+    }
+
+    @Override
     public void add(ProductCategory category) {
-        String query = "INSERT INTO productcategory (name, department, description) VALUES (?,?,?)";
+        String query = addSQL();
         Connection conn = null;
         PreparedStatement preparedStatement = null;
-
         try {
             conn = getConnection();
             preparedStatement = conn.prepareStatement(query);
@@ -39,7 +48,7 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
             preparedStatement.setString(2, category.getDepartment());
             preparedStatement.setString(3, category.getDescription());
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeQuietly(conn);
@@ -49,32 +58,29 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
 
     @Override
     public ProductCategory find(int id) {
-        String query = "SELECT * FROM productcategory WHERE id = ?";
+        String query = findSQL();
         ProductCategory productCategory = null;
         Connection conn = null;
         PreparedStatement preparedStatement = null;
-        ResultSet rs;
-        CachedRowSet rowset;
-
         try {
             conn = getConnection();
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.setInt(1, id);
-            rs = preparedStatement.executeQuery();
-            rowset = new CachedRowSetImpl();
-            rowset.populate(rs);
+            ResultSet rs = preparedStatement.executeQuery();
+            ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
+            ArrayList<Product> products;
 
-            while (rowset.next()) {
+            while (rs.next()) {
 
                 productCategory = new ProductCategory
-                        .ProductCategoryBuilder(rowset.getString("name"), rowset.getString("description"), rowset.getString("department"))
-                        .id(rowset.getInt("id"))
+                        .ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_description"), rs.getString("productcategory_department"))
+                        .id(rs.getInt("productcategory_id"))
                         .build();
 
-                return productCategory;
+                products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
+                productCategory.setProducts(products);
             }
-
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeQuietly(conn);
@@ -84,38 +90,20 @@ public class ProductCategoryDaoJDBC extends DataBaseAbstraction implements Produ
     }
 
     @Override
-    public void remove(int id) {
-        String query = "DELETE FROM productcategory WHERE id = ?";
-        PreparedStatement preparedStatement = null;
-        Connection conn = null;
-
-        try {
-            conn = getConnection();
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            closeQuietly(conn);
-            closeQuietly(preparedStatement);
-        }
-    }
-
-    @Override
     public List<ProductCategory> getAll() {
-        List<ProductCategory> listOfProductCategories = new ArrayList<>();
+        ArrayList<ProductCategory> listOfProductCategories = new ArrayList<>();
         RowSet rs = selectAll();
         try {
             ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
+            ArrayList<Product> products;
             while (rs.next()) {
 
                 ProductCategory productCategory = new ProductCategory
-                        .ProductCategoryBuilder(rs.getString("name"), rs.getString("description"), rs.getString("department"))
-                        .id(rs.getInt("id"))
+                        .ProductCategoryBuilder(rs.getString("productcategory_name"), rs.getString("productcategory_description"), rs.getString("productcategory_department"))
+                        .id(rs.getInt("productcategory_id"))
                         .build();
 
-                ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(productCategory)));
+                products = (ArrayList<Product>) productDaoJDBC.getBy(productCategory);
                 productCategory.setProducts(products);
                 listOfProductCategories.add(productCategory);
             }
