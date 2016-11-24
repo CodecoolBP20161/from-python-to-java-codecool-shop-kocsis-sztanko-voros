@@ -24,7 +24,7 @@ public abstract class ProductDaoTest {
     protected Supplier lenovo = new Supplier.SupplierBuilder("Lenovo", "Computers")
             .build();
 
-    protected Product product_1 = new Product.ProductBuilder("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo).build();
+    protected Product product_1 = new Product.ProductBuilder("Lenovo IdeaPad Mix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo).build();
 
     protected Product product_2 = new Product.ProductBuilder("test", 0, "HUF", "no_description", tablet, lenovo).build();
 
@@ -37,7 +37,7 @@ public abstract class ProductDaoTest {
 
     @Test
     public void findProductInProductDao() throws Exception {
-        assertTrue(Objects.equals(product_1.getName(), productDao.find(product_1.getId()).getName()));
+        assertTrue(Objects.equals(product_1.getName(), productDao.find(1).getName()));
     }
 
     @Test
