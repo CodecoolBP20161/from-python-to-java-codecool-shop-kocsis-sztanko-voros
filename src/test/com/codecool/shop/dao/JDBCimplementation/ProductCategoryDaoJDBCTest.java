@@ -19,11 +19,6 @@ public class ProductCategoryDaoJDBCTest extends ProductCategoryDaoTest {
         productCategoryDao.add(tablet);
     }
 
-//    @Test(expected = SQLException.class)
-//    public void badConnectionCredentials() {
-//        // ???
-//    }
-
     @After
     public void tearDown() throws Exception {
         executeQuery("DELETE FROM productcategory");

@@ -20,11 +20,6 @@ public class SupplierDaoJDBCTest extends SupplierDaoTest {
         supplierDao.add(lenovo);
     }
 
-//    @Test(expected = SQLException.class)
-//    public void badConnectionCredentials() {
-//        // ???
-//    }
-
     @After
     public void tearDown() throws Exception {
         executeQuery("DELETE FROM supplier");

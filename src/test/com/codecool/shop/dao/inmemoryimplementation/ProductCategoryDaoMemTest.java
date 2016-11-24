@@ -3,8 +3,6 @@ package com.codecool.shop.dao.inmemoryimplementation;
 import com.codecool.shop.dao.ProductCategoryDaoTest;
 import org.junit.*;
 
-import java.util.List;
-
 public class ProductCategoryDaoMemTest extends ProductCategoryDaoTest {
 
     @Before

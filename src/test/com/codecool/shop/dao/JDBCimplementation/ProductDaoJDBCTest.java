@@ -36,16 +36,12 @@ public class ProductDaoJDBCTest  extends ProductDaoTest {
         product_2.setId(2);
     }
 
-    @Test
-    public void selectAllSQL() throws Exception {
-
-    }
-
     @After
     public void tearDown() throws Exception {
         executeQuery("DELETE FROM product");
+        executeQuery("DELETE FROM productcategory");
+        executeQuery("DELETE FROM supplier");
     }
-
 
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
