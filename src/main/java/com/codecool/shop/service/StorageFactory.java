@@ -9,7 +9,6 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.inmemoryimplementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.dao.inmemoryimplementation.SupplierDaoMem;
-import com.codecool.shop.model.ProductCategory;
 
 public class StorageFactory {
     public static ProductDao setProductStorage(Storage storage) {

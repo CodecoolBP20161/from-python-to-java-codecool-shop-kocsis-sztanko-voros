@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.model.ShoppingCart;

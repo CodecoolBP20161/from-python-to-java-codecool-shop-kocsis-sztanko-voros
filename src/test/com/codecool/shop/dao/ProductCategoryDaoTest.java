@@ -44,6 +44,5 @@ public abstract class ProductCategoryDaoTest {
         productCategoryDao.remove(tablet.getId());
         int after = productCategoryDao.getAll().size();
         assertEquals(before - 1, after);
-
     }
 }

@@ -1,6 +1,5 @@
 package com.codecool.shop.dao.inmemoryimplementation;
 
-
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.ProductCategory;
 
