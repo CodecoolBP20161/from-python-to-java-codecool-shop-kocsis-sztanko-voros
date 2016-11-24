@@ -1,12 +1,5 @@
 package com.codecool.shop.controller;
 
-
-import com.codecool.shop.dao.JDBCimplementation.ProductCategoryDaoJDBC;
-import com.codecool.shop.dao.JDBCimplementation.ProductDaoJDBC;
-import com.codecool.shop.dao.JDBCimplementation.SupplierDaoJDBC;
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Filter;
 import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.service.ProductCategoryService;
@@ -22,6 +15,7 @@ import java.util.Map;
 import static com.codecool.shop.controller.SessionHandler.getShoppingCartDaoMem;
 
 // controller responsible for page rendering
+
 public class PageController {
 
     static private ProductCategoryService productCategoryDataStore = ProductCategoryService.getInstance();

@@ -42,5 +42,4 @@ public class SupplierDaoJDBCTest extends SupplierDaoTest {
             e.printStackTrace();
         }
     }
-
 }

@@ -1,6 +1,5 @@
 package com.codecool.shop.dao.inmemoryimplementation;
 
-
 import com.codecool.shop.model.LineItem;
 
 import java.util.ArrayList;

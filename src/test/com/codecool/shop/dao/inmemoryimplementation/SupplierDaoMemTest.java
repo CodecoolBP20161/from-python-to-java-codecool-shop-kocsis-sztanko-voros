@@ -14,6 +14,5 @@ public class SupplierDaoMemTest extends SupplierDaoTest {
     @After
     public void tearDown() throws Exception {
         supplierDao.getAll().clear();
-
     }
 }

@@ -1,6 +1,5 @@
 package com.codecool.shop.dao.JDBCimplementation;
 
-
 import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.Supplier;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
-
 
 public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao {
 
