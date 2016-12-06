@@ -18,5 +18,4 @@ public class RegistrationHandler {
                               SecurityHandler.createHashedPassword(json.getString("password"), salt)).build();
         return null;
     }
-
 }
