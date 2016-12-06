@@ -2,14 +2,14 @@ package com.codecool.shop.model;
 
 import java.util.UUID;
 
-public class User {
+public class UserModel {
     private String id;
     private String name;
     private String email;
     private String passwordHash;
     private String passwordSalt;
 
-    private User (UserBuilder userBuilder) {
+    private UserModel (UserBuilder userBuilder) {
         this.id = userBuilder.id;
         this.name = userBuilder.name;
         this.email = userBuilder.email;
@@ -17,7 +17,7 @@ public class User {
         this.passwordSalt = userBuilder.passwordSalt;
     }
 
-    private static class UserBuilder {
+    public static class UserBuilder {
         private String id;
         private String name;
         private String email;
@@ -32,8 +32,8 @@ public class User {
             this.passwordSalt = passwordSalt;
         }
 
-        public User build() {
-            return new User(this);
+        public UserModel build() {
+            return new UserModel(this);
         }
     }
 }
