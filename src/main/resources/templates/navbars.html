@@ -8,6 +8,11 @@
             <div class="container-fluid navbar-right">
                 <div class="navbar-header">
                     <div class="navbar-header">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                            Launch demo modal
+                        </button>
+                        <!-- Button redirect shopping cart -->
                         <a class="navbar-brand" th:href="'/shoppingcart'">
                             <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
                             <span class="badge" th:text="${cart}"></span>
