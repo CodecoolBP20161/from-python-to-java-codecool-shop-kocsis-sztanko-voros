@@ -28,6 +28,6 @@ public class Main {
 
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
 
-        post("/registration", Controller::renderMain, new ThymeleafTemplateEngine());
+        post("/registration", Controller::registrationHandling);
     }
 }
