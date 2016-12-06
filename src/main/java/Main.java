@@ -27,5 +27,7 @@ public class Main {
         get("/", Controller::renderMain, new ThymeleafTemplateEngine());
 
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
+
+        post("/registration", Controller::renderMain, new ThymeleafTemplateEngine());
     }
 }
