@@ -30,4 +30,8 @@ public class Controller {
     public static String increaseItem(Request req, Response res) {
        return CartController.increaseItem(req, res);
     }
+
+    public static String registrationHandling(Request req, Response res) {
+        return RegistrationHandler.handleRegistration(req, res);
+    }
 }
