@@ -11,8 +11,8 @@ import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 public abstract class DataBaseAbstraction {
 
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String DB_USER = "dorasztanko";
-    private static final String DB_PASSWORD = "doca1993";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "postgres";
 
 
     protected abstract String selectAllSQL();
