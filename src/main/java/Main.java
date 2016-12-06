@@ -1,5 +1,5 @@
 import com.codecool.shop.controller.Controller;
-import com.codecool.shop.test.*;
+import com.codecool.shop.test.TestData;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
@@ -10,7 +10,6 @@ public class Main {
 
         // default server settings
         exception(Exception.class, (e, req, res) -> e.printStackTrace());
-
 
         staticFileLocation("/public");
         port(8888);
@@ -29,5 +28,4 @@ public class Main {
 
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
     }
-
 }

@@ -1,5 +1,4 @@
-package com.codecool.shop.dao.implementation;
-
+package com.codecool.shop.dao.inmemoryimplementation;
 
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
