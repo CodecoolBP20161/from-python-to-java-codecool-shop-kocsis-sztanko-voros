@@ -13,15 +13,16 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Registration form</h4>
                     </div>
-                    <form id="form_id" action="/registration" method="post">
+                    <!--<form id="form_id" action="/registration" method="post">-->
+                    <form id="form_id">
                     <div class="modal-body">
-                            Username: <input type="text" name="Username" required=""/><br/>
-                            Password: <input type="text" name="Password" required=""/><br/>
-                            Email: <input type="email" name="Email" required=""/><br/>
+                            Username: <input id="name" type="text" name="Username" required=""/><br/>
+                            Password: <input id="email" type="text" name="Password" required=""/><br/>
+                            Email: <input id="password" type="email" name="Email" required=""/><br/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button id="signup_modal" type="submit" class="btn btn-primary">Register</button>
                     </div>
                     </form>
                 </div>
