@@ -37,7 +37,7 @@ public class MailService {
     }
 
     public static void sendMail(String subject, String email, String username) throws MessagingException, IOException {
-        InputStream is = new FileInputStream("src/main/java/com/codecool/microservices/email_sender_service/EmailBySubject.json");
+        InputStream is = new FileInputStream("src/main/java/com/codecool/microservices/email_sender_service/service/email_content/EmailsBySubject.json");
         JSONObject json = new JSONObject(IOUtils.toString(is));
         String message = null;
         for (int i = 0; i < json.getJSONArray("emails").length(); i++){
