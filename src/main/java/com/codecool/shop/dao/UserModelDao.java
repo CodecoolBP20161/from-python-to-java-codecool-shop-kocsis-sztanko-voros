@@ -7,7 +7,9 @@ import java.util.List;
 public interface UserModelDao {
 
     void add(UserModel userModel);
-    UserModel find(String id);
+
+    UserModel find(String email);
+
     void remove(String id);
 
     List<UserModel> getAll();
