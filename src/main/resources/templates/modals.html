@@ -11,14 +11,21 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Registration form</h4>
+                        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
                     </div>
                     <!--<form id="form_id" action="/registration" method="post">-->
                     <form id="form_id">
                     <div class="modal-body">
-                            Username: <input id="name" type="text" name="Username" required=""/><br/>
-                            Password: <input id="password" type="text" name="Password" required=""/><br/>
-                            Email: <input id="email" type="email" name="Email" required=""/><br/>
+                        <label for="name">Username:</label><br/>
+                        <input id="name" type="text" name="Username" required=""/><br/>
+
+                        <label for="name">Password:</label><br/>
+                        <input id="password" type="text" name="Password" required=""/><br/>
+
+                        <label for="email">Email address:</label><br/>
+                        <input id="email" type="email" name="Email" required="" /><br/>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
