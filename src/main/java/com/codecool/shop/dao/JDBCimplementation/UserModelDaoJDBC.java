@@ -4,12 +4,17 @@ import com.codecool.shop.dao.UserModelDao;
 import com.codecool.shop.model.UserModel;
 import com.sun.rowset.CachedRowSetImpl;
 
+import javax.jws.soap.SOAPBinding;
+import javax.sql.RowSet;
 import javax.sql.rowset.CachedRowSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.apache.commons.dbutils.DbUtils.close;
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
 public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDao{
@@ -21,7 +26,7 @@ public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDa
 
     @Override
     protected String addSQL() {
-        return "INSERT INTO user_model (user_id, user_name, user_email, user_passwordhash, user_passwordsalt) VALUES (?,?,?,?,?)";
+        return "INSERT INTO user_model (user_name, user_email, user_passwordhash, user_passwordsalt) VALUES (?,?,?,?)";
     }
 
     @Override
@@ -36,7 +41,23 @@ public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDa
 
     @Override
     public void add(UserModel userModel) {
-
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        String sql = addSQL();
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, userModel.getName());
+            preparedStatement.setString(2, userModel.getEmail());
+            preparedStatement.setString(3, userModel.getPasswordHash());
+            preparedStatement.setString(4, userModel.getPasswordSalt());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
     }
 
     @Override
@@ -79,7 +100,17 @@ public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDa
 
     @Override
     public List<UserModel> getAll() {
-        return null;
-    }
+        List<UserModel> users = new ArrayList<>();
 
+        RowSet rs = selectAll();
+        try {
+            while (rs.next()) {
+                UserModel userModel = new UserModel.UserBuilder(rs.getString("user_name"), rs.getString("user_email"), rs.getString("user_passwordhash"), rs.getString("user_passwordsalt")).build();
+                users.add(userModel);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
 }
