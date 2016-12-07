@@ -1,12 +1,17 @@
 package com.codecool.microservices.email_sender_service.service;
 
+import org.json.JSONObject;
+import spark.utils.IOUtils;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class MailService {
@@ -31,8 +36,16 @@ public class MailService {
         return mailServerProperties;
     }
 
-    public static void sendMail(String subject, String email, String username) throws AddressException, MessagingException {
-        String message = String.format("This is a letter for %1$s.", username);
+    public static void sendMail(String subject, String email, String username) throws MessagingException, IOException {
+        InputStream is = new FileInputStream("src/main/java/com/codecool/microservices/email_sender_service/EmailBySubject.json");
+        JSONObject json = new JSONObject(IOUtils.toString(is));
+        String message = null;
+        for (int i = 0; i < json.getJSONArray("emails").length(); i++){
+            if (json.getJSONArray("emails").getJSONObject(i).get("subject").equals("welcome")) {
+                message = String.format(json.getJSONArray("emails").getJSONObject(i).get("body").toString(), username);
+            }
+        }
+        assert message != null;
         getMailSession = Session.getDefaultInstance(setUp(), null);
         generateMailMessage = new MimeMessage(getMailSession);
         generateMailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
