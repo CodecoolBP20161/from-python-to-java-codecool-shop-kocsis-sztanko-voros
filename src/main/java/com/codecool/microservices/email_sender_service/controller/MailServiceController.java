@@ -5,6 +5,7 @@ import spark.Request;
 import spark.Response;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 
 public class MailServiceController {
     public static final String SUBJECT_PARAM_KEY = "subject";
@@ -16,7 +17,7 @@ public class MailServiceController {
         this.mailService = mailService;
     }
 
-    public String sendEmail(Request request, Response response) throws MessagingException {
+    public String sendEmail(Request request, Response response) throws MessagingException, IOException {
         String subject = request.queryParams(SUBJECT_PARAM_KEY);
         String recipient = request.queryParams(EMAIL_PARAM_KEY);
         String username = request.queryParams(USERNAME_PARAM_KEY);
