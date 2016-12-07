@@ -1,3 +1,5 @@
+package com.codecool.shop;
+
 import com.codecool.shop.controller.Controller;
 import com.codecool.shop.test.TestData;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
