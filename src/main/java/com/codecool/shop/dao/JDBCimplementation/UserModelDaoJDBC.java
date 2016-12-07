@@ -8,6 +8,7 @@ import javax.sql.rowset.CachedRowSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
@@ -73,7 +74,21 @@ public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDa
     }
 
     @Override
-    public void remove(String id) {
+    public void remove(String email) {
+        String query = removeSQL();
+        PreparedStatement preparedStatement = null;
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeQuietly(conn);
+            closeQuietly(preparedStatement);
+        }
 
     }
 
