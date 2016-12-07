@@ -3,9 +3,11 @@ package com.codecool.shop.service;
 import com.codecool.shop.dao.JDBCimplementation.ProductCategoryDaoJDBC;
 import com.codecool.shop.dao.JDBCimplementation.ProductDaoJDBC;
 import com.codecool.shop.dao.JDBCimplementation.SupplierDaoJDBC;
+import com.codecool.shop.dao.JDBCimplementation.UserModelDaoJDBC;
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.UserModelDao;
 import com.codecool.shop.dao.inmemoryimplementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.dao.inmemoryimplementation.SupplierDaoMem;
@@ -39,6 +41,17 @@ public class StorageFactory {
                 return new ProductCategoryDaoJDBC();
             case MEMORY:
                 return ProductCategoryDaoMem.getInstance();
+            default:
+                return null;
+        }
+    }
+
+    public static UserModelDao setUserModelStorage(Storage storage) {
+        switch (storage) {
+            case DATABASE:
+                return new UserModelDaoJDBC();
+            case MEMORY:
+                return null;
             default:
                 return null;
         }
