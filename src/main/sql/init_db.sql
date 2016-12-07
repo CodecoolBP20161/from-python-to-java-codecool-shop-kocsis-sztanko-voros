@@ -32,7 +32,6 @@ CREATE TABLE product
 CREATE TABLE user_model
 (
   id SERIAL PRIMARY KEY,
-  user_id VARCHAR (500),
   user_name VARCHAR (500),
   user_email VARCHAR (500),
   user_passwordhash VARCHAR (500),
