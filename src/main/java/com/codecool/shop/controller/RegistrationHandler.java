@@ -15,6 +15,7 @@ public class RegistrationHandler {
         UserModelService userModelDataStore = UserModelService.getInstance();
         String salt;
         JSONObject json = new JSONObject(req.body());
+        System.out.println(json);
         salt = SecurityHandler.createSalt();
         UserModel userModel = new UserModel.UserBuilder(json.getString("name"),
                                   json.getString("email"),
@@ -26,7 +27,7 @@ public class RegistrationHandler {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-        res.redirect("/");
-        return null;
+        res.header("Content-Type:application/json","{status:OK}");
+        return "OK";
     }
 }
