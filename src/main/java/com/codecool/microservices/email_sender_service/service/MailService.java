@@ -41,7 +41,7 @@ public class MailService {
         JSONObject json = new JSONObject(IOUtils.toString(is));
         String message = null;
         for (int i = 0; i < json.getJSONArray("emails").length(); i++){
-            if (json.getJSONArray("emails").getJSONObject(i).get("subject").equals("welcome")) {
+            if (json.getJSONArray("emails").getJSONObject(i).get("subject").equals(subject)) {
                 message = String.format(json.getJSONArray("emails").getJSONObject(i).get("body").toString(), username);
             }
         }
