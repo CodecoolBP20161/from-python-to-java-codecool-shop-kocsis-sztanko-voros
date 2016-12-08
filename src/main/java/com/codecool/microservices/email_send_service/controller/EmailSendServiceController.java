@@ -1,6 +1,6 @@
-package com.codecool.microservices.email_sender_service.controller;
+package com.codecool.microservices.email_send_service.controller;
 
-import com.codecool.microservices.email_sender_service.service.MailService;
+import com.codecool.microservices.email_send_service.service.MailService;
 import spark.Request;
 import spark.Response;
 

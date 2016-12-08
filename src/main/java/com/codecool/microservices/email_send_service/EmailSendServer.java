@@ -1,7 +1,6 @@
-package com.codecool.microservices.email_sender_service;
+package com.codecool.microservices.email_send_service;
 
-import com.codecool.microservices.email_sender_service.controller.MailServiceController;
-import com.codecool.microservices.email_sender_service.service.MailService;
+import com.codecool.microservices.email_send_service.controller.EmailSendServiceController;
 
 import java.net.URISyntaxException;
 
@@ -9,17 +8,17 @@ import static spark.Spark.exception;
 import static spark.Spark.get;
 import static spark.Spark.port;
 
-public class EmailSenderService {
+public class EmailSendService {
 
-    private MailServiceController controller;
+    private EmailSendServiceController controller;
 
     public static void main(String[] args) {
 
         port(60000);
 
-        EmailSenderService application = new EmailSenderService();
+        EmailSendService application = new EmailSendService();
 
-        application.controller = new MailServiceController(MailService.getInstance());
+        application.controller = new EmailSendServiceController(com.codecool.microservices.email_send_service.service.EmailSendService.getInstance());
 
         // --- MAPPINGS ---
         get("/email", application.controller::sendEmail);
