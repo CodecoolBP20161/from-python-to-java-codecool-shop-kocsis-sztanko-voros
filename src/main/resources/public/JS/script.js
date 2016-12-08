@@ -1,6 +1,14 @@
-$(document).ready(function () {
-    $("#signup_modal").click(function () {
+function clear() {
+    $("#name").val("");
+    $("#email").val("");
+    $("#password").val("");
+}
 
+$(document).ready(function () {
+    $("#signup").click(function () {
+        clear()
+    })
+    $("#signup_modal").click(function () {
         $("#form_id").validate();
         if ($("#form_id").valid()) {
             var $name = $("#name").val();
@@ -13,13 +21,10 @@ $(document).ready(function () {
                     type: 'POST',
                     data: JSON.stringify(arr),
                     contentType: 'application/json; charset=utf-8',
-                    //dataType: 'json',
                     async: true
                 }).done(function (msg) {
                 if(msg.toString() == "OK") {
-                    $("#name").val("");
-                    $("#email").val("");
-                    $("#password").val("");
+                    clear();
                     $("#myModal").modal("hide");
                     alert("User successfully registered!" +
                         "\nCheck out your e-mail address for confirmation mail.")

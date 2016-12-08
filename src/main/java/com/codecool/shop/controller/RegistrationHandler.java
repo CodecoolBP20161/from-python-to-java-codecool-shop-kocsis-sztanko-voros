@@ -15,7 +15,9 @@ public class RegistrationHandler {
         UserModelService userModelDataStore = UserModelService.getInstance();
         String salt;
         JSONObject json = new JSONObject(req.body());
-        System.out.println(json);
+        if (userModelDataStore.find(json.getString("email")) != null){
+            return "NO";
+        }
         salt = SecurityHandler.createSalt();
         UserModel userModel = new UserModel.UserBuilder(json.getString("name"),
                                   json.getString("email"),
