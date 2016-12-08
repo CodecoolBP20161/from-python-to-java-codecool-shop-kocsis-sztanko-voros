@@ -21,6 +21,7 @@ public class LoginHandler {
         if ( !enteredPassword.equals(user.getPasswordHash())) {
             return "ERROR";
         }
+        SessionHandler.logIn(req,res);
         return "OK";
     }
 }
