@@ -16,4 +16,5 @@ public class SecurityHandler {
         random.nextBytes(saltInBytes);
         return Base64.getEncoder().encodeToString(saltInBytes);
     }
+
 }

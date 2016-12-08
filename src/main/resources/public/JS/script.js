@@ -59,18 +59,26 @@ $(document).ready(function () {
                     async: true
                 }).done(function (msg) {
                 if (msg.toString() == "OK") {
+                    console.log("GOOD")
                     clear();
                     $("#modal_login").modal("hide");
                     alert("You're now logged in.");
                     $("#signup").hide();
                     $("#login").hide();
                     $("#logout").show();
+
                     $("#logout").click(function () {
                         $.ajax(
                             {
                                 url: '/logout',
-                                type: 'GET'
-                            })
+                                type: 'POST',
+                                async: true
+
+                            }).done(function () {
+                            $("#logout").hide();
+                            $("#signup").show();
+                            $("#login").show();
+                        })
                     })
                 }
                 if (msg.toString() == "ERROR") {

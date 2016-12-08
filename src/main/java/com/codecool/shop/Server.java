@@ -34,6 +34,6 @@ public class Server {
 
         post("/login", Controller::loginHandler);
 
-        get("/logout", Controller::logoutHandler);
+        post("/logout", Controller::logoutHandler);
     }
 }

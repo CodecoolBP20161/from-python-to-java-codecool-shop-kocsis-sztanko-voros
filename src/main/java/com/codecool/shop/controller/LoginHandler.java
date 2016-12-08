@@ -13,11 +13,12 @@ public class LoginHandler {
         UserModelService userModelDataStore = UserModelService.getInstance();
         JSONObject json = new JSONObject(req.body());
 
-        if (userModelDataStore.find(json.getString("email")) != null){
+        if (userModelDataStore.find(json.getString("email")) == null){
+            System.out.println("111111111111111111111");
             return "ERROR";
         }
         UserModel user = userModelDataStore.find(json.getString("email"));
-        String enteredPassword = SecurityHandler.createHashedPassword(json.getString("email"),user.getPasswordSalt());
+        String enteredPassword = SecurityHandler.createHashedPassword(json.getString("password"), user.getPasswordSalt());
         if ( !enteredPassword.equals(user.getPasswordHash())) {
             return "ERROR";
         }
@@ -27,7 +28,7 @@ public class LoginHandler {
 
     public static String handleLogout(Request req, Response res) {
         SessionHandler.logOut(req, res);
-        return null;
+        return "OK";
     }
 }
 
