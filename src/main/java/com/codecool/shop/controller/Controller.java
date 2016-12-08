@@ -34,4 +34,7 @@ public class Controller {
     public static String registrationHandling(Request req, Response res) {
         return RegistrationHandler.handleRegistration(req, res);
     }
+    public static String loginHandler(Request req, Response res) {
+        return LoginHandler.handleLogin(req, res);
+    }
 }
