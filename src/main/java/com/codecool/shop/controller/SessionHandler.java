@@ -19,13 +19,13 @@ public class SessionHandler {
     }
 
     public static void logIn(Request req, Response res) {
-        res.cookie("logged_in", "true", 3600);
+        res.cookie("status", "logged_in");
         req.session().attribute("cart", null);
         req.session().attribute("logged_in", true);
     }
 
     public static void logOut(Request req, Response res) {
-        res.cookie("logged_in", "false");
+        res.cookie("status", "logged_out");
         req.session().attribute("logged_in", false);
     }
 }

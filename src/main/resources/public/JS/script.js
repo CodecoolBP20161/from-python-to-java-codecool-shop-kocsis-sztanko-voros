@@ -3,32 +3,34 @@ function clear() {
     $("#email").val("");
     $("#password").val("");
 }
-
-
+function hideLogout() {
+    $("#logout").hide();
+    $("#signup").show();
+    $("#login").show();
+}
+function showLogout() {
+    $("#signup").hide();
+    $("#login").hide();
+    $("#logout").show();
+}
 
 $(document).ready(function () {
+    // handles logout
     $("#logout").click(function () {
-        $.cookie("logged_in", "false")
-        $("#logout").hide();
-        $("#signup").show();
-        $("#login").show();
-    })
-
-    if($.cookie("logged_in") == "true"){
-        $("#signup").hide();
-        $("#login").hide();
-        $("#logout").show();
-    }else {
-        $("#logout").hide();
-        $("#signup").show();
-        $("#login").show();
+        $.cookie("status", "logged_out");
+        hideLogout();
+    });
+    console.log($.cookie("status"));
+    if ($.cookie("status") == "logged_in") {
+        showLogout();
+    } else {
+        hideLogout()
     }
 
-
+    // handles sign up
     $("#signup").click(function () {
         clear()
     });
-
     $("#signup_modal").click(function () {
         $("#form_id").validate();
         if ($("#form_id").valid()) {
@@ -49,18 +51,19 @@ $(document).ready(function () {
                     $("#myModal").modal("hide");
                     alert("User successfully registered!" +
                         "\nCheck out your e-mail address for confirmation mail.")
-
                 }
                 if (msg.toString() == "NO") {
                     alert("This e-mail address is already taken!")
                 }
-            }).fail(function (msg) {
-                alert(msg)
-            });
+                }).fail(function (msg) {
+                    alert(msg)
+                });
         } else {
             console.log("Not valid")
         }
     });
+
+    // handles login
     $("#login").click(function () {
         clear()
     });
@@ -79,21 +82,18 @@ $(document).ready(function () {
                     async: true
                 }).done(function (msg) {
                 if (msg.toString() == "OK") {
-                    console.log("GOOD")
                     clear();
                     $("#modal_login").modal("hide");
                     alert("You're now logged in.");
-                    $("#signup").hide();
-                    $("#login").hide();
-                    $("#logout").show();
-
+                    showLogout();
+                    console.log($.cookie("status"));
                 }
                 if (msg.toString() == "ERROR") {
                     alert("Invalid credentials. Try again!")
                 }
-            }).fail(function (msg) {
-                alert(msg)
-            });
+                }).fail(function (msg) {
+                    alert(msg)
+                });
         } else {
             console.log("Not valid")
         }

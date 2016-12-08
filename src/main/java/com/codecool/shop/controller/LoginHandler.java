@@ -14,7 +14,6 @@ public class LoginHandler {
         JSONObject json = new JSONObject(req.body());
 
         if (userModelDataStore.find(json.getString("email")) == null){
-            System.out.println("111111111111111111111");
             return "ERROR";
         }
         UserModel user = userModelDataStore.find(json.getString("email"));
