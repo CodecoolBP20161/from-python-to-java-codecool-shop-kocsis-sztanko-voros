@@ -33,5 +33,7 @@ public class Server {
         post("/registration", Controller::registrationHandling);
 
         post("/login", Controller::loginHandler);
+
+        get("/logout", Controller::logoutHandler);
     }
 }

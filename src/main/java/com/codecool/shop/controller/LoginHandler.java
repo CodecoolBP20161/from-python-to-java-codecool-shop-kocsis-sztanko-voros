@@ -24,5 +24,10 @@ public class LoginHandler {
         SessionHandler.logIn(req,res);
         return "OK";
     }
+
+    public static String handleLogout(Request req, Response res) {
+        SessionHandler.logOut(req, res);
+        return null;
+    }
 }
 
