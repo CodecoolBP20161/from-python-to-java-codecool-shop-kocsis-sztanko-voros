@@ -14,7 +14,7 @@ public abstract  class SupplierDaoTest {
     protected Supplier lenovo = new Supplier.SupplierBuilder("Lenovo", "Computers")
             .build();
 
-    protected Supplier amazon = new Supplier.SupplierBuilder("Amazon", "Digital content and services")
+    protected Supplier amazon = new Supplier.SupplierBuilder("Amazon", "Digital content and microservices")
             .build();
 
     @Test

@@ -4,7 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-//Main controller which pipes the request to low order controllers
+//com.codecool.shop.Server controller which pipes the request to low order controllers
 
 public class Controller {
 
@@ -29,5 +29,9 @@ public class Controller {
 
     public static String increaseItem(Request req, Response res) {
        return CartController.increaseItem(req, res);
+    }
+
+    public static String registrationHandling(Request req, Response res) {
+        return RegistrationHandler.handleRegistration(req, res);
     }
 }

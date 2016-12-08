@@ -1,6 +1,7 @@
-DROP TABLE IF EXISTS productcategory CASCADE ;
-DROP  TABLE IF EXISTS supplier CASCADE ;
-DROP  TABLE IF EXISTS product CASCADE ;
+DROP TABLE IF EXISTS productcategory CASCADE;
+DROP  TABLE IF EXISTS supplier CASCADE;
+DROP  TABLE IF EXISTS product CASCADE;
+DROP  TABLE IF EXISTS user_model CASCADE;
 
 CREATE TABLE productcategory
 (
@@ -26,4 +27,13 @@ CREATE TABLE product
   product_defaultCurrency VARCHAR(10),
   product_productcategory INT REFERENCES productcategory(productcategory_id),
   product_supplier INT REFERENCES supplier(supplier_id)
+);
+
+CREATE TABLE user_model
+(
+  id SERIAL PRIMARY KEY,
+  user_name VARCHAR (500),
+  user_email VARCHAR (500),
+  user_passwordhash VARCHAR (500),
+  user_passwordsalt VARCHAR (500)
 );
