@@ -1,13 +1,14 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.model.UserModel;
-import com.codecool.shop.service.MailService;
 import com.codecool.shop.service.UserModelService;
 import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class RegistrationHandler {
 
@@ -25,8 +26,8 @@ public class RegistrationHandler {
                                   SecurityHandler.createHashedPassword(json.getString("password"), salt)).build();
         userModelDataStore.add(userModel);
         try {
-            MailService.sendMail("....", "Welcome at Codecool Shop!", userModel.getEmail());
-        } catch (MessagingException e) {
+            MailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
+        } catch (IOException e) {
             e.printStackTrace();
         }
         res.header("Content-Type:application/json","{status:OK}");

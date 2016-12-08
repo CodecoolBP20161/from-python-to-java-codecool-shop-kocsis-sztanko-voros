@@ -4,7 +4,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-//Main controller which pipes the request to low order controllers
+//com.codecool.shop.Server controller which pipes the request to low order controllers
 
 public class Controller {
 
