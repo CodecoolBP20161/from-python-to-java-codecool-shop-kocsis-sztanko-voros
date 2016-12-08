@@ -4,11 +4,31 @@ function clear() {
     $("#password").val("");
 }
 
+
+
 $(document).ready(function () {
-    $("#logout").hide();
+    $("#logout").click(function () {
+        $.cookie("logged_in", "false")
+        $("#logout").hide();
+        $("#signup").show();
+        $("#login").show();
+    })
+
+    if($.cookie("logged_in") == "true"){
+        $("#signup").hide();
+        $("#login").hide();
+        $("#logout").show();
+    }else {
+        $("#logout").hide();
+        $("#signup").show();
+        $("#login").show();
+    }
+
+
     $("#signup").click(function () {
         clear()
     });
+
     $("#signup_modal").click(function () {
         $("#form_id").validate();
         if ($("#form_id").valid()) {
@@ -67,19 +87,6 @@ $(document).ready(function () {
                     $("#login").hide();
                     $("#logout").show();
 
-                    $("#logout").click(function () {
-                        $.ajax(
-                            {
-                                url: '/logout',
-                                type: 'POST',
-                                async: true
-
-                            }).done(function () {
-                            $("#logout").hide();
-                            $("#signup").show();
-                            $("#login").show();
-                        })
-                    })
                 }
                 if (msg.toString() == "ERROR") {
                     alert("Invalid credentials. Try again!")
