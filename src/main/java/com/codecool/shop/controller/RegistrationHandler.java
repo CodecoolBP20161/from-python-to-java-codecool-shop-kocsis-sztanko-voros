@@ -24,7 +24,7 @@ public class RegistrationHandler {
                                   salt).build();
         userModelDataStore.add(userModel);
         try {
-            MailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
+            EmailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
         } catch (IOException e) {
             e.printStackTrace();
         }
