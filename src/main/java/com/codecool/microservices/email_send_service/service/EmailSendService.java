@@ -75,15 +75,13 @@ public class EmailSendService {
         JSONObject json = new JSONObject(execute(getURI));
         JSONArray emails = json.getJSONArray("emails");
         for (int i = 0; i < emails.length(); i++){
-            if (emails.getJSONObject(i).get("status").equals("new")) {
-                String subject = emails.getJSONObject(i).get("subject").toString();
-                String email = emails.getJSONObject(i).get("email").toString();
-                String username = emails.getJSONObject(i).get("username").toString();
-                String id = emails.getJSONObject(i).get("id").toString();
-                sendEmail(subject, email, username);
-                URI statusURI = new URIBuilder(SERVICE_URL + "/api/changestatus").addParameter("id", id).build();
-                execute(statusURI);
-            }
+            String subject = emails.getJSONObject(i).get("subject").toString();
+            String email = emails.getJSONObject(i).get("email").toString();
+            String username = emails.getJSONObject(i).get("username").toString();
+            String id = emails.getJSONObject(i).get("id").toString();
+            sendEmail(subject, email, username);
+            URI statusURI = new URIBuilder(SERVICE_URL + "/api/changestatus").addParameter("id", id).build();
+            execute(statusURI);
         }
     }
 

@@ -26,8 +26,8 @@ public class EmailOrderStoreService {
         emailOrderDao.changeStatus(id);
     }
 
-    public String getAll() {
-        JSONArray jsonArray = new JSONArray(emailOrderDao.getAll());
+    public String getAllNewEmail() {
+        JSONArray jsonArray = new JSONArray(emailOrderDao.getAllNew());
         JSONObject json = new JSONObject();
         json.put("emails", jsonArray);
         return json.toString();

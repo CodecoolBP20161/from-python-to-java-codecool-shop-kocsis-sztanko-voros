@@ -37,7 +37,13 @@ public class EmailOrderDaoMem implements EmailOrderDao {
     }
 
     @Override
-    public ArrayList getAll() {
-        return (ArrayList) DATA;
+    public ArrayList getAllNew() {
+        ArrayList newEmails = new ArrayList();
+        for (EmailOrder emailOrder : DATA) {
+            if (emailOrder.getStatus().equals("new")){
+                newEmails.add(emailOrder);
+            }
+        }
+        return newEmails;
     }
 }

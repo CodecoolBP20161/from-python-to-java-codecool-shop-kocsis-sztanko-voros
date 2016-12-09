@@ -10,6 +10,6 @@ public interface EmailOrderDao {
     EmailOrder find(String id);
     void remove(String id);
     void changeStatus(String id);
-    ArrayList getAll();
+    ArrayList getAllNew();
 
 }
