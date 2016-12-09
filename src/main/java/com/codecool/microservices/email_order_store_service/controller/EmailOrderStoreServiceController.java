@@ -26,7 +26,7 @@ public class EmailOrderStoreServiceController {
     }
 
     public String getAllEmail(Request request, Response response) {
-        return emailOrderStoreService.getAll();
+        return emailOrderStoreService.getAllNewEmail();
     }
 
     public String changeStatus(Request request, Response response) {
