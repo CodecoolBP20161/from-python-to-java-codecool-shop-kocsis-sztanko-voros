@@ -2,36 +2,56 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <body>
-    <!--Navbar_home-->
-    <div th:fragment="navbar_home">
-        <nav class="navbar navbar-fixed-top">
-            <div class="container-fluid navbar-right">
+<!--Navbar_home-->
+<div th:fragment="navbar_home">
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid navbar-right">
+            <div class="navbar-header">
                 <div class="navbar-header">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" th:href="'/shoppingcart'">
-                            <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
-                            <span class="badge" th:text="${cart}"></span>
-                        </a>
-                    </div>
+                    <table>
+                        <tr>
+                            <td><!-- Button trigger modal -->
+                                <button id="signup" type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                                    Sign up
+                                </button>
+                            </td>
+                            <td><!-- Button redirect shopping cart -->
+                                <a class="navbar-brand" th:href="'/shoppingcart'">
+                                    <i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>
+                                    <span class="badge" th:text="${cart}"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
 
-    <!--Navbar_shopping_cart-->
-    <div th:fragment="navbar_shopping_cart">
-        <nav class="navbar navbar-fixed-top">
-            <div class="container-fluid navbar-right">
+<!--Navbar_shopping_cart-->
+<div th:fragment="navbar_shopping_cart">
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid navbar-right">
+            <div class="navbar-header">
                 <div class="navbar-header">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" th:href="'/'">
-                            <i class="fa fa-home fa-1x" aria-hidden="true"></i>
-                            <span class="badge">Back</span>
-                        </a>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>
+                                <div th:replace="button_groups :: sign_up_button"></div>
+                            </td>
+                            <td>
+                                <a class="navbar-brand" th:href="'/'">
+                                    <i class="fa fa-home fa-1x" aria-hidden="true"></i>
+                                    <span class="badge">Back</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

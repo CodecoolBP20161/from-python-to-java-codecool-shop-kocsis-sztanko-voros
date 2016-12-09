@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script
+        src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+        integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+        crossorigin="anonymous"></script>
+<body>
+    <!--Home modal-->
+    <div th:fragment="modal_home">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+                    </div>
+                    <!--<form id="form_id" action="/registration" method="post">-->
+                    <form id="form_id">
+                    <div class="modal-body">
+                        <label for="name">Username:</label><br/>
+                        <input id="name" type="text" name="Username" required=""/><br/>
+
+                        <label for="name">Password:</label><br/>
+                        <input id="password" type="password" name="Password" required=""/><br/>
+
+                        <label for="email">Email address:</label><br/>
+                        <input id="email" type="email" name="Email" required="" /><br/>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="signup_modal" type="button" class="btn btn-danger">Submit</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
