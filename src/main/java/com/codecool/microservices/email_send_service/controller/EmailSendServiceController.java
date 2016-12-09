@@ -10,9 +10,6 @@ import java.net.URISyntaxException;
 import java.util.TimerTask;
 
 public class EmailSendServiceController extends TimerTask{
-    public static final String SUBJECT_PARAM_KEY = "subject";
-    public static final String EMAIL_PARAM_KEY = "email";
-    public static final String USERNAME_PARAM_KEY = "username";
     EmailSendService emailSendService;
 
     public EmailSendServiceController(EmailSendService emailSendService) {
@@ -25,7 +22,7 @@ public class EmailSendServiceController extends TimerTask{
 
     public void run() {
         try {
-            emailSendService.sendEmailByTime();
+            emailSendService.sendEmailOrders();
         } catch (IOException | MessagingException | URISyntaxException e) {
             e.printStackTrace();
         }

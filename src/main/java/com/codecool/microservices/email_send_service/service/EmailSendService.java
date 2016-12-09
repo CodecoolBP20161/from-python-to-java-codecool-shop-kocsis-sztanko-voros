@@ -2,6 +2,7 @@ package com.codecool.microservices.email_send_service.service;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import spark.utils.IOUtils;
 
@@ -66,27 +67,27 @@ public class EmailSendService {
                 message = String.format(json.getJSONArray("emails").getJSONObject(i).get("body").toString(), username);
             }
         }
-        assert message != null;
         return message;
     }
 
-    public void sendEmailByTime() throws IOException, MessagingException, URISyntaxException {
-        URI getURI = new URIBuilder(SERVICE_URL + "/email").build();
+    public void sendEmailOrders() throws IOException, MessagingException, URISyntaxException {
+        URI getURI = new URIBuilder(SERVICE_URL + "/api/email").build();
         JSONObject json = new JSONObject(execute(getURI));
-        for (int i = 0; i < json.getJSONArray("emails").length(); i++){
-            if (json.getJSONArray("emails").getJSONObject(i).get("status").equals("new")) {
-                String subject = json.getJSONArray("emails").getJSONObject(i).get("subject").toString();
-                String email = json.getJSONArray("emails").getJSONObject(i).get("email").toString();
-                String username = json.getJSONArray("emails").getJSONObject(i).get("username").toString();
-                String id = json.getJSONArray("emails").getJSONObject(i).get("id").toString();
+        JSONArray emails = json.getJSONArray("emails");
+        for (int i = 0; i < emails.length(); i++){
+            if (emails.getJSONObject(i).get("status").equals("new")) {
+                String subject = emails.getJSONObject(i).get("subject").toString();
+                String email = emails.getJSONObject(i).get("email").toString();
+                String username = emails.getJSONObject(i).get("username").toString();
+                String id = emails.getJSONObject(i).get("id").toString();
                 sendEmail(subject, email, username);
-                URI statusURI = new URIBuilder(SERVICE_URL + "/changestatus").addParameter("id", id).build();
+                URI statusURI = new URIBuilder(SERVICE_URL + "/api/changestatus").addParameter("id", id).build();
                 execute(statusURI);
             }
         }
     }
 
-    private static String execute(URI uri) throws IOException, URISyntaxException {
+    private String execute(URI uri) throws IOException, URISyntaxException {
         return Request.Get(uri).execute().returnContent().asString();
     }
 }

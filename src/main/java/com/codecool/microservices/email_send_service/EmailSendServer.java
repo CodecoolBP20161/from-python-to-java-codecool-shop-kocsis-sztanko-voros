@@ -26,7 +26,7 @@ public class EmailSendServer {
         timer.schedule(new EmailSendServiceController(com.codecool.microservices.email_send_service.service.EmailSendService.getInstance()), 0, 10000);
 
         // --- MAPPINGS ---
-        get("/status", application.controller::getStatus);
+        get("/api/status", application.controller::getStatus);
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {

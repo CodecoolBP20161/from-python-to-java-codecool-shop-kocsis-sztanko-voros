@@ -2,14 +2,14 @@ package com.codecool.microservices.email_order_store_service.model;
 
 import java.util.UUID;
 
-public class UserEmail {
+public class EmailOrder {
     private String subject;
     private String email;
     private String username;
     private String id;
     private String status;
 
-    public UserEmail(String subject, String email, String username) {
+    public EmailOrder(String subject, String email, String username) {
         this.subject = subject;
         this.email = email;
         this.username = username;

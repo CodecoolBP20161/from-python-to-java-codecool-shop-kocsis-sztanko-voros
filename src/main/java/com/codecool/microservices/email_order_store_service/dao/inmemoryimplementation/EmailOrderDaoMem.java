@@ -1,28 +1,28 @@
 package com.codecool.microservices.email_order_store_service.dao.inmemoryimplementation;
 
-import com.codecool.microservices.email_order_store_service.dao.EmailDao;
-import com.codecool.microservices.email_order_store_service.model.UserEmail;
+import com.codecool.microservices.email_order_store_service.dao.EmailOrderDao;
+import com.codecool.microservices.email_order_store_service.model.EmailOrder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmailDaoMem implements EmailDao{
-    private static EmailDaoMem ourInstance = new EmailDaoMem();
+public class EmailOrderDaoMem implements EmailOrderDao {
+    private static EmailOrderDaoMem ourInstance = new EmailOrderDaoMem();
 
-    public static EmailDaoMem getInstance() {
+    public static EmailOrderDaoMem getInstance() {
         return ourInstance;
     }
 
-    private static List<UserEmail> DATA = new ArrayList<>();
+    private static List<EmailOrder> DATA = new ArrayList<>();
 
 
     @Override
-    public void add(UserEmail userEmail) {
-        DATA.add(userEmail);
+    public void add(EmailOrder emailOrder) {
+        DATA.add(emailOrder);
     }
 
     @Override
-    public UserEmail find(String id) {
+    public EmailOrder find(String id) {
         return DATA.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
     }
 

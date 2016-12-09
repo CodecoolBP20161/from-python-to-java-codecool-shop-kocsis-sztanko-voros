@@ -1,7 +1,7 @@
 package com.codecool.microservices.email_order_store_service;
 
-import com.codecool.microservices.email_order_store_service.controller.EmailStoreServiceController;
-import com.codecool.microservices.email_order_store_service.service.EmailStoreService;
+import com.codecool.microservices.email_order_store_service.controller.EmailOrderStoreServiceController;
+import com.codecool.microservices.email_order_store_service.service.EmailOrderStoreService;
 
 import java.net.URISyntaxException;
 
@@ -9,22 +9,22 @@ import static spark.Spark.exception;
 import static spark.Spark.get;
 import static spark.Spark.port;
 
-public class EmailStoreServer {
+public class EmailOrderStoreServer {
 
-    private EmailStoreServiceController controller;
+    private EmailOrderStoreServiceController controller;
 
     public static void main(String[] args) {
 
         port(60001);
 
-        EmailStoreServer application = new EmailStoreServer();
+        EmailOrderStoreServer application = new EmailOrderStoreServer();
 
-        application.controller = new EmailStoreServiceController(EmailStoreService.getInstance());
+        application.controller = new EmailOrderStoreServiceController(EmailOrderStoreService.getInstance());
 
         // --- MAPPINGS ---
-        get("/store", application.controller::storeEmail);
-        get("/email", application.controller::getAllEmail);
-        get("/changestatus", application.controller::changeStatus);
+        get("/api/store", application.controller::storeEmail);
+        get("/api/email", application.controller::getAllEmail);
+        get("/api/changestatus", application.controller::changeStatus);
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {

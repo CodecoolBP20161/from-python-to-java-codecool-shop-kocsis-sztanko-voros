@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class MailServiceController {
-    private static final String EMAIL_SENDER_URL = "http://localhost:60001/store";
+public class EmailServiceController {
+    private static final String EMAIL_SENDER_URL = "http://localhost:60001/api/store";
 
     public static String sendEmail(String username, String subject, String email) throws IOException {
         URIBuilder builder = null;
