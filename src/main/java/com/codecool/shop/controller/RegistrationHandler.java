@@ -6,9 +6,7 @@ import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
 
-import javax.mail.MessagingException;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class RegistrationHandler {
 
@@ -26,7 +24,7 @@ public class RegistrationHandler {
                                   SecurityHandler.createHashedPassword(json.getString("password"), salt)).build();
         userModelDataStore.add(userModel);
         try {
-            MailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
+            EmailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
         } catch (IOException e) {
             e.printStackTrace();
         }
