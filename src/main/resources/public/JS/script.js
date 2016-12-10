@@ -15,17 +15,30 @@ function showLogout() {
 }
 
 $(document).ready(function () {
-    // handles logout
-    $("#logout").click(function () {
-        $.cookie("status", "logged_out");
-        hideLogout();
-    });
-    console.log($.cookie("status"));
-    if ($.cookie("status") == "logged_in") {
-        showLogout();
+    if (localStorage["status"] == null) {
+        localStorage["status"] ="logged_out"
+    }
+
+    if (localStorage["status"] == "logged_in") {
+        showLogout()
     } else {
         hideLogout()
     }
+
+    // handles logout
+    $("#logout").click(function () {
+        $.ajax(
+            {
+                url: '/logout',
+                type: 'POST',
+                async: true
+            }).done(function (msg) {
+            if (msg.toString() == "OK") {
+                hideLogout();
+                localStorage["status"] = "logged_out";
+            }
+        });
+    });
 
     // handles sign up
     $("#signup").click(function () {
@@ -86,7 +99,8 @@ $(document).ready(function () {
                     $("#modal_login").modal("hide");
                     alert("You're now logged in.");
                     showLogout();
-                    console.log($.cookie("status"));
+                    localStorage["status"] = "logged_in";
+
                 }
                 if (msg.toString() == "ERROR") {
                     alert("Invalid credentials. Try again!")
