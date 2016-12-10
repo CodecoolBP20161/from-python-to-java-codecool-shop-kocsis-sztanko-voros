@@ -17,4 +17,14 @@ public class SessionHandler {
         req.session().attribute("cart", cart);
         return cart;
     }
+
+    public static void logIn(Request req, Response res) {
+        req.session().attribute("cart", null);
+        req.session().attribute("logged_in", true);
+    }
+
+    public static void logOut(Request req, Response res) {
+        req.session().attribute("cart", null);
+        req.session().attribute("logged_in", false);
+    }
 }
