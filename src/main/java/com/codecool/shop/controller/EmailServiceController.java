@@ -14,7 +14,6 @@ public class EmailServiceController {
         URIBuilder builder = null;
         try {
             builder = new URIBuilder(EMAIL_SENDER_URL);
-            System.out.println(builder.addParameter("username", username).addParameter("subject", subject).addParameter("email", email).build());
             return execute(builder.addParameter("username", username).addParameter("subject", subject).addParameter("email", email).build());
         } catch (URISyntaxException e) {
             e.printStackTrace();

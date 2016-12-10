@@ -31,5 +31,9 @@ public class Server {
         get("/shoppingcart", Controller::renderCart, new ThymeleafTemplateEngine());
 
         post("/registration", Controller::registrationHandling);
+
+        post("/login", Controller::loginHandler);
+
+        post("/logout", Controller::logoutHandler);
     }
 }

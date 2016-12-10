@@ -20,8 +20,8 @@ public class RegistrationHandler {
         salt = SecurityHandler.createSalt();
         UserModel userModel = new UserModel.UserBuilder(json.getString("name"),
                                   json.getString("email"),
-                                  salt,
-                                  SecurityHandler.createHashedPassword(json.getString("password"), salt)).build();
+                                  SecurityHandler.createHashedPassword(json.getString("password"), salt),
+                                  salt).build();
         userModelDataStore.add(userModel);
         try {
             EmailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
