@@ -40,7 +40,7 @@ public class EmailOrderDaoMem implements EmailOrderDao {
     public ArrayList getAllNew() {
         ArrayList newEmails = new ArrayList();
         for (EmailOrder emailOrder : DATA) {
-            if (emailOrder.getStatus().equals("new")){
+            if (emailOrder.getStatus().equals("new")) {
                 newEmails.add(emailOrder);
             }
         }

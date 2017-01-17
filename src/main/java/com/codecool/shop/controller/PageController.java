@@ -1,5 +1,6 @@
 package com.codecool.shop.controller;
 
+import com.codecool.microservices.YMAL_service.controller.YMALcontroller;
 import com.codecool.shop.model.Filter;
 import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.service.ProductCategoryService;
@@ -9,6 +10,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,9 +53,10 @@ public class PageController {
         return new ModelAndView(params, "product/index");
     }
 
-    public static ModelAndView renderCart(Request req, Response res) {
+    public static ModelAndView renderCart(Request req, Response res) throws IOException, URISyntaxException {
         ShoppingCart LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
+        params.put("recommendations", YMALcontroller.getInstance().getRecommendedProducts(req.session().id()));
         params.put("lineItems", LineItemDataStore.getAll());
         params.put("total", Math.round(LineItemDataStore.totalPrice() * 10.0) / 10.0);
         return new ModelAndView(params, "product/shoppingcart");

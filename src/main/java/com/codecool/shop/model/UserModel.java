@@ -31,7 +31,7 @@ public class UserModel {
 
     private String passwordSalt;
 
-    private UserModel (UserBuilder userBuilder) {
+    private UserModel(UserBuilder userBuilder) {
         this.name = userBuilder.name;
         this.email = userBuilder.email;
         this.passwordHash = userBuilder.passwordHash;

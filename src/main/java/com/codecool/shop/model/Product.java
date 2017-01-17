@@ -33,7 +33,7 @@ public class Product extends BaseModel {
         private String currencyString;
 
 
-        public ProductBuilder (String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
+        public ProductBuilder(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
             this.name = name;
             this.defaultPrice = defaultPrice;
             this.currencyString = currencyString;
@@ -42,7 +42,7 @@ public class Product extends BaseModel {
             this.supplier = supplier;
         }
 
-        public ProductBuilder id (int id) {
+        public ProductBuilder id(int id) {
             this.id = id;
             return this;
         }

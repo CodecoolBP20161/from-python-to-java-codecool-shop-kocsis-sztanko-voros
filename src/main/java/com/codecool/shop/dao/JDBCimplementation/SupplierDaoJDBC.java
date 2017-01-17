@@ -73,12 +73,12 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             rs = stmt.executeQuery();
             rowset = new CachedRowSetImpl();
             rowset.populate(rs);
-            while (rowset.next()){
+            while (rowset.next()) {
 
                 supplier = new Supplier
-                .SupplierBuilder(rowset.getString("supplier_name"), rowset.getString("supplier_description"))
-                .id(rowset.getInt("supplier_id"))
-                .build();
+                        .SupplierBuilder(rowset.getString("supplier_name"), rowset.getString("supplier_description"))
+                        .id(rowset.getInt("supplier_id"))
+                        .build();
 
                 ProductDaoJDBC productDaoJDBC = new ProductDaoJDBC();
                 ArrayList<Product> products = new ArrayList((productDaoJDBC.getBy(supplier)));
@@ -104,7 +104,7 @@ public class SupplierDaoJDBC extends DataBaseAbstraction implements SupplierDao 
             while (rs.next()) {
 
                 Supplier supplier = new Supplier
-                        .SupplierBuilder(rs.getString("supplier_name"),rs.getString("supplier_description"))
+                        .SupplierBuilder(rs.getString("supplier_name"), rs.getString("supplier_description"))
                         .id(rs.getInt("supplier_id"))
                         .build();
 

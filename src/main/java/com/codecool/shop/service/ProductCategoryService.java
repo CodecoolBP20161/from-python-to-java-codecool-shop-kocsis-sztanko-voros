@@ -5,7 +5,7 @@ import com.codecool.shop.model.ProductCategory;
 
 import java.util.List;
 
-public class ProductCategoryService{
+public class ProductCategoryService {
     ProductCategoryDao productCategoryDao;
     private static ProductCategoryService ourInstance = new ProductCategoryService();
 

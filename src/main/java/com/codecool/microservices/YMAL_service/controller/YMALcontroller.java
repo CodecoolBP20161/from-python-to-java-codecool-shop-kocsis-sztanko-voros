@@ -37,8 +37,7 @@ public class YMALcontroller {
         return instance;
     }
 
-
-    public ArrayList<Product> getRecommendedProducts(int UserId) throws IOException, URISyntaxException {
+    public ArrayList<Product> getRecommendedProducts(String UserId) throws IOException, URISyntaxException {
         ArrayList<Integer> prodList = fetchProductList(UserId);
         ArrayList<Product> products = new ArrayList<>();
         for (int id : prodList) {
@@ -48,10 +47,10 @@ public class YMALcontroller {
         return products;
     }
 
-    public ArrayList<Integer> fetchProductList(int userId) throws URISyntaxException, IOException {
+    public ArrayList<Integer> fetchProductList(String userId) throws URISyntaxException, IOException {
         URIBuilder builder = new URIBuilder(API_URL + "select");
         builder.addParameter(ACCESS_TOKEN_PARAM_KEY, ACCESS_TOKEN);
-        builder.addParameter(USER_ID_PARAM_KEY, Integer.toString(userId));
+        builder.addParameter(USER_ID_PARAM_KEY, userId);
         JSONObject obj = new JSONObject(execute(builder.build()));
         JSONArray jsonArray = (JSONArray) obj.get("recommendations");
         ArrayList<Integer> productIdArray = new ArrayList<>();
@@ -62,12 +61,11 @@ public class YMALcontroller {
 
     }
 
-    public String save(int userId, int cartItemId) throws IOException, URISyntaxException {
+    public String save(String userId, int cartItemId) throws IOException, URISyntaxException {
         URIBuilder builder = new URIBuilder(API_URL + "save");
         builder.addParameter(ACCESS_TOKEN_PARAM_KEY, ACCESS_TOKEN);
-        builder.addParameter(USER_ID_PARAM_KEY, Integer.toString(userId));
+        builder.addParameter(USER_ID_PARAM_KEY, userId);
         builder.addParameter(CART_ITEM_ID_PARAM_KEY, Integer.toString(cartItemId));
-        System.out.println(builder.toString());
         return execute(builder.build());
     }
 
@@ -76,14 +74,6 @@ public class YMALcontroller {
                 .execute()
                 .returnContent()
                 .asString();
-    }
-
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        YMALcontroller controller = YMALcontroller.getInstance();
-        controller.save(1, 1);
-        controller.save(2, 1);
-        controller.save(2, 2);
-        System.out.println(controller.getRecommendedProducts(1));
     }
 }
 
