@@ -18,6 +18,13 @@
             <h2 id="total" th:text="'Total Price: ' + ${total} + ' USD'"></h2>
         </div>
 
+        <div th:if= " ${products.size() != 0} " class="jumbotron">
+        <p>Recommendations</p>
+        </div>
+
+        <!--com.codecool.shop.Server-->
+        <div th:replace="products_listings :: homepage_listing"></div>
+
     </div>
 </body>
 </html>

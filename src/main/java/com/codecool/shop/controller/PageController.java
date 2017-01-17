@@ -56,7 +56,7 @@ public class PageController {
     public static ModelAndView renderCart(Request req, Response res) throws IOException, URISyntaxException {
         ShoppingCart LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
-        params.put("recommendations", YMALcontroller.getInstance().getRecommendedProducts(req.session().id()));
+        params.put("products", YMALcontroller.getInstance().getRecommendedProducts(req.session().id()));
         params.put("lineItems", LineItemDataStore.getAll());
         params.put("total", Math.round(LineItemDataStore.totalPrice() * 10.0) / 10.0);
         return new ModelAndView(params, "product/shoppingcart");

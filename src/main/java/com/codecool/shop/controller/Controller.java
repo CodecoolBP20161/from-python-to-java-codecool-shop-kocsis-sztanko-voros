@@ -4,6 +4,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 //com.codecool.shop.Server controller which pipes the request to low order controllers
 
 public class Controller {
@@ -16,11 +19,11 @@ public class Controller {
         return PageController.renderMain(req, res);
     }
 
-    public static String addCart(Request req, Response res) {
+    public static String addCart(Request req, Response res) throws IOException, URISyntaxException {
         return CartController.addCart(req, res);
     }
 
-    public static ModelAndView renderCart(Request req, Response res) {
+    public static ModelAndView renderCart(Request req, Response res) throws IOException, URISyntaxException {
         return PageController.renderCart(req, res);
     }
 
@@ -28,7 +31,7 @@ public class Controller {
         return CartController.decreaseItem(req, res);
     }
 
-    public static String increaseItem(Request req, Response res) {
+    public static String increaseItem(Request req, Response res) throws IOException, URISyntaxException {
         return CartController.increaseItem(req, res);
     }
 
