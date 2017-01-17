@@ -15,6 +15,7 @@ function showLogout() {
 }
 
 $(document).ready(function () {
+
     if (localStorage["status"] == null) {
         localStorage["status"] ="logged_out"
     }
@@ -115,8 +116,19 @@ $(document).ready(function () {
 
     $(".review_modal_button").click(function () {
         var product_name = this.value
-        $("#review_modal_label").append("Reviews for " + product_name);
-        $("#review_modal_body").append($("<p></p>").text(product_name));
+        $("#review_modal_label").append("Reviews of " + product_name);
+        $.ajax(
+            {
+                url: 'http://localhost:61000/api/review?title=AmazonFire',
+                type: 'GET',
+                dataType: "JSON",
+                async: true
+            }).done(function (response) {
+            $.each(response, function (index) {
+                $("#review_modal_body").append($("<p></p>").text(response[index].text));
+                $("#review_modal_body").append($("<p></p>").text(response[index].url));
+            })
+        });
     });
     $("#modal_review").on("hidden.bs.modal" ,function () {
         $("#review_modal_label").empty();
