@@ -112,4 +112,14 @@ $(document).ready(function () {
             console.log("Not valid")
         }
     });
+
+    $(".review_modal_button").click(function () {
+        var product_name = this.value
+        $("#review_modal_label").append("Reviews for " + product_name);
+        $("#review_modal_body").append($("<p></p>").text(product_name));
+    });
+    $("#modal_review").on("hidden.bs.modal" ,function () {
+        $("#review_modal_label").empty();
+        $("#review_modal_body").empty();
+    })
 });
