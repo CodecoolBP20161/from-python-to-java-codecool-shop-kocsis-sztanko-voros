@@ -125,8 +125,11 @@ $(document).ready(function () {
                 async: true
             }).done(function (response) {
             $.each(response, function (index) {
-                $("#review_modal_body").append($("<p></p>").text(response[index].text));
-                $("#review_modal_body").append($("<p></p>").text(response[index].url));
+                $("#review_modal_body").append($("<b></b>").text(response[index].text));
+                $("#review_modal_body").append($("<br>"))
+                $("#review_modal_body").append($("<a></a>").attr("href", response[index].url).attr("target", "_blank").text(response[index].url));
+                $("#review_modal_body").append($("<br>"))
+                $("#review_modal_body").append($("<br>"))
             })
         });
     });
