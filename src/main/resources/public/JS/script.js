@@ -123,6 +123,8 @@ $(document).ready(function () {
                 type: 'GET',
                 dataType: "JSON",
                 async: true
+            }).fail(function () {
+            $("#review_modal_body").append($("<b></b>").text("Something went wrong! Reviews are not available now, please come back later."));
             }).done(function (response) {
             $.each(response, function (index) {
                 $("#review_modal_body").append($("<b></b>").text(response[index].text));
@@ -130,7 +132,7 @@ $(document).ready(function () {
                 $("#review_modal_body").append($("<a></a>").attr("href", response[index].url).attr("target", "_blank").text(response[index].url));
                 $("#review_modal_body").append($("<br>"))
                 $("#review_modal_body").append($("<br>"))
-            })
+            });
         });
     });
     $("#modal_review").on("hidden.bs.modal" ,function () {
