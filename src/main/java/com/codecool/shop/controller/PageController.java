@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-import com.codecool.microservices.YMAL_service.controller.YMALcontroller;
 import com.codecool.shop.model.Filter;
 import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.service.ProductCategoryService;
@@ -56,7 +55,7 @@ public class PageController {
     public static ModelAndView renderCart(Request req, Response res) throws IOException, URISyntaxException {
         ShoppingCart LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
-        params.put("products", YMALcontroller.getInstance().getRecommendedProducts(req.session().id()));
+        params.put("products", YMALServiceController.getInstance().getRecommendedProducts(req.session().id()));
         params.put("lineItems", LineItemDataStore.getAll());
         params.put("total", Math.round(LineItemDataStore.totalPrice() * 10.0) / 10.0);
         return new ModelAndView(params, "product/shoppingcart");

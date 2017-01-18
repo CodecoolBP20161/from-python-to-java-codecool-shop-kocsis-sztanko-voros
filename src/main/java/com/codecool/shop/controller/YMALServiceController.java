@@ -1,4 +1,4 @@
-package com.codecool.microservices.YMAL_service.controller;
+package com.codecool.shop.controller;
 
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
@@ -17,23 +17,23 @@ import java.util.ArrayList;
  * Created by code on 2017.01.17..
  */
 
-public class YMALcontroller {
+public class YMALServiceController {
     private String API_URL = "http://localhost:60002/api/preferences/";
     private String ACCESS_TOKEN = "1231234bndf";
     private final String ACCESS_TOKEN_PARAM_KEY = "accessToken";
     private final String USER_ID_PARAM_KEY = "userId";
     private final String CART_ITEM_ID_PARAM_KEY = "cartItemId";
 
-    private static YMALcontroller instance;
+    private static YMALServiceController instance;
     private ProductService productService;
 
-    private YMALcontroller() {
+    private YMALServiceController() {
         this.productService = ProductService.getInstance();
     }
 
-    public static YMALcontroller getInstance() {
+    public static YMALServiceController getInstance() {
         if (instance == null) {
-            instance = new YMALcontroller();
+            instance = new YMALServiceController();
         }
         return instance;
     }

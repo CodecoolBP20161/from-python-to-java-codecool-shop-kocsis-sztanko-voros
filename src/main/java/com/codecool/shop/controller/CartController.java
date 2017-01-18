@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-import com.codecool.microservices.YMAL_service.controller.YMALcontroller;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.model.LineItem;
@@ -21,7 +20,7 @@ public class CartController {
         ShoppingCart cart = getShoppingCartDaoMem(req, res);
         ProductDao productDataStore = ProductDaoMem.getInstance();
         int id = Integer.valueOf(req.params("id"));
-        YMALcontroller.getInstance().save(req.session().id(), id);
+        YMALServiceController.getInstance().save(req.session().id(), id);
         cart.add(productDataStore.find(id));
         res.redirect("/");
         return null;
