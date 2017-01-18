@@ -119,7 +119,7 @@ $(document).ready(function () {
         $("#review_modal_label").append("Reviews of " + product_name);
         $.ajax(
             {
-                url: 'http://localhost:61000/api/review?title=AmazonFire',
+                url: 'http://localhost:61000/api/review?title=' + product_name,
                 type: 'GET',
                 dataType: "JSON",
                 async: true
