@@ -4,6 +4,7 @@ import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.conn.HttpHostConnectException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -51,14 +52,18 @@ public class YMALcontroller {
         URIBuilder builder = new URIBuilder(API_URL + "select");
         builder.addParameter(ACCESS_TOKEN_PARAM_KEY, ACCESS_TOKEN);
         builder.addParameter(USER_ID_PARAM_KEY, userId);
-        JSONObject obj = new JSONObject(execute(builder.build()));
-        JSONArray jsonArray = (JSONArray) obj.get("recommendations");
         ArrayList<Integer> productIdArray = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            productIdArray.add(Integer.parseInt(jsonArray.get(i).toString()));
+        try {
+            JSONObject obj = new JSONObject(execute(builder.build()));
+            JSONArray jsonArray = (JSONArray) obj.get("recommendations");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                productIdArray.add(Integer.parseInt(jsonArray.get(i).toString()));
+            }
+        } catch (HttpHostConnectException e) {
+            // microservice is not running, return value: empty ArrayList
+            return productIdArray;
         }
         return productIdArray;
-
     }
 
     public String save(String userId, int cartItemId) throws IOException, URISyntaxException {
