@@ -11,12 +11,17 @@
         <!--Page Header-->
         <div th:replace="headers :: header_shopping_cart"></div>
 
-        <!--com.codecool.shop.Server-->
         <div th:replace="products_listings :: cart_listing"></div>
 
         <div class="jumbotron">
             <h2 id="total" th:text="'Total Price: ' + ${total} + ' USD'"></h2>
         </div>
+
+        <div th:if= " ${products.size() != 0} " class="jumbotron">
+        <p>Customers Who Bought This Item Also Bought:</p>
+        </div>
+
+        <div th:replace="products_listings :: homepage_listing"></div>
 
     </div>
 </body>

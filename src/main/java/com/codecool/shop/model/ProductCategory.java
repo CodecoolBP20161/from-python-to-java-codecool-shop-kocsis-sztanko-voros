@@ -26,14 +26,14 @@ public class ProductCategory extends BaseModel implements Filter {
         private String department;
         private ArrayList<Product> products;
 
-        public ProductCategoryBuilder (String name, String description, String department) {
+        public ProductCategoryBuilder(String name, String description, String department) {
             this.name = name;
             this.description = description;
             this.department = department;
             this.products = new ArrayList<>();
         }
 
-        public ProductCategoryBuilder id (int id) {
+        public ProductCategoryBuilder id(int id) {
             this.id = id;
             return this;
         }
@@ -69,7 +69,7 @@ public class ProductCategory extends BaseModel implements Filter {
         this.products.add(product);
     }
 
-    public List getBy(){
+    public List getBy() {
         return getProducts();
     }
 

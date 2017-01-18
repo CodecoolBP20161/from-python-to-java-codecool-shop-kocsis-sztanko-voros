@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.TimerTask;
 
-public class EmailSendServiceController extends TimerTask{
+public class EmailSendServiceController extends TimerTask {
     EmailSendService emailSendService;
 
     public EmailSendServiceController(EmailSendService emailSendService) {

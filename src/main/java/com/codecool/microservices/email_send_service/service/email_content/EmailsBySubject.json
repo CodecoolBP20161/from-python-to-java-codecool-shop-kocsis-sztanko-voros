@@ -1,5 +1,8 @@
-{"emails":[
-  {"subject":"welcome",
-  "body":"Dear %1$s!<br/><br/>Thank you for your registration! We hope you're going to have a wonderful time on our webpage!<br/>Feel free to hang around and buy something for yourself!<br/><br/>Best wishes,<br/>Codecool Shop Staff"
-  }
-]}
+{
+  "emails": [
+    {
+      "subject": "welcome",
+      "body": "Dear %1$s!<br/><br/>Thank you for your registration! We hope you're going to have a wonderful time on our webpage!<br/>Feel free to hang around and buy something for yourself!<br/><br/>Best wishes,<br/>Codecool Shop Staff"
+    }
+  ]
+}

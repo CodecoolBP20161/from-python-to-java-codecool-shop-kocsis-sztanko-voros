@@ -14,21 +14,21 @@ public class RegistrationHandler {
         UserModelService userModelDataStore = UserModelService.getInstance();
         String salt;
         JSONObject json = new JSONObject(req.body());
-        if (userModelDataStore.find(json.getString("email")) != null){
+        if (userModelDataStore.find(json.getString("email")) != null) {
             return "NO";
         }
         salt = SecurityHandler.createSalt();
         UserModel userModel = new UserModel.UserBuilder(json.getString("name"),
-                                  json.getString("email"),
-                                  SecurityHandler.createHashedPassword(json.getString("password"), salt),
-                                  salt).build();
+                json.getString("email"),
+                SecurityHandler.createHashedPassword(json.getString("password"), salt),
+                salt).build();
         userModelDataStore.add(userModel);
         try {
             EmailServiceController.sendEmail(userModel.getName(), "welcome", userModel.getEmail());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        res.header("Content-Type:application/json","{status:OK}");
+        res.header("Content-Type:application/json", "{status:OK}");
         return "OK";
     }
 }

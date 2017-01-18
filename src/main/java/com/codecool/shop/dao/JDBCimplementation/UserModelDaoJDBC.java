@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.apache.commons.dbutils.DbUtils.closeQuietly;
 
-public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDao{
+public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDao {
 
     @Override
     protected String selectAllSQL() {
@@ -74,7 +74,7 @@ public class UserModelDaoJDBC extends DataBaseAbstraction implements UserModelDa
             rs = stmt.executeQuery();
             rowset = new CachedRowSetImpl();
             rowset.populate(rs);
-            while (rowset.next()){
+            while (rowset.next()) {
 
                 userModel = new UserModel
                         .UserBuilder(rowset.getString("user_name"), rowset.getString("user_email"), rowset.getString("user_passwordhash"), rowset.getString("user_passwordsalt"))
