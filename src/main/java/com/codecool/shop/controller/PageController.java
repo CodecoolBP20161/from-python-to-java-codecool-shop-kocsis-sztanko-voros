@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-import com.codecool.microservices.YMAL_service.controller.YMALServiceController;
 import com.codecool.shop.model.Filter;
 import com.codecool.shop.model.ShoppingCart;
 import com.codecool.shop.service.ProductCategoryService;

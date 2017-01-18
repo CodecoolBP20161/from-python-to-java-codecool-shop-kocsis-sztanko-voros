@@ -1,4 +1,4 @@
-package com.codecool.microservices.YMAL_service.controller;
+package com.codecool.shop.controller;
 
 import com.codecool.shop.model.Product;
 import com.codecool.shop.service.ProductService;

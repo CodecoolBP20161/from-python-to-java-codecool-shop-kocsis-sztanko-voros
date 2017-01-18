@@ -1,6 +1,5 @@
 package com.codecool.shop.controller;
 
-import com.codecool.microservices.YMAL_service.controller.YMALServiceController;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.inmemoryimplementation.ProductDaoMem;
 import com.codecool.shop.model.LineItem;
