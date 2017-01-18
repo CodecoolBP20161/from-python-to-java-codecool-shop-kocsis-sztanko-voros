@@ -75,10 +75,5 @@ public class YMALcontroller {
                 .returnContent()
                 .asString();
     }
-
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        YMALcontroller c = YMALcontroller.getInstance();
-        c.fetchProductList("1");
-    }
 }
 
