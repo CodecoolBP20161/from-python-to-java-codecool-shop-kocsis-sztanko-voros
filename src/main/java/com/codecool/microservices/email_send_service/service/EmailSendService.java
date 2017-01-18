@@ -53,7 +53,7 @@ public class EmailSendService {
 
         Transport transport = getMailSession.getTransport("smtp");
 
-        transport.connect("smtp.gmail.com", emailUsername , emailPassword);
+        transport.connect("smtp.gmail.com", emailUsername, emailPassword);
         transport.sendMessage(generateMailMessage, generateMailMessage.getAllRecipients());
         transport.close();
     }
@@ -62,7 +62,7 @@ public class EmailSendService {
         InputStream is = new FileInputStream("src/main/java/com/codecool/microservices/email_send_service/service/email_content/EmailsBySubject.json");
         JSONObject json = new JSONObject(IOUtils.toString(is));
         String message = null;
-        for (int i = 0; i < json.getJSONArray("emails").length(); i++){
+        for (int i = 0; i < json.getJSONArray("emails").length(); i++) {
             if (json.getJSONArray("emails").getJSONObject(i).get("subject").equals(subject)) {
                 message = String.format(json.getJSONArray("emails").getJSONObject(i).get("body").toString(), username);
             }
@@ -74,7 +74,7 @@ public class EmailSendService {
         URI getURI = new URIBuilder(SERVICE_URL + "/api/email").build();
         JSONObject json = new JSONObject(execute(getURI));
         JSONArray emails = json.getJSONArray("emails");
-        for (int i = 0; i < emails.length(); i++){
+        for (int i = 0; i < emails.length(); i++) {
             String subject = emails.getJSONObject(i).get("subject").toString();
             String email = emails.getJSONObject(i).get("email").toString();
             String username = emails.getJSONObject(i).get("username").toString();

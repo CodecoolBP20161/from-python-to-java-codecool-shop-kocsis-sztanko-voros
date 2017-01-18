@@ -14,10 +14,11 @@
                         <p class="group inner list-group-item-text" th:text="${prod.description}">Product
                             description... </p>
                         <div class="row">
-                            <div class="col-xs-12 col-md-6">
+                            <div class="col-xs-12 col-md-5">
                                 <p class="lead" th:text="${prod.getPrice()}">Unit Price</p>
                             </div>
-                            <div class="col-xs-12 col-md-6" th:align="right">
+                            <button th:value="${prod.name}" type="button" class="col-xs-12 col-md-3 btn btn-danger review_modal_button" data-toggle="modal" data-target="#modal_review"> Reviews </button>
+                            <div class="col-xs-12 col-md-4" th:align="right">
                                 <form th:action="'/cart/'+ ${prod.id}" method="post">
                                     <button type="sumbit" class="btn btn-danger">Add to cart</button>
                                 </form>

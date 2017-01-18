@@ -5,7 +5,7 @@ import com.codecool.shop.model.Supplier;
 
 import java.util.List;
 
-public class SupplierService{
+public class SupplierService {
     SupplierDao supplierDao;
     private static SupplierService ourInstance = new SupplierService();
 

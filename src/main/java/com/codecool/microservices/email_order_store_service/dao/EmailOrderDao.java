@@ -7,9 +7,13 @@ import java.util.ArrayList;
 public interface EmailOrderDao {
 
     void add(EmailOrder emailOrder);
+
     EmailOrder find(String id);
+
     void remove(String id);
+
     void changeStatus(String id);
+
     ArrayList getAllNew();
 
 }

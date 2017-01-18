@@ -15,6 +15,7 @@ function showLogout() {
 }
 
 $(document).ready(function () {
+
     if (localStorage["status"] == null) {
         localStorage["status"] ="logged_out"
     }
@@ -112,4 +113,30 @@ $(document).ready(function () {
             console.log("Not valid")
         }
     });
+
+    $(".review_modal_button").click(function () {
+        var product_name = this.value
+        $("#review_modal_label").append("Reviews of " + product_name);
+        $.ajax(
+            {
+                url: 'http://localhost:61000/api/review?title=' + product_name,
+                type: 'GET',
+                dataType: "JSON",
+                async: true
+            }).fail(function () {
+            $("#review_modal_body").append($("<b></b>").text("Something went wrong! Reviews are not available now, please come back later."));
+            }).done(function (response) {
+            $.each(response, function (index) {
+                $("#review_modal_body").append($("<b></b>").text(response[index].text));
+                $("#review_modal_body").append($("<br>"))
+                $("#review_modal_body").append($("<a></a>").attr("href", response[index].url).attr("target", "_blank").text(response[index].url));
+                $("#review_modal_body").append($("<br>"))
+                $("#review_modal_body").append($("<br>"))
+            });
+        });
+    });
+    $("#modal_review").on("hidden.bs.modal" ,function () {
+        $("#review_modal_label").empty();
+        $("#review_modal_body").empty();
+    })
 });

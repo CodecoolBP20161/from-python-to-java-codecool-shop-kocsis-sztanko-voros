@@ -9,6 +9,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,9 +52,10 @@ public class PageController {
         return new ModelAndView(params, "product/index");
     }
 
-    public static ModelAndView renderCart(Request req, Response res) {
+    public static ModelAndView renderCart(Request req, Response res) throws IOException, URISyntaxException {
         ShoppingCart LineItemDataStore = getShoppingCartDaoMem(req, res);
         Map params = new HashMap<>();
+        params.put("products", YMALServiceController.getInstance().getRecommendedProducts(req.session().id()));
         params.put("lineItems", LineItemDataStore.getAll());
         params.put("total", Math.round(LineItemDataStore.totalPrice() * 10.0) / 10.0);
         return new ModelAndView(params, "product/shoppingcart");

@@ -20,7 +20,11 @@ ENUM and Factory Pattern helps you to switch implementation:
 - default settings: jdbc:postgresql://localhost:5432/postgres; postgres; postgres
 - set your db with running init_db.sql in sql folder
 - run test_data.sql to add example data to the app
-- run the microservices one by one: EmailOrderStoreServer, EmailSendServer then the main application's Server 
+- run the microservices one by one: EmailOrderStoreServer (local), 
+                                    EmailSendServer (local),
+                                    YouMightAlsoLike (https://github.com/CodecoolBP20161/from-python-to-java-microservices-kocsis-sztanko-voros),
+                                    Review Searcher (https://github.com/CodecoolBP20161/from-python-to-java-microservices-lama)
+                                    --- then the main application's Server.
 
 # ||| Preview |||
 !["preview"](src/main/resources/public/img/codecool_shop.png)

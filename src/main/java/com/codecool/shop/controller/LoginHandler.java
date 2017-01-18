@@ -9,19 +9,19 @@ import spark.Response;
 
 public class LoginHandler {
 
-    public static String handleLogin(Request req, Response res){
+    public static String handleLogin(Request req, Response res) {
         UserModelService userModelDataStore = UserModelService.getInstance();
         JSONObject json = new JSONObject(req.body());
 
-        if (userModelDataStore.find(json.getString("email")) == null){
+        if (userModelDataStore.find(json.getString("email")) == null) {
             return "ERROR";
         }
         UserModel user = userModelDataStore.find(json.getString("email"));
         String enteredPassword = SecurityHandler.createHashedPassword(json.getString("password"), user.getPasswordSalt());
-        if ( !enteredPassword.equals(user.getPasswordHash())) {
+        if (!enteredPassword.equals(user.getPasswordHash())) {
             return "ERROR";
         }
-        SessionHandler.logIn(req,res);
+        SessionHandler.logIn(req, res);
         return "OK";
     }
 
